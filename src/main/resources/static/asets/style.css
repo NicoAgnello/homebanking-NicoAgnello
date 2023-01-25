@@ -1,0 +1,24 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: hsl(0, 0%, 82%);
+}
+
+tr {
+  border: 1px solid hsl(0, 0%, 70%);
+}
+h1,
+h2,
+h3 {
+  color: rgb(10, 10, 10);
+  font-weight: bold;
+}
+
+.delete-client,
+.edit-client {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  border: 1px solid hsl(0, 0%, 50%);
+}
+i {
+  cursor: pointer;
+}
