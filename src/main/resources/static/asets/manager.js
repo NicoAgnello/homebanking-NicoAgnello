@@ -20,7 +20,7 @@ createApp({
   methods: {
     loadData() {
       axios
-        .get("http://localhost:8080/clients")
+        .get("http://localhost:8080/rest/clients")
         .then((response) => {
           this.jsonClients = response;
           this.clients = response.data._embedded.clients;
@@ -40,7 +40,7 @@ createApp({
 
     postClient() {
       axios
-        .post("http://localhost:8080/clients", {
+        .post("http://localhost:8080/rest/clients", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
@@ -56,7 +56,8 @@ createApp({
 
     removeClient(id) {
       axios
-        .delete(`http://localhost:8080/clients/${id}`)
+        // .delete(`http://localhost:8080/rest/clients/${id}/accounts`)
+        .delete(`http://localhost:8080/rest/clients/${id}`)
         .then(() => this.loadData())
         .catch((err) => console.log(err));
     },
@@ -64,7 +65,7 @@ createApp({
     bringClient(id) {
       this.clientDetails = this.clients.filter((client) => this.getClientId(client) == id)[0];
       axios
-        .get(`/clients/${id}`)
+        .get(`/rest/clients/${id}`)
         .then((res) => {
           this.firstNameEdit = res.data.firstName;
           this.lastNameEdit = res.data.lastName;
@@ -76,7 +77,7 @@ createApp({
     editClient(id) {
       if (this.validateEmail(this.emailEdit)) {
         axios
-          .put(`http://localhost:8080/clients/${id}`, {
+          .put(`http://localhost:8080/rest/clients/${id}`, {
             firstName: this.firstNameEdit,
             lastName: this.lastNameEdit,
             email: this.emailEdit,

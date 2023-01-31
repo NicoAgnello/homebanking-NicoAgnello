@@ -1,0 +1,31 @@
+:root{
+    --fuentePrincipal: 'Montserrat', sans-serif;
+    --colorPrincipal: #00ADB5;
+    --colorSecundario: #EEEEEE;
+    --colorFooter: #393E46;
+}
+
+body{
+    background-color: var(--colorSecundario);
+}
+.title-accounts, nav{
+    font-family: var(--fuentePrincipal);
+    font-weight: bold;
+}
+h1, .hamburger-button, .client-nav{
+    background-color: var(--colorPrincipal);
+}
+
+.title-accounts{
+    padding: 1rem;
+    border-bottom: 1px solid black;
+}
+
+main{
+    min-height: 90vh;
+}
+
+footer{
+    min-height: 4rem;
+    background-color: var(--colorFooter);
+}

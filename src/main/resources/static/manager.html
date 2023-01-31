@@ -9,7 +9,10 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
-    <script src="https://kit.fontawesome.com/2cd05a3c76.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/2cd05a3c76.js"
+      crossorigin="anonymous"
+    ></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
@@ -26,14 +29,28 @@
             <form>
               <div class="mb-3">
                 <label for="exampleInputName" class="form-label">Name:</label>
-                <input type="text" class="form-control" id="exampleInputName" v-model="firstName" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputName"
+                  v-model="firstName"
+                />
               </div>
               <div class="mb-3">
-                <label for="exampleInputLastName" class="form-label">Last name:</label>
-                <input type="text" class="form-control" id="exampleInputLastName" v-model="lastName" />
+                <label for="exampleInputLastName" class="form-label"
+                  >Last name:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputLastName"
+                  v-model="lastName"
+                />
               </div>
               <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email: </label>
+                <label for="exampleInputEmail1" class="form-label"
+                  >Email:
+                </label>
                 <input
                   type="email"
                   class="form-control"
@@ -41,9 +58,13 @@
                   aria-describedby="emailHelp"
                   v-model="email"
                 />
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <div id="emailHelp" class="form-text">
+                  We'll never share your email with anyone else.
+                </div>
               </div>
-              <button type="submit" class="btn btn-success" @click="addClient">Add client</button>
+              <button type="submit" class="btn btn-success" @click="addClient">
+                Add client
+              </button>
             </form>
             <div>
               <h2 class="text-center">Client List</h2>
@@ -80,7 +101,12 @@
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Client</h1>
+                              <h1
+                                class="modal-title fs-5"
+                                id="exampleModalLabel"
+                              >
+                                Edit Client
+                              </h1>
                               <button
                                 type="button"
                                 class="btn-close"
@@ -90,7 +116,11 @@
                             </div>
                             <div class="modal-body">
                               <div class="input-group mb-3">
-                                <span class="input-group-text" id="firstName-edit">First name</span>
+                                <span
+                                  class="input-group-text"
+                                  id="firstName-edit"
+                                  >First name</span
+                                >
                                 <input
                                   type="text"
                                   class="form-control"
@@ -100,7 +130,11 @@
                                 />
                               </div>
                               <div class="input-group mb-3">
-                                <span class="input-group-text" id="lastName-edit">Last name</span>
+                                <span
+                                  class="input-group-text"
+                                  id="lastName-edit"
+                                  >Last name</span
+                                >
                                 <input
                                   type="text"
                                   class="form-control"
@@ -110,7 +144,9 @@
                                 />
                               </div>
                               <div class="input-group mb-3">
-                                <span class="input-group-text" id="email-edit">Email</span>
+                                <span class="input-group-text" id="email-edit"
+                                  >Email</span
+                                >
                                 <input
                                   type="text"
                                   class="form-control"
@@ -121,7 +157,13 @@
                               </div>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
                               <button
                                 type="button"
                                 class="btn btn-warning"
@@ -135,7 +177,10 @@
                       </div>
                     </td>
                     <td class="text-center">
-                      <i @click="removeClient(getClientId(client))" class="fa-solid fa-trash"></i>
+                      <i
+                        @click="removeClient(getClientId(client))"
+                        class="fa-solid fa-trash"
+                      ></i>
                     </td>
                   </tr>
                 </tbody>
