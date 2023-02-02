@@ -1,0 +1,53 @@
+:root{
+    --colorPrimario : #2E4783;
+    --colorSecundario: #5975AA;
+    --fuentePrincipal: 'Secular One', sans-serif;
+}
+
+table{
+    border-collapse: separate;
+        border-spacing: 10;
+        border: 1px solid black;    
+        border-radius: 15px;
+        -moz-border-radius: 20px;
+        /* padding: 2px; */
+}
+body{
+    font-family: var(--fuentePrincipal);
+}
+.card-accounts{
+    background-color: var(--colorPrimario);
+}
+
+.table-accounts{
+    color: var(--colorPrimario);
+}
+.content-accounts, .description-card-accounts{
+    color: var(--colorSecundario);
+}
+
+.client-name-accounts{
+    color: #3b4cad;
+    -webkit-text-stroke: .1px var(--colorPrimario);
+    padding-inline-start: .2rem;
+}
+.color-nav{
+    min-height: 140px;
+    background: url("../img/sun-tornado.svg") center/cover fixed;
+
+}
+
+.container-accounts{
+    padding-top: 6rem;
+}
+
+@media (max-width: 620px ){
+    .container-accounts{
+        padding-top: 4rem;
+    }
+}
+
+
+/* Log Out */
+
+

@@ -1,0 +1,104 @@
+
+:root{
+    --colorPrimario : #2E4783;
+    --colorSecundario: #5975AA;
+    --fuentePrincipal: 'Secular One', sans-serif;
+}
+
+main{
+    min-height: 100vh;
+    background: url("../img/sun-tornado.svg") center/cover fixed;
+    font-family: var(--fuentePrincipal);
+}
+
+.row{
+    min-height: 80vh;
+}
+
+.nav-login{
+    background-color: #F3F6FA;
+}
+
+
+/* Log In */
+
+.card {
+    width: 400px;
+    height: 290px;
+    background: hsl(223, 47%, 97%);
+    border: 1px solid white;
+  }
+  
+  .form {
+    padding: 25px;
+  }
+  
+  .card_header {
+    display: flex;
+    align-items: center;
+  }
+  
+  .card svg {
+    color: #7878bd;
+    margin-bottom: 20px;
+    margin-right: 5px;
+  }
+  
+  .form_heading {
+    padding-bottom: 20px;
+    font-size: 21px;
+    color: #7878bd;
+  }
+  
+  .field {
+    padding-bottom: 10px;
+  }
+  
+  .input {
+    border-radius: 5px;
+    background-color: #e9e9f7;
+    padding: 5px;
+    width: 100%;
+    color: #7a7ab3;
+    border: 1px solid #dadaf7
+  }
+  
+  .input:focus-visible {
+    outline: 1px solid #aeaed6;
+  }
+  
+  .input::placeholder {
+    color: #bcbcdf;
+  }
+  
+  label {
+    color: #B2BAC8;
+    font-size: 14px;
+    display: block;
+    padding-bottom: 4px;
+  }
+  
+  .button-login {
+    border-radius: 2rem;
+    background-color: #7878bd;
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 8px 20px;
+    height: auto;
+    font-weight: 500;
+    color: white;
+  }
+  
+  .button-login:hover {
+    background-color: #5f5f9c;
+  }
+
+
+  /* Footer */
+
+  footer{
+    background-color: var(--colorPrimario);
+    min-height: 7vh;
+    display: flex;
+    align-items: center;
+  }
