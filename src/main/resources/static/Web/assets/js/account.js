@@ -3,16 +3,17 @@ const {createApp} = Vue;
 createApp ({
     data (){
         return {
-            client: {},
-            account : {},
-            accountId : "",
+            client : {},
+            accountId: "",
+            account: {},
+            accountSortedByID : {},
         }
     },
     created (){
         let script = document.createElement('script');
         script.setAttribute('src', 'assets/js/argon-dashboard.js')
         document.head.appendChild(script)
-        this.getClient();
+        this.getClient()
         this.getURLId();
         this.getAccount();
     },
@@ -22,9 +23,13 @@ createApp ({
             .get("http://localhost:8080/api/clients/1")
             .then(response => {
                 this.client = response.data
-                this.clientId = response.data.id
             })
             .catch(err => console.log(err))
+        },
+        parseDate(fecha){
+            let date = fecha.split("T")[0];
+            let newDate = date.split("-").reverse().join("/");
+            return newDate;
         },
         getURLId (){
             let stringUrlWithID = location.search;
@@ -33,12 +38,12 @@ createApp ({
         },
         getAccount (){
             axios
-            .get(`http://localhost:8080/web/accounts.html/${this.accountId}`)
+            .get(`http://localhost:8080/api/accounts/${this.accountId}`)
             .then(response => {
                 this.account = response.data
-                console.log(response.data)
+                this.accountSortedByID = response.data.transactions.sort((b,a)=> a.id - b.id);
             } )
             .catch(err => {console.log(err)})
-        }
+        },
     }
 }).mount("#app")
