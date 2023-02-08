@@ -248,22 +248,22 @@
           </div>
           <h4 class="description-card-accounts text-center py-3">
             Here are the movements of account {{account.number}}
-          </h4>       
+          </h4>
             <table class="table-responsive w-100 table-movements text-center">
               <thead>
                 <tr>
-                  <th scope="col">Number</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Amount</th>
+                  <th class="p-2" scope="col">Number</th>
+                  <th class="p-2" scope="col">Date</th>
+                  <th class="p-2" scope="col">Description</th>
+                  <th class="p-2" scope="col">Type</th>
+                  <th class="p-2" scope="col">Amount</th>
                 </tr>
               </thead>
               <tbody class="body-account border border-secondary" v-for="transaction of account.transactions">
                 <tr>
-                  <td class="bg-light text-dark ">{{transaction.id}}</td>
+                  <td class="bg-light text-dark">{{transaction.id}}</td>
                   <td class="">{{parseDate(transaction.date)}}</td>
-                  <td class="">{{transaction.description}}</td>
+                  <td class="bg-light text-dark">{{transaction.description}}</td>
                   <td class="">{{transaction.type}}</td>
                   <td class="bg-light border border-secondary "  :class="transaction.type == 'DEBIT' ? 'text-danger-emphasis' : 'text-success-emphasis'">${{transaction.amount}}</td>
                 </tr>

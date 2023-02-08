@@ -6,7 +6,6 @@ createApp ({
             client : {},
             accountId: "",
             account: {},
-            accountSortedByID : {},
         }
     },
     created (){
@@ -38,12 +37,12 @@ createApp ({
         },
         getAccount (){
             axios
-            .get(`http://localhost:8080/api/accounts/${this.accountId}`)
-            .then(response => {
-                this.account = response.data
-                this.accountSortedByID = response.data.transactions.sort((b,a)=> a.id - b.id);
-            } )
-            .catch(err => {console.log(err)})
+                .get(`http://localhost:8080/api/accounts/${this.accountId}`)
+                .then(response => {
+                    this.account = response.data;
+                    this.account.transactions.sort((b,a)=> a.id - b.id);
+                } )
+                .catch(err => {console.log(err)})
         },
     }
 }).mount("#app")
