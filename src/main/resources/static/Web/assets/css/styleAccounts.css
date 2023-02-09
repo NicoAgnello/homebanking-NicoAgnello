@@ -58,6 +58,8 @@ body{
 .container-accounts{
     margin-top: 2rem;
 }
+
+
 /* See movements */
 
 .movements-button {
@@ -69,7 +71,7 @@ body{
   vertical-align: middle;
   text-decoration: none;
   font-family: inherit;
-  font-size: 11.5px;
+  font-size: 11px;
   margin-bottom: .8rem;
  }
  
@@ -249,11 +251,10 @@ body{
 }
 
 
-
 /* Media */
 @media (max-width: 425px ){
   .movements-button.learn-more{
-    padding: 1em;
+    padding: .5em;
   }
   .movements-button{
   font-size: 9px;

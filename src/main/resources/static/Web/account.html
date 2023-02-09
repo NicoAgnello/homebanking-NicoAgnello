@@ -261,10 +261,10 @@
               </thead>
               <tbody class="body-account border border-secondary" v-for="transaction of account.transactions">
                 <tr>
-                  <td class="bg-light text-dark">{{transaction.id}}</td>
-                  <td class="">{{parseDate(transaction.date)}}</td>
-                  <td class="bg-light text-dark">{{transaction.description}}</td>
-                  <td class="">{{transaction.type}}</td>
+                  <td class="bg-light text-dark border border-secondary">{{transaction.id}}</td>
+                  <td class="border border-secondary">{{parseDate(transaction.date)}}</td>
+                  <td class="bg-light text-dark border border-secondary" >{{transaction.description}}</td>
+                  <td class="border border-secondary " >{{transaction.type}}</td>
                   <td class="bg-light border border-secondary "  :class="transaction.type == 'DEBIT' ? 'text-danger-emphasis' : 'text-success-emphasis'">${{transaction.amount}}</td>
                 </tr>
               </tbody>
