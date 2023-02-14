@@ -21,6 +21,18 @@ public class Account {
     @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
     Set<Transaction> transactions = new HashSet<>();
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id")
+    private Client client;
+
+    public Account (){}
+
+    public Account ( String number, LocalDateTime creationDate, double balance){
+        this.number = number;
+        this.creationDate = creationDate;
+        this.balance = balance;
+    }
+
     public Set<Transaction> getTransactions() {
         return transactions;
     }
@@ -28,17 +40,6 @@ public class Account {
     public void addTransaction (Transaction transaction){
         transaction.setAccount(this);
         transactions.add(transaction);
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id")
-    private Client client;
-    public Account (){}
-
-    public Account ( String number, LocalDateTime creationDate, double balance){
-        this.number = number;
-        this.creationDate = creationDate;
-        this.balance = balance;
     }
 
     public String getNumber (){

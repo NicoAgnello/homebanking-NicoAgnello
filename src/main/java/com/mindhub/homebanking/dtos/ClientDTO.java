@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 public class ClientDTO {
     private long id;
     private String firstName, lastName, email;
-    private Set<AccountDTO> accounts = new HashSet<>();
+    private Set<AccountDTO> accounts;
 
-    private Set<ClientLoanDTO> loans = new HashSet<>();
+    private Set<ClientLoanDTO> loans;
 
     public ClientDTO (Client client){
         this.id = client.getId();

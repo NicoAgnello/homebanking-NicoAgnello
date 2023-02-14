@@ -1,95 +1,273 @@
-:root{
-    --colorPrimario : #2E4783;
-    --colorSecundario: #5975AA;
-    --colorTerciario: #6577B8;
-    --fuentePrincipal: 'Secular One', sans-serif;
+:root {
+  --colorPrimario: #2e4783;
+  --colorSecundario: #5975aa;
+  --colorTerciario: #6577b8;
+  --fuentePrincipal: "Secular One", sans-serif;
 }
 
-
-.table-movements{
-    background-color: var(--colorPrimario);
-    color: white;
-    border-radius: 1rem;
+.table-movements {
+  background-color: var(--colorPrimario);
+  color: white;
+  border-radius: 1rem;
 }
 
-.container-accounts{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+th,
+td {
+  padding: 0.8rem;
 }
 
-.body-account{
-    background-color: var(--colorSecundario);
+.container-accounts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+.body-account {
+  background-color: var(--colorSecundario);
+}
+
+.fondo-loans {
+  border-radius: 2rem;
+  padding: 6rem;
+  margin-inline: 2.5rem;
+  background: url(../img/home/fondo-dinero.jpg) center/cover;
+}
+
+.loan-info {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  padding-inline: 2rem;
+  border-radius: 1rem;
+  font-family: var(--fuentePrincipal);
+  background: linear-gradient(90deg, rgba(46, 71, 131, 1) 0%, rgba(89, 117, 170, 1) 35%, rgba(139, 153, 204, 1) 100%);
+  margin-top: 1rem;
+  border: 1px solid var(--colorTerciario);
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: white;
+}
+.loan-payments {
+  color: var(--colorPrimario);
+  -webkit-text-stroke: 0.1px black;
+}
+
+.loan-amount {
+  color: hsl(0, 0%, 97%);
+  font-size: 1.4rem;
+}
+
+.title-no-loan {
+  color: var(--colorPrimario);
+}
+
+.background-no-loan {
+  padding: 7rem;
+  border-radius: 2rem;
+  margin-top: 2rem;
+  margin-inline: 2rem;
+  background: url(../img/home/fondo-bank.jpg) center/cover;
+}
+
+/* Button Get Loan */
+
+.learn-more {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.learn-more {
+  width: 12rem;
+  height: auto;
+}
+
+.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: var(--colorPrimario);
+  border-radius: 1.625rem;
+}
+
+.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: var(--colorPrimario);
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.learn-more:hover .circle {
+  width: 100%;
+}
+
+.learn-more:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+
+.learn-more:hover .button-text {
+  color: #fff;
+}
 
 /* Button Account */
 
 .button-account {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    background: var(--colorPrimario);
-    box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    border: none;
-   }
-   
-   .button-account:after {
-    content: " ";
-    width: 0%;
-    height: 100%;
-    background: var(--colorSecundario);
-    position: absolute;
-    transition: all 0.4s ease-in-out;
-    right: 0;
-   }
-   
-   .button-account:hover::after {
-    right: auto;
-    left: 0;
-    width: 100%;
-   }
-   
-   .button-account span {
-    text-align: center;
-    text-decoration: none;
-    width: 100%;
-    padding: 8px 16px;
-    color: #fff;
-    z-index: 20;
-    transition: all 0.3s ease-in-out;
-   }
-   
-   .button-account:hover span {
-    color: hsl(0, 0%, 90%);
-    animation: scaleUp 0.3s ease-in-out;
-   }
-   
-   @keyframes scaleUp {
-    0% {
-     transform: scale(1);
-    }
-   
-    50% {
-     transform: scale(0.95);
-    }
-   
-    100% {
-     transform: scale(1);
-    }
-   }
-   
-  
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: var(--colorPrimario);
+  box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border: none;
+}
+
+.button-account:after {
+  content: " ";
+  width: 0%;
+  height: 100%;
+  background: var(--colorSecundario);
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
+}
+
+.button-account:hover::after {
+  right: auto;
+  left: 0;
+  width: 100%;
+}
+
+.button-account span {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  padding: 8px 16px;
+  color: #fff;
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-account:hover span {
+  color: hsl(0, 0%, 90%);
+  animation: scaleUp 0.3s ease-in-out;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
 
 /* Medias */
 
-@media (min-width: 525px ){
-    td{
-        padding: .6rem;
-    }
+/* @media (min-width: 525px) {
+  td {
+    padding: 1rem;
   }
+} */
 
+@media (max-width: 768px) {
+  .fondo-loans {
+    padding: 4rem;
+    margin-inline: 1rem;
+  }
+  .background-no-loan {
+    padding: 4rem;
+    margin-inline: 1rem;
+    margin-bottom: 1rem;
+  }
+  .title-no-loan {
+    margin-bottom: 1.5rem;
+  }
+  th {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  td {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 525px) {
+  .loan-info,
+  .loan-info span {
+    font-size: 1rem;
+  }
+  .title-no-loan {
+    font-size: 1rem;
+  }
+  .learn-more {
+    font-size: 1rem;
+  }
+  .show-small {
+    display: none;
+  }
+  .loan-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+  }
+}
