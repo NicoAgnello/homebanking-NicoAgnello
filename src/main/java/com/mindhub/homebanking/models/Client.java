@@ -1,10 +1,14 @@
 package com.mindhub.homebanking.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import static java.util.stream.Collectors.toList;
 
 @Entity
 public class Client {
@@ -22,6 +26,9 @@ public class Client {
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<ClientLoan> loans = new HashSet<>();
 
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private Set<Card> cards = new HashSet<>();
+
     public Client (){}
 
     public Client (String first, String last, String email){
@@ -29,10 +36,17 @@ public class Client {
         this.lastName = last;
         this.email = email;
     }
+    public void addCard(Card card){
+        cards.add(card);
+        card.setClient(this);
+    }
 
-    public void addLoan (ClientLoan clientLoan){
-        loans.add(clientLoan);
-        clientLoan.setClient(this);
+    public Set<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(Set<Card> cards) {
+        this.cards = cards;
     }
 
     public void setLoans(Set<ClientLoan> loans) {
@@ -49,11 +63,6 @@ public class Client {
 
     public void setAccounts(Set<Account> accounts) {
         this.accounts = accounts;
-    }
-
-    public void addAccount (Account account){
-        account.setClient(this);
-        accounts.add(account);
     }
 
     public Long getId (){
@@ -88,4 +97,20 @@ public class Client {
     public String toString (){
         return firstName + " " + lastName;
     }
+
+    public void addLoan (ClientLoan clientLoan){
+        loans.add(clientLoan);
+        clientLoan.setClient(this);
+    }
+
+    public void addAccount (Account account){
+        account.setClient(this);
+        accounts.add(account);
+    }
+
+    @JsonIgnore
+    public List<Loan> getLoan() {
+        return loans.stream().map(sub -> sub.getLoan()).collect(toList());
+    }
+
 }

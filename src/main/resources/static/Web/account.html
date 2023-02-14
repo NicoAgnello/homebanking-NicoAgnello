@@ -229,7 +229,7 @@
             </table>
           </div>
           <div class="fondo-loans mt-5"></div>
-          <template v-if="clientLoans">
+          <template v-if="clientLoans.length > 0">
             <div class="container">
               <h4 class="pt-4 text-center border-bottom">Loans</h4>
               <div v-for="loan of clientLoans">

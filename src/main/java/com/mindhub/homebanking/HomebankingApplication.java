@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.Clock;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +25,8 @@ public class HomebankingApplication {
 									  AccountRepository accountRepository,
 									  TransactionRepository transactionRepository,
 									  LoanRepository loanRepository,
-									  ClientLoanRepository clientLoanRepository){
+									  ClientLoanRepository clientLoanRepository,
+									  CardRepository cardRepository){
 		return args -> {
 			Client client1 = new Client("Melba", "Morel", "melba@mindhub.com");
 			Client client2 = new Client("Nicolas", "Agnello", "nicoagnello@mindhub.com");
@@ -47,9 +49,18 @@ public class HomebankingApplication {
 			ClientLoan clientLoan3 = new ClientLoan(client2, loan2, 100000, (byte)24);
 			ClientLoan clientLoan4 = new ClientLoan(client2, loan2, 200000, (byte)36);
 
+			Card card1 = new Card(234, CardType.DEBIT, CardColor.GOLD, LocalDate.now(), LocalDate.now().plusYears(5), client1);
+			Card card2 = new Card(675, CardType.CREDIT, CardColor.TITANIUM,LocalDate.now(), LocalDate.now().plusYears(5), client1);
+			Card card3 = new Card(381, CardType.CREDIT, CardColor.SILVER,LocalDate.now(), LocalDate.now().plusYears(5), client2);
+
+
 			client1.addAccount(account1);
 			client1.addAccount(account2);
 			client2.addAccount(account3);
+
+			client1.addCard(card1);
+			client1.addCard(card2);
+			client2.addCard(card3);
 
 			account1.addTransaction(transaction1);
 			account1.addTransaction(transaction2);
@@ -76,6 +87,10 @@ public class HomebankingApplication {
 			clientLoanRepository.save(clientLoan2);
 			clientLoanRepository.save(clientLoan3);
 			clientLoanRepository.save(clientLoan4);
+
+			cardRepository.save(card1);
+			cardRepository.save(card2);
+			cardRepository.save(card3);
 		};
 	}
 
