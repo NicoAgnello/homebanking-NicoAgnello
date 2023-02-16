@@ -7,6 +7,7 @@ createApp({
       accountId: "",
       account: {},
       clientLoans: [],
+      transactions: [],
     };
   },
   created() {
@@ -45,6 +46,7 @@ createApp({
         .then((response) => {
           this.account = response.data;
           this.account.transactions.sort((b, a) => a.id - b.id);
+          this.transactions = response.data.transactions;
         })
         .catch((err) => {
           console.log(err);

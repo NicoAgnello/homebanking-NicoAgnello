@@ -6,8 +6,42 @@
   --fuentePrincipal: "Secular One", sans-serif;
 }
 
-.main-container {
-  min-height: 105vh;
+/* Scroll Bar */
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: whitesmoke;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--colorSecundario);
+  border-radius: 20px;
+  border: 2px solid var(--colorPrimario);
+}
+
+body {
+  font-family: var(--fuentePrincipal);
+}
+
+.nav-lateral {
+  max-height: 60vh;
+}
+
+.nav-lateral::-webkit-scrollbar {
+  width: 10px;
+}
+
+.nav-lateral::-webkit-scrollbar-track {
+  background: whitesmoke;
+}
+
+.nav-lateral::-webkit-scrollbar-thumb {
+  background-color: var(--colorSecundario);
+  border-radius: 20px;
+  border: 2px solid var(--colorPrimario);
 }
 
 .log-out {
@@ -37,9 +71,7 @@
   padding: 4px;
   color: var(--colorPrimario);
 }
-body {
-  font-family: var(--fuentePrincipal);
-}
+
 .card-accounts {
   background-color: var(--colorPrimario);
 }
@@ -61,6 +93,49 @@ body {
 
 .container-accounts {
   margin-top: 2rem;
+}
+
+.fondo-loans {
+  border-radius: 2rem;
+  padding: 6rem;
+  margin-inline: 2.5rem;
+  background: url(../img/home/fondo-dinero.jpg) center/cover;
+}
+
+.loan-info {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  padding-inline: 2rem;
+  border-radius: 1rem;
+  font-family: var(--fuentePrincipal);
+  background: linear-gradient(90deg, rgba(46, 71, 131, 1) 0%, rgba(89, 117, 170, 1) 35%, rgba(139, 153, 204, 1) 100%);
+  margin-top: 1rem;
+  border: 1px solid var(--colorTerciario);
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: white;
+}
+.loan-payments {
+  color: var(--colorPrimario);
+  -webkit-text-stroke: 0.1px black;
+}
+
+.loan-amount {
+  color: hsl(0, 0%, 97%);
+  font-size: 1.4rem;
+}
+
+.title-no-loan {
+  color: var(--colorPrimario);
+}
+
+.background-no-loan {
+  padding: 7rem;
+  border-radius: 2rem;
+  margin-block: 2rem;
+  /* margin-inline: 2rem; */
+  background: url(../img/home/fondo-bank.jpg) center/cover;
 }
 
 /* See movements */
@@ -276,5 +351,38 @@ body {
   }
   .log-out {
     padding: 0 0.6rem;
+  }
+  .fondo-loans {
+    padding: 4rem;
+    margin-inline: 1rem;
+  }
+  .background-no-loan {
+    padding: 4rem;
+    margin-inline: 1rem;
+    margin-bottom: 1rem;
+  }
+  .title-no-loan {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 525px) {
+  .loan-info,
+  .loan-info span {
+    font-size: 1rem;
+  }
+  .title-no-loan {
+    font-size: 1rem;
+  }
+
+  .show-small {
+    display: none;
+  }
+  .loan-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
   }
 }

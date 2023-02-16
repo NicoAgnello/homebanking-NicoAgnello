@@ -5,6 +5,10 @@
   --fuentePrincipal: "Secular One", sans-serif;
 }
 
+.main-container {
+  min-height: 105vh;
+}
+
 .table-movements {
   background-color: var(--colorPrimario);
   color: white;
@@ -25,49 +29,6 @@ td {
 
 .body-account {
   background-color: var(--colorSecundario);
-}
-
-.fondo-loans {
-  border-radius: 2rem;
-  padding: 6rem;
-  margin-inline: 2.5rem;
-  background: url(../img/home/fondo-dinero.jpg) center/cover;
-}
-
-.loan-info {
-  display: flex;
-  align-items: center;
-  padding: 1.5rem;
-  padding-inline: 2rem;
-  border-radius: 1rem;
-  font-family: var(--fuentePrincipal);
-  background: linear-gradient(90deg, rgba(46, 71, 131, 1) 0%, rgba(89, 117, 170, 1) 35%, rgba(139, 153, 204, 1) 100%);
-  margin-top: 1rem;
-  border: 1px solid var(--colorTerciario);
-  font-weight: bold;
-  font-size: 1.4rem;
-  color: white;
-}
-.loan-payments {
-  color: var(--colorPrimario);
-  -webkit-text-stroke: 0.1px black;
-}
-
-.loan-amount {
-  color: hsl(0, 0%, 97%);
-  font-size: 1.4rem;
-}
-
-.title-no-loan {
-  color: var(--colorPrimario);
-}
-
-.background-no-loan {
-  padding: 7rem;
-  border-radius: 2rem;
-  margin-top: 2rem;
-  margin-inline: 2rem;
-  background: url(../img/home/fondo-bank.jpg) center/cover;
 }
 
 /* Button Get Loan */
@@ -228,18 +189,6 @@ td {
 } */
 
 @media (max-width: 768px) {
-  .fondo-loans {
-    padding: 4rem;
-    margin-inline: 1rem;
-  }
-  .background-no-loan {
-    padding: 4rem;
-    margin-inline: 1rem;
-    margin-bottom: 1rem;
-  }
-  .title-no-loan {
-    margin-bottom: 1.5rem;
-  }
   th {
     padding: 0.5rem;
     font-size: 1rem;
@@ -250,24 +199,7 @@ td {
 }
 
 @media (max-width: 525px) {
-  .loan-info,
-  .loan-info span {
-    font-size: 1rem;
-  }
-  .title-no-loan {
-    font-size: 1rem;
-  }
   .learn-more {
     font-size: 1rem;
-  }
-  .show-small {
-    display: none;
-  }
-  .loan-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1rem;
   }
 }

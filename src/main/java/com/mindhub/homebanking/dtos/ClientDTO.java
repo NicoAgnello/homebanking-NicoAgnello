@@ -26,6 +26,10 @@ public class ClientDTO {
         this.cards = client.getCards().stream().map(card -> new CardDTO(card)).collect(Collectors.toSet());
     }
 
+    public Set<CardDTO> getCards() {
+        return cards;
+    }
+
     public Set<ClientLoanDTO> getLoans() {
         return loans;
     }

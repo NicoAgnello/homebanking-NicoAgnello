@@ -1,0 +1,224 @@
+:root {
+  --colorPrimario: #2e4783;
+  --colorSecundario: #5975aa;
+  --colorTerciario: #6577b8;
+  --colorTerciarioClaro: #6c87b9;
+  --fuentePrincipal: "Secular One", sans-serif;
+}
+
+/* Card */
+.flip-card {
+  background-color: transparent;
+  width: 350px;
+  height: 200px;
+  perspective: 1000px;
+}
+
+.heading {
+  position: absolute;
+  letter-spacing: 0.2em;
+  font-size: 0.6em;
+  top: 2em;
+  left: 18.6em;
+  color: hsl(0, 0%, 97%);
+}
+
+.logo {
+  position: absolute;
+  top: 9.5em;
+  left: 80%;
+}
+
+.chip {
+  position: absolute;
+  top: 2.3em;
+  left: 1.5em;
+}
+
+.contactless {
+  position: absolute;
+  top: 3.5em;
+  left: 80%;
+}
+
+.card-color {
+  position: absolute;
+  font-weight: bold;
+  font-size: 1em;
+  top: 2.6em;
+  left: 4em;
+  color: hsl(0, 0%, 90%);
+}
+
+.number {
+  position: absolute;
+  font-weight: bold;
+  font-size: 1em;
+  top: 5.3em;
+  left: 1.6em;
+  color: hsl(0, 0%, 90%);
+}
+
+.valid_thru {
+  position: absolute;
+  font-weight: bold;
+  font-size: 0.7em;
+  top: 10em;
+  left: 2.6em;
+  color: #202020;
+}
+
+.valid_thru_withe {
+  position: absolute;
+  font-weight: bold;
+  font-size: 0.7em;
+  top: 10em;
+  left: 2.6em;
+  color: hsl(0, 0%, 90%);
+}
+
+.date {
+  position: absolute;
+  font-weight: bold;
+  font-size: 0.8em;
+  top: 10em;
+  left: 2.4em;
+  color: hsl(0, 0%, 90%);
+}
+
+.name {
+  position: absolute;
+  font-weight: bold;
+  font-size: 1em;
+  top: 10.1em;
+  left: 1.6em;
+  color: hsl(0, 0%, 90%);
+}
+
+.strip {
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  height: 1.5em;
+  top: 2.4em;
+  background: repeating-linear-gradient(45deg, #303030, #303030 10px, #202020 10px, #202020 20px);
+}
+
+.mstrip {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  width: 8em;
+  height: 0.8em;
+  top: 5em;
+  left: 4.8em;
+  border-radius: 2.5px;
+}
+
+.sstrip {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  width: 4.1em;
+  height: 0.8em;
+  top: 5em;
+  left: 60%;
+  border-radius: 2.5px;
+}
+
+.code {
+  text-align: center;
+  margin: -0.3em;
+  color: black;
+}
+
+.terms {
+  position: absolute;
+  top: 110px;
+  padding: 15px;
+  font-size: 0.6em;
+  text-align: justify;
+  color: #202020;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 1rem;
+}
+
+.flip-card-front {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
+}
+
+.flip-card-back {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
+  transform: rotateY(180deg);
+}
+
+.gold {
+  background: radial-gradient(
+      ellipse farthest-corner at right bottom,
+      #fedb37 0%,
+      #fdb931 8%,
+      #9f7928 30%,
+      #8a6e2f 40%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse farthest-corner at left top,
+      #ffffff 0%,
+      #ffffac 8%,
+      #d1b464 25%,
+      #5d4a1f 62.5%,
+      #5d4a1f 100%
+    );
+}
+
+.silver {
+  background: rgb(91, 93, 94);
+  background: linear-gradient(90deg, rgba(91, 93, 94, 1) 30%, rgba(168, 168, 168, 1) 88%);
+}
+
+.titanium {
+  background: rgb(98, 97, 97);
+  background: linear-gradient(5deg, rgba(98, 97, 97, 1) 2%, rgba(34, 33, 33, 1) 54%);
+}
+
+.box-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.without_card {
+  color: whitesmoke;
+  margin-top: 4rem;
+  padding: 1rem;
+  font-size: 2rem;
+  border: 3px solid var(--colorPrimario);
+  border-radius: 1rem;
+  background-color: var(--colorTerciarioClaro);
+}

@@ -4,14 +4,18 @@ createApp({
   data() {
     return {
       client: {},
-      clientLoans: [],
+      clientCardsDebit: [],
+      clientCardsCredit: [],
+      clientCards: [],
     };
   },
   created() {
+    this.getClient();
+  },
+  mounted() {
     let script = document.createElement("script");
     script.setAttribute("src", "assets/js/argon-dashboard.js");
     document.head.appendChild(script);
-    this.getClient();
   },
   methods: {
     getClient() {
@@ -19,15 +23,15 @@ createApp({
         .get("http://localhost:8080/api/clients/1")
         .then((response) => {
           this.client = response.data;
-          this.client.accounts.sort((a, b) => b.id - a.id);
-          this.clientLoans = response.data.loans;
+          this.clientCards = response.data.cards;
+          this.clientCardsDebit = response.data.cards.filter((card) => card.cardType == "DEBIT");
+          this.clientCardsCredit = response.data.cards.filter((card) => card.cardType == "CREDIT");
         })
         .catch((err) => console.log(err));
     },
-    parseDate(fecha) {
-      let date = fecha.split("T")[0];
-      let newDate = date.split("-").reverse().join("/");
-      return newDate;
+    parseDate(date) {
+      let fecha = date.split("-").slice(0, 2).reverse().join("-");
+      return fecha;
     },
   },
 }).mount("#app");
