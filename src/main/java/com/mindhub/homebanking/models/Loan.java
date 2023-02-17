@@ -35,11 +35,11 @@ public class Loan {
         this.payments = payments;
     }
 
-    public Set<ClientLoan> getClients() {
+    public Set<ClientLoan> getClientLoan() {
         return clients;
     }
 
-    public void setClients(Set<ClientLoan> clients) {
+    public void setClientLoan(Set<ClientLoan> clients) {
         this.clients = clients;
     }
 
@@ -71,13 +71,13 @@ public class Loan {
         this.payments = payments;
     }
 
-    public void addClient (ClientLoan clientLoan){
+    public void addClientLoan (ClientLoan clientLoan){
         clients.add(clientLoan);
         clientLoan.setLoan(this);
     }
 
     public List<Client> getClient() {
-        return clients.stream().map(sub -> sub.getClient()).collect(toList());
+        return clients.stream().map(clientLoan -> clientLoan.getClient()).collect(toList());
     }
 
 }

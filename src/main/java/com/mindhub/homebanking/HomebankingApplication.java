@@ -40,14 +40,14 @@ public class HomebankingApplication {
 			Transaction transaction3 = new Transaction(LocalDateTime.now(), 1000.5, TransactionType.CREDIT, "Third transaction");
 			Transaction transaction4 = new Transaction(LocalDateTime.now(), -500, TransactionType.DEBIT, "Fourth transaction");
 
-			Loan loan1 = new Loan("Mortgage", 500000, Arrays.asList(12, 24, 36,48,60));
-			Loan loan2 = new Loan("Personal", 100000, Arrays.asList(6, 12, 24));
-			Loan loan3 = new Loan("Automotive", 300000, Arrays.asList(6, 12, 24, 36));
+			Loan mortgage = new Loan("Mortgage", 500000, Arrays.asList(12, 24, 36,48,60));
+			Loan personal = new Loan("Personal", 100000, Arrays.asList(6, 12, 24));
+			Loan automotive = new Loan("Automotive", 300000, Arrays.asList(6, 12, 24, 36));
 
-			ClientLoan clientLoan1 = new ClientLoan(client1, loan1, 400000, (byte)60);
-			ClientLoan clientLoan2 = new ClientLoan(client1, loan2, 50000, (byte)12);
-			ClientLoan clientLoan3 = new ClientLoan(client2, loan2, 100000, (byte)24);
-			ClientLoan clientLoan4 = new ClientLoan(client2, loan2, 200000, (byte)36);
+			ClientLoan clientLoan1 = new ClientLoan (400000, (byte)60);
+			ClientLoan clientLoan2 = new ClientLoan(50000, (byte)12);
+			ClientLoan clientLoan3 = new ClientLoan(100000, (byte)24);
+			ClientLoan clientLoan4 = new ClientLoan(200000, (byte)36);
 
 			Card card1 = new Card(returnCvvNumber(),randomNumberCard(cardRepository), CardType.DEBIT, CardColor.GOLD, LocalDate.now(), LocalDate.now().plusYears(5), client1);
 			Card card2 = new Card(returnCvvNumber(),randomNumberCard(cardRepository), CardType.CREDIT, CardColor.TITANIUM,LocalDate.now(), LocalDate.now().plusYears(5), client1);
@@ -66,6 +66,16 @@ public class HomebankingApplication {
 			account2.addTransaction(transaction3);
 			account3.addTransaction(transaction4);
 
+			client1.addClientLoan(clientLoan1);
+			client1.addClientLoan(clientLoan2);
+			client2.addClientLoan(clientLoan3);
+			client2.addClientLoan(clientLoan4);
+
+			mortgage.addClientLoan(clientLoan1);
+			personal.addClientLoan(clientLoan2);
+			personal.addClientLoan(clientLoan3);
+			automotive.addClientLoan(clientLoan4);
+
 			clientRepository.save(client1);
 			clientRepository.save(client2);
 
@@ -78,9 +88,9 @@ public class HomebankingApplication {
 			transactionRepository.save(transaction3);
 			transactionRepository.save(transaction4);
 
-			loanRepository.save(loan1);
-			loanRepository.save(loan2);
-			loanRepository.save(loan3);
+			loanRepository.save(mortgage);
+			loanRepository.save(personal);
+			loanRepository.save(automotive);
 
 			clientLoanRepository.save(clientLoan1);
 			clientLoanRepository.save(clientLoan2);

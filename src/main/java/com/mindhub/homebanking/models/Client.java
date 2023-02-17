@@ -49,11 +49,11 @@ public class Client {
         this.cards = cards;
     }
 
-    public void setLoans(Set<ClientLoan> loans) {
+    public void setClientLoan(Set<ClientLoan> loans) {
         this.loans = loans;
     }
 
-    public Set<ClientLoan> getLoans() {
+    public Set<ClientLoan> getClientLoan() {
         return loans;
     }
 
@@ -98,7 +98,7 @@ public class Client {
         return firstName + " " + lastName;
     }
 
-    public void addLoan (ClientLoan clientLoan){
+    public void addClientLoan (ClientLoan clientLoan){
         loans.add(clientLoan);
         clientLoan.setClient(this);
     }
@@ -110,7 +110,7 @@ public class Client {
 
     @JsonIgnore
     public List<Loan> getLoan() {
-        return loans.stream().map(sub -> sub.getLoan()).collect(toList());
+        return loans.stream().map(clientLoan -> clientLoan.getLoan()).collect(toList());
     }
 
 }
