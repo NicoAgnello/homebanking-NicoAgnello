@@ -20,7 +20,7 @@ createApp({
   methods: {
     getClient() {
       axios
-        .get("http://localhost:8080/api/clients/1")
+        .get("/api/clients/current")
         .then((response) => {
           this.client = response.data;
           this.clientCards = response.data.cards;
@@ -32,6 +32,13 @@ createApp({
     parseDate(date) {
       let fecha = date.split("-").slice(0, 2).reverse().join("-");
       return fecha;
+    },
+    singout() {
+      axios.post("/api/logout").then((response) => {
+        if (response) {
+          location.href = "./index.html";
+        }
+      });
     },
   },
 }).mount("#app");

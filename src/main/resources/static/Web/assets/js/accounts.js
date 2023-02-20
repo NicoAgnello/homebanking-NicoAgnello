@@ -16,7 +16,7 @@ createApp({
   methods: {
     getClient() {
       axios
-        .get("http://localhost:8080/api/clients/1")
+        .get("/api/clients/current")
         .then((response) => {
           this.client = response.data;
           this.client.accounts.sort((a, b) => b.id - a.id);
@@ -28,6 +28,13 @@ createApp({
       let date = fecha.split("T")[0];
       let newDate = date.split("-").reverse().join("/");
       return newDate;
+    },
+    singout() {
+      axios.post("/api/logout").then((response) => {
+        if (response) {
+          location.href = "./index.html";
+        }
+      });
     },
   },
 }).mount("#app");

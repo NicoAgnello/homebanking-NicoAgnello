@@ -23,7 +23,7 @@ createApp({
   methods: {
     getClient() {
       axios
-        .get("http://localhost:8080/api/clients/1")
+        .get("/api/clients/current")
         .then((response) => {
           this.client = response.data;
           this.clientLoans = response.data.loans;
@@ -42,7 +42,7 @@ createApp({
     },
     getAccount() {
       axios
-        .get(`http://localhost:8080/api/accounts/${this.accountId}`)
+        .get(`/api/accounts/${this.accountId}`)
         .then((response) => {
           this.account = response.data;
           this.account.transactions.sort((b, a) => a.id - b.id);
@@ -51,6 +51,13 @@ createApp({
         .catch((err) => {
           console.log(err);
         });
+    },
+    singout() {
+      axios.post("/api/logout").then((response) => {
+        if (response) {
+          location.href = "./index.html";
+        }
+      });
     },
   },
 }).mount("#app");

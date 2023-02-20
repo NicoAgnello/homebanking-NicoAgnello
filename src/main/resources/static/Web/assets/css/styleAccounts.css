@@ -62,6 +62,15 @@ body {
   width: 1.2rem;
 }
 
+.log-out button {
+  border: none;
+  background-color: var(--colorSecundario);
+}
+
+.log-out button:hover {
+  background-color: var(--colorRojo);
+}
+
 .table-accounts {
   border-collapse: separate;
   border-spacing: 10;

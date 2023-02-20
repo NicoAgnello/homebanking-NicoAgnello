@@ -107,7 +107,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./signin.html">
+              <a class="nav-link" href="./index.html">
                 <div
                   class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
                 >
@@ -162,7 +162,7 @@
                 </li>
                 <li class="nav-item d-flex align-items-center ms-2 rounded-pill log-out">
                   <img class="logout-icon" src="./assets/img/logout-icon.svg" alt="icon-logout" />
-                  <span>Log Out</span>
+                  <button type="button" @click="singout">Log Out</button>
                 </li>
 
                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -179,7 +179,7 @@
           </div>
         </nav>
         <div class="main-container container container-accounts">
-          <div v-if="clientCardsDebit">
+          <div v-if="clientCardsDebit.length > 0">
             <h2 class="text-center">Debit Cards</h2>
             <div v-for="card of clientCardsDebit" class="box-cards container pb-3">
               <div class="flip-card">
@@ -314,7 +314,7 @@
           <div v-else>
             <h2 class="text-center without_card">Your profile has no debit cards associated with your account</h2>
           </div>
-          <div v-if="clientCardsCredit">
+          <div v-if="clientCardsCredit.length > 0">
             <h2 class="text-center">Credit Cards</h2>
             <div v-for="card of clientCardsCredit" class="box-cards container pb-3">
               <div class="flip-card">
