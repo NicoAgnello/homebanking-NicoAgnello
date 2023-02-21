@@ -15,61 +15,74 @@ createApp({
     this.loginOrRegister();
   },
   methods: {
-    logIn() {
+    logIn(email, password) {
       axios
-        .post("/api/login", `email=${this.email}&password=${this.password}`, {
+        .post("/api/login", `email=${email}&password=${password}`, {
           headers: { "content-type": "application/x-www-form-urlencoded" },
         })
         .then((response) => {
           location.href = "./accounts.html";
         })
-        .catch((error) => this.modal(error.response));
+        .catch((error) => {
+          this.modal(error.response);
+          console.log(error.response.data.error + " " + error.response.data.status);
+        });
     },
     register() {
-      axios
-        .post(
-          "/api/clients",
-          `firstName=${this.userFirstName}&lastName=${this.userLastName}&email=${this.userEmail}&password=${this.userPassword}`,
-          {
-            headers: { "content-type": "application/x-www-form-urlencoded" },
-          }
-        )
-        .then((response) => {
-          axios
-            .post("/api/login", `email=${this.userEmail}&password=${this.userPassword}`, {
+      if (this.validarMail(this.userEmail)) {
+        axios
+          .post(
+            "/api/clients",
+            `firstName=${this.userFirstName}&lastName=${this.userLastName}&email=${this.userEmail}&password=${this.userPassword}`,
+            {
               headers: { "content-type": "application/x-www-form-urlencoded" },
-            })
-            .then((response) => {
-              location.href = "./accounts.html";
-            })
-            .catch((error) => this.modal(error.response));
-        })
-        .catch((err) => console.log(err));
-    },
-    modal(error) {
-      if (!this.password || this.validarMail) {
-        Swal.fire({
-          title: "User not found",
-          text: `${error.data.error}` + " " + `${error.status}`,
-          icon: "error",
-          confirmButtonText: "OK",
-        });
+            }
+          )
+          .then((response) => {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+              },
+            });
+
+            Toast.fire({
+              icon: "success",
+              title: "Signed in successfully",
+            }).then((response) => {
+              this.logIn(this.userEmail, this.userPassword);
+            });
+          })
+          .catch((err) => console.log(err));
       }
     },
-    validarMail() {
-      return /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)$/.test(this.email);
+    modal(error) {
+      // if (!this.password || this.validarMail(this.email)) {
+      Swal.fire({
+        title: "User not found",
+        text: `${error.data.error}`,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      // }
+    },
+    validarMail(email) {
+      return /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)$/.test(email);
     },
     loginOrRegister() {
       $(document).ready(function () {
         $(".veen .rgstr-btn button").click(function () {
           $(".veen .wrapper").addClass("move");
-          $(".body").css("background", "#6c87b9");
           $(".veen .login-btn button").removeClass("active");
           $(this).addClass("active");
         });
         $(".veen .login-btn button").click(function () {
           $(".veen .wrapper").removeClass("move");
-          $(".body").css("background", "#2e4783");
           $(".veen .rgstr-btn button").removeClass("active");
           $(this).addClass("active");
         });

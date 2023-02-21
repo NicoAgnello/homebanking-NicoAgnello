@@ -30,7 +30,8 @@ createApp({
       return newDate;
     },
     singout() {
-      axios.post("/api/logout").then((response) => {
+      axios.post("/api/logout")
+      .then((response) => {
         if (response) {
           location.href = "./index.html";
         }

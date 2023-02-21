@@ -1,0 +1,105 @@
+:root {
+  --colorPrimario: #2e4783;
+  --colorSecundario: #5975aa;
+  --colorTerciario: #6577b8;
+  --colorTerciarioClaro: #6c87b9;
+  --fuentePrincipal: "Secular One", sans-serif;
+}
+
+body {
+  background: url("../img/sun-tornado.svg") center/cover fixed;
+  font-family: var(--fuentePrincipal);
+  min-height: 100vh;
+  font-family: var(--fuentePrincipal);
+}
+
+.nav-landing {
+  min-height: 6vh;
+  background-color: hsl(0, 0%, 90%);
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+.container-services {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.img-eslogan {
+  width: 700px;
+  border-radius: 2rem;
+  padding: 0;
+}
+
+.link-login {
+  padding: 0.5rem 4rem;
+  margin-block: 2rem;
+  border: 2px solid var(--colorPrimario);
+  border-radius: 2rem;
+  color: whitesmoke;
+  font-size: 1.2rem;
+  background-color: var(--colorSecundario);
+  text-decoration: none;
+  transition: all 1s;
+}
+
+.link-login:hover {
+  color: #223664;
+  background: rgb(46, 71, 131);
+  background: linear-gradient(45deg, rgba(46, 71, 131, 1) 2%, rgba(101, 119, 184, 1) 54%);
+  scale: 1.15;
+}
+
+.container-eslogan-img {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.svg-img {
+  width: 5rem;
+}
+
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 1.7rem;
+  }
+  .img-eslogan {
+    width: 500px;
+  }
+  .container-services {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 725px) {
+  .img-eslogan {
+    width: 400px;
+  }
+  .container-services {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 425px) {
+  .img-eslogan {
+    width: 350px;
+  }
+  .link-login {
+    padding: 0.2rem 2rem;
+  }
+}

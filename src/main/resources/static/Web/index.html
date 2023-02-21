@@ -54,29 +54,29 @@
                   <label>Password</label>
                 </div>
                 <div class="submit">
-                  <button @click="logIn" type="button" class="dark">Login</button>
+                  <button @click="logIn(email, password)" type="button" class="dark">Login</button>
                 </div>
               </form>
-              <form id="register" tabindex="502">
+              <form @submit.prevent id="register" tabindex="502">
                 <h3>Register</h3>
                 <div class="name">
-                  <input type="text" name="" v-model="userFirstName" />
+                  <input type="text" name="" v-model="userFirstName" required />
                   <label>First Name</label>
                 </div>
                 <div class="uid">
-                  <input type="text" name="" v-model="userLastName" />
+                  <input type="text" name="" v-model="userLastName" required />
                   <label>Last Name</label>
                 </div>
                 <div class="mail">
-                  <input type="mail" name="" v-model="userEmail" />
+                  <input type="mail" name="" v-model="userEmail" required />
                   <label>Mail</label>
                 </div>
                 <div class="passwd">
-                  <input type="password" name="" v-model="userPassword" />
+                  <input type="password" name="" v-model="userPassword" required />
                   <label>Password</label>
                 </div>
                 <div class="submit">
-                  <button @click="register" type="button" class="dark">Register</button>
+                  <button @click="register" type="submit" class="dark">Register</button>
                 </div>
               </form>
             </div>

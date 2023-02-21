@@ -32,10 +32,10 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
     public void init(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.userDetailsService(inputName-> {
+        auth.userDetailsService(email-> {
 
-            Client client = clientRepository.findByEmail(inputName);
-            if(Objects.equals(inputName, "admin@mindhub.com")){
+            Client client = clientRepository.findByEmail(email);
+            if(Objects.equals(email, "admin@mindhub.com")){
                 return new User(client.getEmail(), client.getPassword(),
 
                         AuthorityUtils.createAuthorityList("ADMIN"));
@@ -48,7 +48,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
             }
              else {
 
-                throw new UsernameNotFoundException("Unknown client: " + inputName);
+                throw new UsernameNotFoundException("Unknown client: " + email);
 
             }
 
