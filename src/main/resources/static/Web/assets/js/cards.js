@@ -34,11 +34,28 @@ createApp({
       return fecha;
     },
     singout() {
-      axios.post("/api/logout").then((response) => {
-        if (response) {
-          location.href = "./index.html";
-        }
-      });
+      axios
+        .post("/api/logout")
+        .then((response) => {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
+          Toast.fire({
+            icon: "error",
+            title: "Closing session",
+          }).then((response) => {
+            location.href = "./index.html";
+          });
+        })
+        .catch((err) => console.log(err));
     },
   },
 }).mount("#app");

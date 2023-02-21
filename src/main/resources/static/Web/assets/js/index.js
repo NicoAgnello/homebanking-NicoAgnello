@@ -59,6 +59,12 @@ createApp({
             });
           })
           .catch((err) => console.log(err));
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "The email is invalid!",
+        });
       }
     },
     modal(error) {
