@@ -59,6 +59,15 @@
   color: hsl(0, 0%, 90%);
 }
 
+.card-type {
+  position: absolute;
+  font-weight: bold;
+  font-size: 1em;
+  color: whitesmoke;
+  top: 2.6em;
+  left: 12.6em;
+}
+
 .valid_thru {
   position: absolute;
   font-weight: bold;
@@ -177,6 +186,11 @@
   transform: rotateY(180deg);
 }
 
+.blue {
+  background: rgb(46, 71, 131);
+  background: linear-gradient(180deg, rgba(46, 71, 131, 1) 2%, rgba(101, 119, 184, 1) 54%);
+}
+
 .gold {
   background: radial-gradient(
       ellipse farthest-corner at right bottom,
@@ -208,9 +222,9 @@
 
 .box-cards {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .without_card {
@@ -221,4 +235,39 @@
   border: 3px solid var(--colorPrimario);
   border-radius: 1rem;
   background-color: var(--colorTerciarioClaro);
+}
+
+.add-card {
+  width: 350px;
+  height: 200px;
+  border-radius: 1rem;
+  background: radial-gradient(
+      ellipse farthest-corner at right bottom,
+      #feda3783 0%,
+      #fdb9319c 8%,
+      #9f79289c 30%,
+      #8a6f2f91 40%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse farthest-corner at left top,
+      #ffffff8c 0%,
+      #ffffaca4 8%,
+      #d1b46491 25%,
+      #5d4a1f62 62.5%,
+      #5d4a1fd8 100%
+    );
+}
+.signo-mas {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 991px) {
+  .add-card {
+    margin-top: 1rem;
+  }
 }

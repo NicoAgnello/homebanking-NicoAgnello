@@ -212,6 +212,44 @@ body {
   transform: translate3d(0, 0, -1em);
 }
 
+/* New Account */
+.button-new-account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 55px;
+  border-radius: 50px;
+  border: 0;
+  outline: 0;
+  font-size: 18px;
+  background: var(--colorPrimario);
+  color: hsl(0, 0%, 95%);
+  margin-block: 2rem;
+  font-size: 1.3rem;
+}
+
+.button-new-account svg {
+  margin: 0 0 0 10px;
+}
+
+.button-new-account:hover svg {
+  margin: 0 0 0 25px;
+  transition: 0.3s;
+}
+
+.button-new-account:not(:hover) svg {
+  transition: 0.3s;
+}
+
+.button-new-account:active {
+  transform: scale(0.9, 0.9);
+  transition: 200ms;
+}
+
+.button-new-account:not(:active) {
+  transition: 200ms;
+}
 /* Get Loan */
 .get-loan {
   position: relative;
@@ -239,7 +277,7 @@ body {
   margin: 0;
   width: 3rem;
   height: 3rem;
-  background: #282936;
+  background: var(--colorPrimario);
   border-radius: 1.625rem;
 }
 
@@ -281,7 +319,7 @@ body {
   bottom: 0;
   padding: 0.75rem 0;
   margin: 0 0 0 1.85rem;
-  color: #282936;
+  color: var(--colorSecundario);
   font-weight: 700;
   line-height: 1.6;
   text-align: center;

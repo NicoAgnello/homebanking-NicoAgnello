@@ -41,20 +41,7 @@ public class Card {
         this.fromDate = fromDate;
         this.thruDate = thruDate;
         this.cardHolder = client.getFirstName() + " " + client.getLastName();
-        this.client = client;
     }
-
-//    public static String getCardNumber(){
-//        Random rand = new Random();
-//        int number = rand.nextInt(10000);
-//        String stringNumber = String.format("%04d", number);
-//        return stringNumber;
-//    }
-//
-//    public static String addCardNumber(){
-//        String cardNumber = getCardNumber() + "-" +getCardNumber()+ "-" +getCardNumber()+ "-" +getCardNumber();
-//        return  cardNumber;
-//    }
 
 
     public Client getClient() {

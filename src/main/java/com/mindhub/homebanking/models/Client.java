@@ -34,8 +34,8 @@ public class Client {
     public Client (){}
 
     public Client (String first, String last, String email, String password){
-        this.firstName = first;
-        this.lastName = last;
+        this.firstName = toUpperCase(first);
+        this.lastName = toUpperCase(last);
         this.email = email;
         this.password = password;
     }
@@ -123,6 +123,10 @@ public class Client {
     @JsonIgnore
     public List<Loan> getLoan() {
         return loans.stream().map(clientLoan -> clientLoan.getLoan()).collect(toList());
+    }
+
+    public String toUpperCase(String string){
+        return string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
     }
 
 }

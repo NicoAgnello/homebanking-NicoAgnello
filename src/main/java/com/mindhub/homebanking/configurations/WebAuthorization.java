@@ -18,16 +18,15 @@ import javax.servlet.http.HttpSession;
 @Configuration
 public class WebAuthorization extends WebSecurityConfigurerAdapter {
     @Override
-
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
 
                 .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
-                .antMatchers("/web/index.html", "/web/assets/**","/web/landing.html" ).permitAll()
+                .antMatchers("/web/index.html", "/web/assets/**","/web/login-register.html" ).permitAll()
                 .antMatchers("/manager.html", "/api/clients", "/h2-console","/h2-console/**","/rest/**").hasAuthority("ADMIN")
-                .antMatchers("/api/clients/current", "/web/accounts.html", "/web/account.html", "/web/cards.html").hasAuthority("CLIENT");
-
+                .antMatchers(HttpMethod.POST, "/clients/current/accounts", "/api/clients/current/cards").hasAuthority("CLIENT")
+                .antMatchers("/api/clients/current", "/web/accounts.html", "/web/account.html", "/web/cards.html","/web/create-cards.html").hasAuthority("CLIENT");
 
 
         http.formLogin()
@@ -50,6 +49,21 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
         // if user is not authenticated, just send an authentication failure response
 
         http.exceptionHandling().authenticationEntryPoint((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
+
+        //redirect when a user with the wrong role enters a place that we do not want
+
+//        http.exceptionHandling().accessDeniedHandler((req, res, ex) ->{
+//
+//            if(req.getRequestURI().contains("web")){
+//
+//                res.sendRedirect("/web/index.html");
+//
+//            } else {
+//
+//                res.sendError(HttpServletResponse.SC_FORBIDDEN);
+//            }
+//
+//        });
 
         // if login is successful, just clear the flags asking for authentication
 

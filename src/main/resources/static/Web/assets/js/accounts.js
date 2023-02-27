@@ -5,6 +5,7 @@ createApp({
     return {
       client: {},
       clientLoans: [],
+      accounts: [],
     };
   },
   created() {
@@ -19,6 +20,7 @@ createApp({
         .get("/api/clients/current")
         .then((response) => {
           this.client = response.data;
+          this.accounts = this.client.accounts;
           this.client.accounts.sort((a, b) => b.id - a.id);
           this.clientLoans = response.data.loans;
         })
@@ -32,7 +34,7 @@ createApp({
     singout() {
       axios
         .post("/api/logout")
-        .then((response) => {
+        .then(() => {
           const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -47,11 +49,21 @@ createApp({
           Toast.fire({
             icon: "error",
             title: "Closing session",
-          }).then((response) => {
+          }).then(() => {
             location.href = "./index.html";
           });
         })
         .catch((err) => console.log(err));
+    },
+    newAccount() {
+      axios
+        .post("/api/clients/current/accounts")
+        .then(() => {
+          this.getClient();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 }).mount("#app");

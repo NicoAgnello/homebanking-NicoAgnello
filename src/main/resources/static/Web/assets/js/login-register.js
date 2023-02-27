@@ -20,7 +20,7 @@ createApp({
         .post("/api/login", `email=${email}&password=${password}`, {
           headers: { "content-type": "application/x-www-form-urlencoded" },
         })
-        .then((response) => {
+        .then(() => {
           location.href = "./accounts.html";
         })
         .catch((error) => {

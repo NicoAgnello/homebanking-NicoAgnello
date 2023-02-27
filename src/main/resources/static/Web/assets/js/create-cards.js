@@ -4,18 +4,15 @@ createApp({
   data() {
     return {
       client: {},
-      clientCardsDebit: [],
-      clientCardsCredit: [],
-      clientCards: [],
+      cardType: "",
+      cardColor: "",
     };
   },
   created() {
-    this.getClient();
-  },
-  mounted() {
     let script = document.createElement("script");
     script.setAttribute("src", "assets/js/argon-dashboard.js");
     document.head.appendChild(script);
+    this.getClient();
   },
   methods: {
     getClient() {
@@ -23,21 +20,13 @@ createApp({
         .get("/api/clients/current")
         .then((response) => {
           this.client = response.data;
-          this.clientCards = response.data.cards;
-          this.clientCardsDebit = response.data.cards.filter((card) => card.cardType == "DEBIT");
-          this.clientCardsCredit = response.data.cards.filter((card) => card.cardType == "CREDIT");
         })
         .catch((err) => console.log(err));
     },
-    parseDate(date) {
-      let fecha = date.split("-").slice(0, 2).reverse().join("-");
-      return fecha;
-    },
-
     singout() {
       axios
         .post("/api/logout")
-        .then((response) => {
+        .then(() => {
           const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -52,11 +41,26 @@ createApp({
           Toast.fire({
             icon: "error",
             title: "Closing session",
-          }).then((response) => {
+          }).then(() => {
             location.href = "./index.html";
           });
         })
         .catch((err) => console.log(err));
+    },
+    createCard() {
+      axios
+        .post("/api/clients/current/cards", `cardColor=${this.cardColor}&cardType=${this.cardType}`)
+        .then(() => {
+          location.href = "./cards.html";
+        })
+        .catch((err) => this.modal(err));
+    },
+    modal(error) {
+      Swal.fire({
+        title: `${error.response.data}`,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     },
   },
 }).mount("#app");

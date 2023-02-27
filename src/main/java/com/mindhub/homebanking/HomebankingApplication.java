@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.mindhub.homebanking.utils.Utilities.*;
+
 @SpringBootApplication
 public class HomebankingApplication {
 
@@ -56,7 +58,7 @@ public class HomebankingApplication {
 			ClientLoan clientLoan4 = new ClientLoan(200000, (byte)36);
 
 			Card card1 = new Card(returnCvvNumber(),randomNumberCard(cardRepository), CardType.DEBIT, CardColor.GOLD, LocalDate.now(), LocalDate.now().plusYears(5), client1);
-			Card card2 = new Card(returnCvvNumber(),randomNumberCard(cardRepository), CardType.CREDIT, CardColor.TITANIUM,LocalDate.now(), LocalDate.now().plusYears(5), client1);
+			Card card2 = new Card(returnCvvNumber(),randomNumberCard(cardRepository), CardType.CREDIT, CardColor.TITANIUM,LocalDate.now(), LocalDate.now().plusYears(5).plusMonths(2), client1);
 			Card card3 = new Card(returnCvvNumber(),randomNumberCard(cardRepository), CardType.CREDIT, CardColor.SILVER,LocalDate.now(), LocalDate.now().plusYears(5), client2);
 
 			client1.addAccount(account1);
@@ -108,28 +110,6 @@ public class HomebankingApplication {
 			cardRepository.save(card2);
 			cardRepository.save(card3);
 		};
-	}
-	public static int returnCvvNumber(){
-		int number;
-		number= (int) (Math.floor(Math.random() * (999-100)) + 100);
-		return number;
-	}
-	public static String randomNumberCard(CardRepository cardRepository){
-		String newNumber;
-		Boolean cardOptional;
-		do {
-			newNumber= randomString();
-			cardOptional= cardRepository.existsCardByNumber(newNumber);
-		}while(cardOptional);
-		return newNumber;
-	}
-	public static String randomString(){
-		int number1_1 = (int) (Math.random() * (5- 4+ 1)+4);
-		int number1 = (int) (Math.random() * (999 - 100  + 1) + 100);
-		int number2 = (int) (Math.random() * (9999 - 1000  + 1) + 1000);
-		int number3 = (int) (Math.random() * (9999 - 1000  + 1) + 1000);
-		int number4 = (int) (Math.random() * (9999 - 1000  + 1) + 1000);
-		return  number1_1+""+number1+"-"+number2+"-"+number3+"-"+number4;
 	}
 
 }
