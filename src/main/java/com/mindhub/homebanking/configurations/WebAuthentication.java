@@ -19,12 +19,10 @@ import java.util.Objects;
 public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
     @Bean
-
     public PasswordEncoder passwordEncoder() {
-
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
     }
+
     @Autowired
     ClientRepository clientRepository;
 
@@ -36,18 +34,17 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
             Client client = clientRepository.findByEmail(email);
             if(client != null) {
+
                 if(client.getEmail().equals("admin@mindhub.com")){
                     return new User(client.getEmail(), client.getPassword(),
-
                             AuthorityUtils.createAuthorityList("ADMIN"));
 
                 } else {
-
                     return new User(client.getEmail(), client.getPassword(),
-
                             AuthorityUtils.createAuthorityList("CLIENT"));
                 }
             }
+
              else {
                 throw new UsernameNotFoundException("Unknown client: " + email);
             }

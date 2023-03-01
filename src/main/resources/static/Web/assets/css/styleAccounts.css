@@ -415,7 +415,7 @@ body {
   position: absolute;
   width: 55px;
   height: 55px;
-  background: var(--colorSecundario);
+  background: var(--colorPrimario);
   bottom: 0;
   border-radius: 50%;
   left: 0;

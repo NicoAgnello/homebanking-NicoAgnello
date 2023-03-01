@@ -23,9 +23,8 @@ createApp({
         .then(() => {
           location.href = "./accounts.html";
         })
-        .catch((error) => {
-          this.modal(error.response);
-          console.log(error.response.data.error + " " + error.response.data.status);
+        .catch(() => {
+          this.modal();
         });
     },
     register() {
@@ -38,7 +37,7 @@ createApp({
               headers: { "content-type": "application/x-www-form-urlencoded" },
             }
           )
-          .then((response) => {
+          .then(() => {
             const Toast = Swal.mixin({
               toast: true,
               position: "top-end",
@@ -54,28 +53,31 @@ createApp({
             Toast.fire({
               icon: "success",
               title: "Signed in successfully",
-            }).then((response) => {
+            }).then(() => {
               this.logIn(this.userEmail, this.userPassword);
             });
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            Swal.fire({
+              icon: "warning",
+              title: `${err.response.data}`,
+            });
+          });
       } else {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "The email is invalid!",
+          text: "Recheck your data!",
         });
       }
     },
-    modal(error) {
-      // if (!this.password || this.validarMail(this.email)) {
+    modal() {
       Swal.fire({
         title: "User not found",
-        text: `${error.data.error}`,
+        text: `Missing or incorrect data`,
         icon: "error",
         confirmButtonText: "OK",
       });
-      // }
     },
     validarMail(email) {
       return /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)$/.test(email);

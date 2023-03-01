@@ -179,14 +179,48 @@ td {
     transform: scale(1);
   }
 }
+/*  */
+
+.dont-made-trans {
+  padding: 2rem 4rem;
+  background: url("../img/sun-tornado.svg") center/cover fixed;
+  color: whitesmoke;
+  border: 3px solid var(--colorPrimario);
+  border-radius: 2rem;
+  margin-block: 2rem;
+  text-shadow: 5px 5px #3c546b;
+}
+
+.img-compra {
+  border-radius: 1rem;
+  height: 60vh;
+  display: block;
+  margin: 1.5rem 0;
+  /* margin: 1.5rem auto; */
+}
+
+.logo-compra {
+  display: block;
+  margin: auto;
+}
+.logo-mercado {
+  display: block;
+  margin: auto;
+  height: 5rem;
+}
+
+.container-buy {
+  background: url("../img/sun-tornado.svg") center/cover fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 2rem;
+  margin: 1rem 3rem 2rem 3rem;
+}
 
 /* Medias */
-
-/* @media (min-width: 525px) {
-  td {
-    padding: 1rem;
-  }
-} */
 
 @media (max-width: 768px) {
   th {
@@ -196,10 +230,28 @@ td {
   td {
     padding: 0.5rem;
   }
+  .img-compra {
+    height: 40vh;
+  }
 }
 
 @media (max-width: 525px) {
   .learn-more {
     font-size: 1rem;
+  }
+  .img-compra {
+    height: 30vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .img-compra {
+    height: 25vh;
+  }
+}
+
+@media (max-width: 465px) {
+  .img-compra {
+    height: 20vh;
   }
 }

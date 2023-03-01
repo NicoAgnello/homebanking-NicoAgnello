@@ -230,11 +230,12 @@
 .without_card {
   color: whitesmoke;
   margin-top: 4rem;
-  padding: 1rem;
+  padding: 2rem 4rem;
   font-size: 2rem;
   border: 3px solid var(--colorPrimario);
-  border-radius: 1rem;
-  background-color: var(--colorTerciarioClaro);
+  text-shadow: 5px 5px #3c546b;
+  border-radius: 1.5rem;
+  background: url("../img/sun-tornado.svg") center/cover fixed;
 }
 
 .add-card {

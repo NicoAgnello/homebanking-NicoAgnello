@@ -11,7 +11,7 @@
 }
 
 .nav-login {
-  background-color: #f3f6fa;
+  background-color: transparent;
 }
 
 .body {
@@ -19,7 +19,7 @@
   font-family: var(--fuentePrincipal);
   transition: all 0.5s;
   padding: 1px;
-  min-height: 100vh;
+  min-height: 75vh;
   display: flex;
   align-items: center;
   justify-content: center;

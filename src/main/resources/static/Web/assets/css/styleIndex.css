@@ -15,7 +15,7 @@ body {
 
 .nav-landing {
   min-height: 6vh;
-  background-color: hsl(0, 0%, 90%);
+  background: url("../img/sun-tornado.svg") center/cover fixed;
 }
 
 h1 {
@@ -68,6 +68,22 @@ h2 {
 .svg-img {
   width: 5rem;
 }
+.container-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.texto-logo {
+  color: whitesmoke;
+  text-shadow: 5px 5px #3c546b;
+  font-size: 3rem;
+}
+
+.logo {
+  height: 10vh;
+}
 
 @media (max-width: 1024px) {
   h1 {
@@ -101,5 +117,11 @@ h2 {
   }
   .link-login {
     padding: 0.2rem 2rem;
+  }
+}
+
+@media (max-width: 460px) {
+  .texto-logo {
+    font-size: 2.2rem;
   }
 }

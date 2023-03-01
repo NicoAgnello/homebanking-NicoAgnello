@@ -189,36 +189,62 @@
                 </a>
               </div>
             </div>
-            <h4 class="description-card-accounts text-center py-3">
-              Here are the movements of account {{account.number}}
-            </h4>
-            <table class="table-responsive w-100 table-movements text-center">
-              <thead>
-                <tr>
-                  <th class="show-small" scope="col">Number</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Amount</th>
-                </tr>
-              </thead>
-              <tbody class="body-account border border-secondary" v-for="transaction of transactions">
-                <tr>
-                  <td class="bg-light text-dark border border-secondary show-small">{{transaction.id}}</td>
-                  <td class="border border-secondary">{{parseDate(transaction.date)}}</td>
-                  <td class="bg-light text-dark border border-secondary">{{transaction.description}}</td>
-                  <td class="border border-secondary text-dark">{{transaction.type}}</td>
-                  <td
-                    class="bg-light border border-secondary"
-                    :class="transaction.type == 'DEBIT' ? 'text-danger-emphasis' : 'text-success-emphasis'"
-                  >
-                    {{transaction.amount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })}}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <template v-if="transactions.length > 0">
+              <h4 class="description-card-accounts text-center py-3">
+                Here are the movements of account {{account.number}}
+              </h4>
+              <table class="table-responsive w-100 table-movements text-center">
+                <thead>
+                  <tr>
+                    <th class="show-small" scope="col">Number</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead>
+                <tbody class="body-account border border-secondary" v-for="transaction of transactions">
+                  <tr>
+                    <td class="bg-light text-dark border border-secondary show-small">{{transaction.id}}</td>
+                    <td class="border border-secondary">{{parseDate(transaction.date)}}</td>
+                    <td class="bg-light text-dark border border-secondary">{{transaction.description}}</td>
+                    <td
+                      class="border border-secondary"
+                      :class="transaction.type == 'DEBIT' ? 'text-danger-emphasis' : 'text-success-emphasis'"
+                    >
+                      {{transaction.type}}
+                    </td>
+                    <td
+                      class="bg-light border border-secondary"
+                      :class="transaction.type == 'DEBIT' ? 'text-danger-emphasis' : 'text-success-emphasis'"
+                    >
+                      {{transaction.amount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </template>
+            <template v-else>
+              <h3 class="dont-made-trans">
+                You have not yet made any transactions with this account<img
+                  src="./assets/img/icons/icons8-triste-62.png"
+                  alt="person-sad"
+                />
+              </h3>
+            </template>
           </div>
-          <div class="fondo-loans mt-5"></div>
+          <div class="container-buy">
+            <div class="d-flex flex-column">
+              <h2 class="p-1 text-light">Buy securely and quickly</h2>
+              <div class="d-flex flex-row justify-content-between">
+                <img class="logo-compra" src="./assets/img/icons/efectivo-mano.png" alt="buy-hand" />
+                <img class="logo-mercado" src="./assets/img/icons/icons8-comprar-64.png" alt="buy-hand" />
+                <img class="logo-compra" src="./assets/img/icons/icons8-ganador-100.png" alt="buy-hand" />
+              </div>
+            </div>
+            <img class="img-compra" src="./assets/img/carrousel/compra-tarjeta.jpg" alt="compra-tarjeta" />
+          </div>
+          <div class="fondo-loans mb-4"></div>
         </div>
       </main>
       <div class="floating-container">
@@ -247,7 +273,6 @@
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- <script src="./assets/js/transactions.js"></script> -->
     <script src="./assets/js/account.js"></script>
   </body>
 </html>

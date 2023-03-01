@@ -31,13 +31,6 @@ public class CardController {
 public ResponseEntity<Object> newCard (@RequestParam CardColor cardColor, @RequestParam CardType cardType, Authentication authentication){
 
     Client client = clientRepository.findByEmail(authentication.getName());
-    if (cardColor.toString().isEmpty()){
-        return new ResponseEntity<>("Missing card color", HttpStatus.BAD_REQUEST);
-    }
-
-    if (cardType.toString().isEmpty()){
-        return new ResponseEntity<>("Missing card color", HttpStatus.BAD_REQUEST);
-    }
 
     if (client.getCards().stream().anyMatch(card -> card.getCardColor() == cardColor && card.getCardType()==cardType)){
 

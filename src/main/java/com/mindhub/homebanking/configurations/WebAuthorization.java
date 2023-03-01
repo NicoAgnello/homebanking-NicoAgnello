@@ -50,21 +50,6 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
 
         http.exceptionHandling().authenticationEntryPoint((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
 
-        //redirect when a user with the wrong role enters a place that we do not want
-
-//        http.exceptionHandling().accessDeniedHandler((req, res, ex) ->{
-//
-//            if(req.getRequestURI().contains("web")){
-//
-//                res.sendRedirect("/web/index.html");
-//
-//            } else {
-//
-//                res.sendError(HttpServletResponse.SC_FORBIDDEN);
-//            }
-//
-//        });
-
         // if login is successful, just clear the flags asking for authentication
 
         http.formLogin().successHandler((req, res, auth) -> clearAuthenticationAttributes(req));

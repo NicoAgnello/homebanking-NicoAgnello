@@ -84,31 +84,17 @@ public class HomebankingApplication {
 			personal.addClientLoan(clientLoan3);
 			automotive.addClientLoan(clientLoan4);
 
-			clientRepository.save(client1);
-			clientRepository.save(client2);
-			clientRepository.save(client3);
+			clientRepository.saveAll(List.of(client1,client2,client3));
 
-			accountRepository.save(account1);
-			accountRepository.save(account2);
-			accountRepository.save(account3);
+			accountRepository.saveAll(List.of(account1,account2,account3));
 
-			transactionRepository.save(transaction1);
-			transactionRepository.save(transaction2);
-			transactionRepository.save(transaction3);
-			transactionRepository.save(transaction4);
+			transactionRepository.saveAll(List.of(transaction1,transaction2,transaction3,transaction4));
 
-			loanRepository.save(mortgage);
-			loanRepository.save(personal);
-			loanRepository.save(automotive);
+			loanRepository.saveAll(List.of(mortgage,personal,automotive));
 
-			clientLoanRepository.save(clientLoan1);
-			clientLoanRepository.save(clientLoan2);
-			clientLoanRepository.save(clientLoan3);
-			clientLoanRepository.save(clientLoan4);
+			clientLoanRepository.saveAll(List.of(clientLoan1,clientLoan2,clientLoan3,clientLoan4));
 
-			cardRepository.save(card1);
-			cardRepository.save(card2);
-			cardRepository.save(card3);
+			cardRepository.saveAll(List.of(card1,card2,card3));
 		};
 	}
 

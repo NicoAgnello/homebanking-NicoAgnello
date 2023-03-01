@@ -48,12 +48,31 @@ createApp({
         .catch((err) => console.log(err));
     },
     createCard() {
-      axios
-        .post("/api/clients/current/cards", `cardColor=${this.cardColor}&cardType=${this.cardType}`)
-        .then(() => {
-          location.href = "./cards.html";
-        })
-        .catch((err) => this.modal(err));
+      if (this.cardColor != "" && this.cardType != "") {
+        axios
+          .post("/api/clients/current/cards", `cardColor=${this.cardColor}&cardType=${this.cardType}`)
+          .then(() => {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Your card was successfully created!",
+              showConfirmButton: false,
+              timer: 2500,
+            }).then(() => {
+              location.href = "./cards.html";
+            });
+          })
+          .catch((err) => {
+            this.modal(err);
+          });
+      } else {
+        Swal.fire({
+          title: `Missing data`,
+          text: "Select the color and type of card",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
     },
     modal(error) {
       Swal.fire({

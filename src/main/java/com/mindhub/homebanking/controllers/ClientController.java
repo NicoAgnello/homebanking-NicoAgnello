@@ -64,6 +64,7 @@ public class ClientController {
         if (clientRepository.findByEmail(email) !=  null) {
             return new ResponseEntity<>("Name already in use", HttpStatus.CONFLICT);
         }
+
         Client client = new Client(firstName, lastName, email, passwordEncoder.encode(password));
         Account account = new Account(randomNumberAccount(accountRepository), LocalDateTime.now(), 0);
         client.addAccount(account);

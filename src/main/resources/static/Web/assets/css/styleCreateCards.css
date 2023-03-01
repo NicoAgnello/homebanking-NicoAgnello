@@ -257,6 +257,8 @@
   flex-wrap: wrap;
 }
 
+
+
 @media (max-width: 1000px) {
   .container-create-card {
     width: 100%;
