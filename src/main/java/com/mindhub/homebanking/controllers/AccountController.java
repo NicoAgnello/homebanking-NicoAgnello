@@ -26,13 +26,20 @@ public class AccountController {
 
     @Autowired
     private AccountRepository accountRepository;
+
     @RequestMapping("/accounts")
     public List<AccountDTO> getAccounts (){
         return accountRepository.findAll().stream().map(AccountDTO::new).collect(toList());
     }
+
     @RequestMapping("/accounts/{id}")
     public AccountDTO getAccount (@PathVariable Long id){
         return accountRepository.findById(id).map(account -> new AccountDTO(account)).orElse(null);
+    }
+
+    @RequestMapping("/clients/current/accounts")
+    public List <AccountDTO> getCurrentAccounts( Authentication authentication){
+        return clientRepository.findByEmail(authentication.getName()).getAccounts().stream().map(account -> new AccountDTO(account)).collect(toList());
     }
 
     @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)

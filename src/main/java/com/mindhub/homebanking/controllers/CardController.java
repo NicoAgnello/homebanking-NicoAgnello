@@ -1,5 +1,6 @@
 package com.mindhub.homebanking.controllers;
 
+import com.mindhub.homebanking.dtos.CardDTO;
 import com.mindhub.homebanking.models.Card;
 import com.mindhub.homebanking.models.CardColor;
 import com.mindhub.homebanking.models.CardType;
@@ -13,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.mindhub.homebanking.utils.Utilities.randomNumberCard;
@@ -26,6 +28,11 @@ public class CardController {
 
 @Autowired
     private CardRepository cardRepository;
+
+@RequestMapping("/client/current/cards")
+public List<CardDTO> getCurrentCards (Authentication authentication){
+    return clientRepository.findByEmail(authentication.getName()).getCards().stream().map(card -> new CardDTO(card)).collect(Collectors.toList());
+}
 
 @RequestMapping(path = "/clients/current/cards", method = RequestMethod.POST)
 public ResponseEntity<Object> newCard (@RequestParam CardColor cardColor, @RequestParam CardType cardType, Authentication authentication){

@@ -27,7 +27,6 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
     ClientRepository clientRepository;
 
     @Override
-
     public void init(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.userDetailsService(email-> {
