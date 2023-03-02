@@ -32,6 +32,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
         auth.userDetailsService(email-> {
 
             Client client = clientRepository.findByEmail(email);
+
             if(client != null) {
 
                 if(client.getEmail().equals("admin@mindhub.com")){

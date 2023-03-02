@@ -73,12 +73,10 @@ public class ClientController {
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     @RequestMapping(path = "/clients/current", method = RequestMethod.GET)
-
-    public ClientDTO getCurrent(Authentication authentication) {
-
-        return new ClientDTO( clientRepository.findByEmail( authentication.getName()));
-
-    }
+        public ClientDTO getCurrent(Authentication authentication) {
+            return new ClientDTO( clientRepository.findByEmail( authentication.getName()));
+        }
     }
 

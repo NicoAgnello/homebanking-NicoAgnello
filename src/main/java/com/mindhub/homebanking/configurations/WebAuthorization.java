@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 @Configuration
 public class WebAuthorization{
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -39,7 +40,6 @@ public class WebAuthorization{
                 .passwordParameter("password")
 
                 .loginPage("/api/login");
-
 
         http.logout().logoutUrl("/api/logout").deleteCookies("JSESSIONID");
 

@@ -33,11 +33,11 @@ public class Utilities {
         return newNumber;
     }
     public static String randomString(){
-        int number1_1 = (int) (Math.random() * (5- 4+ 1)+4);
-        int number1 = (int) (Math.random() * (999 - 100  + 1) + 100);
-        int number2 = (int) (Math.random() * (9999 - 1000  + 1) + 1000);
-        int number3 = (int) (Math.random() * (9999 - 1000  + 1) + 1000);
-        int number4 = (int) (Math.random() * (9999 - 1000  + 1) + 1000);
+        int number1_1 = (int) (Math.random() * (5- 4)+4);
+        int number1 = (int) (Math.random() * (999 - 100) + 100);
+        int number2 = (int) (Math.random() * (9999 - 1000) + 1000);
+        int number3 = (int) (Math.random() * (9999 - 1000) + 1000);
+        int number4 = (int) (Math.random() * (9999 - 1000) + 1000);
         return  number1_1+""+number1+"-"+number2+"-"+number3+"-"+number4;
     }
 
