@@ -56,8 +56,9 @@ createApp({
               position: "center",
               icon: "success",
               title: "Your card was successfully created!",
-              showConfirmButton: false,
-              timer: 2500,
+              confirmButtonText: '<i class="fa fa-thumbs-up"></i> Great!',
+              confirmButtonAriaLabel: "Thumbs up, great!",
+              showConfirmButton: true,
             }).then(() => {
               location.href = "./cards.html";
             });
