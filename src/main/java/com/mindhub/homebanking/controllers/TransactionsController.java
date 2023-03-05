@@ -91,7 +91,7 @@ public class TransactionsController {
             transactionRepository.saveAll(List.of(transactionDebit,transactionCredit));
 
             originAccount.setBalance(originAccount.getBalance() - amount);
-            targetAccount.setBalance(originAccount.getBalance() + amount);
+            targetAccount.setBalance(targetAccount.getBalance() + amount);
 
             accountRepository.saveAll(List.of(originAccount,targetAccount));
 

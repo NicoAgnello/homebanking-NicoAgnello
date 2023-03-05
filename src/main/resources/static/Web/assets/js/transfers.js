@@ -6,10 +6,11 @@ createApp({
       client: {},
       accounts: [],
       typeTransaction: "Is the transaction to a proprietary account or a third party account?",
-      originAccountNumber: "",
-      targetAccountNumber: "",
+      originAccountNumber: "Open this menu",
+      targetAccountNumber: "Open this menu",
       amount: "",
       description: "",
+      accountOrigin: "",
     };
   },
   created() {
@@ -99,6 +100,9 @@ createApp({
             title: `${err.response.data}`,
           });
         });
+    },
+    searchSourceAccount(number) {
+      this.accountOrigin = this.accounts.find((acc) => acc.number == number);
     },
   },
 }).mount("#app");

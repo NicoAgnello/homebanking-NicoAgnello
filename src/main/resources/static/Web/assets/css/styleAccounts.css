@@ -63,6 +63,7 @@ body {
 }
 
 .table-accounts {
+  font-size: 1.3rem;
   border-collapse: separate;
   border-spacing: 10;
   border: 1px solid black;
@@ -74,6 +75,9 @@ body {
 
 .card-accounts {
   background-color: var(--colorPrimario);
+}
+.description-card-accounts {
+  font-size: 2.4rem;
 }
 
 .content-accounts,
@@ -92,14 +96,18 @@ body {
 }
 
 .container-accounts {
+  margin-inline: 4rem;
   margin-top: 2rem;
 }
 
 .fondo-loans {
   border-radius: 2rem;
   padding: 6rem;
-  margin-right: 2.5rem;
   background: url(../img/home/fondo-dinero.jpg) center/cover;
+}
+
+.title-loan {
+  font-size: 2.4rem;
 }
 
 .loan-info {
@@ -115,6 +123,7 @@ body {
   font-weight: bold;
   font-size: 1.4rem;
   color: white;
+  width: 100%;
 }
 .loan-payments {
   color: var(--colorPrimario);

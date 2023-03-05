@@ -1,3 +1,11 @@
+:root {
+  --colorPrimario: #2e4783;
+  --colorSecundario: #5975aa;
+  --colorTerciario: #6886bd;
+  --colorRojo: #e94c4c;
+  --fuentePrincipal: "Secular One", sans-serif;
+}
+
 .main-container {
   margin-top: 5rem;
 }
@@ -5,8 +13,8 @@
 .container-form-img {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  margin-right: 1rem;
+  justify-content: space-between;
+  margin-right: 2rem;
 }
 
 .img-form-transaction {
@@ -17,9 +25,32 @@
 ::placeholder {
   color: #5d6886b4;
 } */
+.balance-card {
+  border: 2px solid var(--colorPrimario);
+  margin-right: 2.5rem;
+}
+
+.balance-body {
+  background: url("../img/sun-tornado.svg") center/cover fixed !important;
+}
+
+.balance-title {
+  font-weight: bold;
+  color: var(--colorPrimario);
+}
+
+.balance-of,
+.balance {
+  color: whitesmoke;
+  font-weight: bold;
+  text-shadow: 3px 5px 2px #2c2c2c;
+}
 
 @media (max-width: 991px) {
   .img-form-transaction {
     display: none;
+  }
+  .balance-card {
+    margin: 0;
   }
 }
