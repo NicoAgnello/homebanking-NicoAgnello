@@ -47,12 +47,14 @@ public class AccountController {
             Authentication authentication
     ){
         Client client = clientRepository.findByEmail(authentication.getName());
+
         if(client.getAccounts().size() < 3) {
             Account account = new Account(randomNumberAccount(accountRepository), LocalDateTime.now(), 0);
             client.addAccount(account);
             accountRepository.save(account);
             return new ResponseEntity<>("Account successfully created",HttpStatus.CREATED);
         }
+
         else {
             return new ResponseEntity<>("Client has the maximum number of accounts(3)",HttpStatus.FORBIDDEN);
         }

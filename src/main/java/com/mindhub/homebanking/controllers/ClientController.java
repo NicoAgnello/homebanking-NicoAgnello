@@ -31,10 +31,12 @@ public class ClientController {
 
     @Autowired
     private ClientRepository clientRepository;
+
     @RequestMapping("/clients")
     public List<ClientDTO> getClients (){
        return clientRepository.findAll().stream().map(ClientDTO::new).collect(toList());
     }
+
     @RequestMapping("clients/{id}")
     public ClientDTO getClient (@PathVariable Long id){
         return clientRepository.findById(id).map(client -> new ClientDTO(client)).orElse(null);

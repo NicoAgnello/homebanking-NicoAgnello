@@ -1,0 +1,25 @@
+.main-container {
+  margin-top: 5rem;
+}
+
+.container-form-img {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-right: 1rem;
+}
+
+.img-form-transaction {
+  border-radius: 1rem;
+}
+
+/* 
+::placeholder {
+  color: #5d6886b4;
+} */
+
+@media (max-width: 991px) {
+  .img-form-transaction {
+    display: none;
+  }
+}
