@@ -44,6 +44,10 @@ body {
   border: 2px solid var(--colorPrimario);
 }
 
+.pages {
+  font-size: 2rem !important;
+}
+
 .log-out {
   color: white;
   background-color: var(--colorSecundario);
@@ -63,7 +67,7 @@ body {
 }
 
 .table-accounts {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   border-collapse: separate;
   border-spacing: 10;
   border: 1px solid black;
@@ -76,12 +80,14 @@ body {
 .card-accounts {
   background-color: var(--colorPrimario);
 }
+
 .description-card-accounts {
+  text-shadow: 3px 2px 2px #1c1d63;
   font-size: 2.4rem;
+  color: var(--colorTerciario);
 }
 
-.content-accounts,
-.description-card-accounts {
+.content-accounts {
   color: var(--colorSecundario);
 }
 
@@ -93,6 +99,10 @@ body {
 .color-nav {
   min-height: 140px;
   background: url("../img/sun-tornado.svg") center/cover fixed;
+}
+
+.movements-button-media {
+  display: none;
 }
 
 .container-accounts {
@@ -143,7 +153,6 @@ body {
   padding: 7rem;
   border-radius: 2rem;
   margin-block: 2rem;
-  /* margin-inline: 2rem; */
   background: url(../img/home/fondo-bank.jpg) center/cover;
 }
 
@@ -226,7 +235,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 350px;
+  gap: 2rem;
+  width: 550px;
   height: 55px;
   border-radius: 50px;
   border: 0;
@@ -490,7 +500,7 @@ body {
   }
   .fondo-loans {
     padding: 4rem;
-    margin-inline: 1rem;
+    margin-inline: 0;
   }
   .background-no-loan {
     padding: 4rem;
@@ -499,6 +509,12 @@ body {
   }
   .title-no-loan {
     margin-bottom: 1.5rem;
+  }
+  .description-card-accounts {
+    font-size: 1.4rem;
+  }
+  .container-accounts {
+    margin-inline: 1rem;
   }
 }
 
@@ -520,5 +536,28 @@ body {
     justify-content: space-around;
     align-items: center;
     padding: 1rem;
+  }
+}
+@media (max-width: 575px) {
+  .table-accounts {
+    font-size: 1rem;
+  }
+  .container-accounts {
+    margin-inline: 1rem;
+  }
+  .movements-button {
+    display: none;
+  }
+  .movements-button-media {
+    display: block;
+    text-decoration: none;
+  }
+  .icon-info {
+    border: 2px solid var(--colorPrimario);
+    border-radius: 50%;
+    padding: 0.3rem 0.4rem;
+  }
+  .icon-info:hover {
+    background-color: var(--colorTerciario);
   }
 }

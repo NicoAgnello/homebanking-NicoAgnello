@@ -209,7 +209,7 @@
                         name="carlist"
                         form="transactionform"
                       >
-                        <option disabled selected>Open this menu</option>
+                        <option disabled selected>Open this menu to select an account</option>
                         <template v-for="account of accounts">
                           <option class="" :value="account.number">{{account.number}}</option>
                         </template>
@@ -225,7 +225,7 @@
                         name="carlist"
                         form="transactionform"
                       >
-                        <option disabled selected>Open this menu</option>
+                        <option disabled selected>Open this menu to select an account</option>
                         <template v-for="account of accounts">
                           <option v-show="originAccountNumber !== account.number" class="" :value="account.number">
                             {{account.number}}
@@ -291,8 +291,25 @@
                   />
                 </div>
 
-                <button type="submit" @click="confirmTransaction" class="btn btn-primary w-100">Enviar</button>
+                <button type="submit" @click="confirmTransaction" class="boton-send btn w-100">Enviar</button>
               </form>
+              <template v-if="originAccountNumber.startsWith('VIN')	">
+                <div class="balance-card card text-center mt-3">
+                  <div class="balance-body card text-center">
+                    <div class="balance-title card-header fs-2">{{originAccountNumber}}</div>
+                    {{searchSourceAccount(originAccountNumber)}}
+                    <div class="card-body">
+                      <div class="d-flex flex-column align-items-center justify-content-around">
+                        <p class="balance-of card-text fs-4">Balance of account</p>
+                        <p class="balance card-text fs-3">$ {{" " +accountOrigin.balance}}</p>
+                      </div>
+                      <a :href="'./account.html?id='+accountOrigin.id" class="learn-more movements-button mt-3 w-100"
+                        >See account details</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </template>
             </div>
             <div class="col-lg-6 align-self-center">
               <img
@@ -302,23 +319,6 @@
               />
             </div>
           </div>
-          <template v-if="originAccountNumber.startsWith('VIN')	">
-            <div class="balance-card card text-center mt-3">
-              <div class="balance-body card text-center">
-                <div class="balance-title card-header fs-1">{{originAccountNumber}}</div>
-                {{searchSourceAccount(originAccountNumber)}}
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center justify-content-around">
-                    <p class="balance-of card-text fs-3">Balance of account</p>
-                    <p class="balance card-text fs-3">$ {{" " +accountOrigin.balance}}</p>
-                  </div>
-                  <a :href="'./account.html?id='+accountOrigin.id" class="learn-more movements-button fs-5 mt-3 w-100"
-                    >See account details</a
-                  >
-                </div>
-              </div>
-            </div>
-          </template>
         </div>
         <div class="fondo-loans mt-4"></div>
       </main>

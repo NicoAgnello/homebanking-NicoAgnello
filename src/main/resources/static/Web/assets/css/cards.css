@@ -6,6 +6,10 @@
   --fuentePrincipal: "Secular One", sans-serif;
 }
 
+.loan-container {
+  margin-top: 6rem;
+}
+
 /* Card */
 .flip-card {
   background-color: transparent;
@@ -270,5 +274,11 @@
 @media (max-width: 991px) {
   .add-card {
     margin-top: 1rem;
+  }
+}
+
+@media (max-width: 675px) {
+  .loan-container {
+    margin-top: 2rem;
   }
 }

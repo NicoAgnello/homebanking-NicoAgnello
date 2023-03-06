@@ -179,12 +179,12 @@
           </div>
         </nav>
         <div class="main-container">
-          <div class="container container-accounts">
+          <div class="container-accounts">
             <div class="d-flex gap-2">
               <div class="pt-3" v-for="accounts of client.accounts">
                 <a v-if="accounts.number != account.number" :href="'./account.html?id='+accounts.id">
                   <button class="button-account mb-2">
-                    <span>Movements of account {{accounts.number}}</span>
+                    <span class="fs-4">Movements of account {{accounts.number}}</span>
                   </button>
                 </a>
               </div>
@@ -196,24 +196,22 @@
               <table class="table-responsive w-100 table-movements text-center">
                 <thead>
                   <tr>
-                    <th class="show-small" scope="col">Number</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Date</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Type</th>
                     <th scope="col">Amount</th>
                   </tr>
                 </thead>
                 <tbody class="body-account border border-secondary" v-for="transaction of transactions">
                   <tr>
-                    <td class="bg-light text-dark border border-secondary show-small">{{transaction.id}}</td>
-                    <td class="border border-secondary">{{parseDate(transaction.date)}}</td>
-                    <td class="bg-light text-dark border border-secondary">{{transaction.description}}</td>
                     <td
-                      class="border border-secondary"
+                      class="bg-light border border-secondary"
                       :class="transaction.type == 'DEBIT' ? 'text-danger-emphasis' : 'text-success-emphasis'"
                     >
                       {{transaction.type}}
                     </td>
+                    <td class="bg-light text-dark border border-secondary">{{parseDate(transaction.date)}}</td>
+                    <td class="text-light border border-secondary">{{transaction.description}}</td>
                     <td
                       class="bg-light border border-secondary"
                       :class="transaction.type == 'DEBIT' ? 'text-danger-emphasis' : 'text-success-emphasis'"
@@ -235,7 +233,7 @@
           </div>
           <div class="container-buy">
             <div class="d-flex flex-column">
-              <h2 class="p-1 text-light">Buy securely and quickly</h2>
+              <h2 class="p-1 text-light title-bfill">Buy securely and quickly</h2>
               <div class="d-flex flex-row justify-content-between">
                 <img class="logo-compra" src="./assets/img/icons/efectivo-mano.png" alt="buy-hand" />
                 <img class="logo-mercado" src="./assets/img/icons/icons8-comprar-64.png" alt="buy-hand" />
