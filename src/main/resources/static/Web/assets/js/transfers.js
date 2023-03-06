@@ -6,9 +6,9 @@ createApp({
       client: {},
       accounts: [],
       typeTransaction: "Is the transaction to a proprietary account or a third party account?",
-      originAccountNumber: "Open this menu to select an account",
-      targetAccountNumber: "Open this menu to select an account",
-      amount: "",
+      originAccountNumber: "",
+      targetAccountNumber: "",
+      amount: 0,
       description: "",
       accountOrigin: "",
     };

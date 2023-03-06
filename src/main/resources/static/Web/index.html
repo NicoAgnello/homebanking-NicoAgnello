@@ -15,6 +15,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet" />
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/1ae9a81fc2.js" crossorigin="anonymous"></script>
     <!-- Fav Icon -->
@@ -25,7 +28,7 @@
   </head>
   <body>
     <div id="app">
-      <div class="container-logo mb-5">
+      <div class="container-logo">
         <span class="texto-logo">MINDHUB BROTHERS</span>
         <img
           class="mt-2"
@@ -36,10 +39,10 @@
       </div>
       <main class="container-eslogan-img gap-2">
         <div class="d-flex flex-column align-items-center justify-content-center">
-          <h1 class="text-light text-center">Mindhub Brothers</h1>
+          <h1 class="text-dark text-center">Mindhub Brothers</h1>
           <!-- "Transformamos tus metas en realidad: el banco que te impulsa hacia el éxito." -->
-          <h2 class="text-light text-center mt-4">Transforming your goals into reality</h2>
-          <h2 class="text-light text-center mt-2">The bank that propels you to success.</h2>
+          <h2 class="text-dark text-center mt-4">Transforming your goals into reality</h2>
+          <h2 class="text-dark text-center mt-2">The bank that propels you to success.</h2>
           <a href="./login-register.html" class="link-login"
             >Log In or Register<img class="ms-4" src="./assets/img/icons/icons8-click-64.png" alt="icon-click"
           /></a>
@@ -50,28 +53,41 @@
           alt="img-landing"
         />
       </main>
-      <!-- <div> -->
-      <h3 class="text-center mt-5 ps-4 text-light">Some of our services are:</h3>
-      <div class="mt-5 container-services">
-        <div class="d-flex flex-column align-items-center">
-          <img class="svg-img" src="./assets/img/icons/icons8-user-skin-type-1-100.png" alt="icon-account" />
-          <p class="mt-4 text-light">Saving and checking accounts</p>
-        </div>
-        <div class="d-flex flex-column align-items-center">
-          <img class="svg-img" src="./assets/img/icons/icon-tarjeta.png" alt="icon-tarjeta" />
-          <p class="mt-4 text-light">Credit cards</p>
-        </div>
-        <div class="d-flex flex-column align-items-center">
-          <img class="svg-img" src="./assets/img/icons/icons8-flujo-de-fondos-64.png" alt="icon-transaction" />
-          <p class="mt-4 text-light">Transfer funds</p>
-        </div>
-        <div class="d-flex flex-column align-items-center">
-          <img class="svg-img" src="./assets/img/icons/icons8-loan-64.png" alt="icon-loan" />
-          <p class="mt-4 text-light">Loans</p>
+      <div class="box-services">
+        <h3 class="text-center mt-5 ps-4 text-light">Some of our services are:</h3>
+        <div class="mt-5 container-services">
+          <div class="d-flex flex-column align-items-center">
+            <img class="svg-img" src="./assets/img/icons/icons8-user-skin-type-1-100.png" alt="icon-account" />
+            <p class="mt-4 text-light">Saving and checking accounts</p>
+          </div>
+          <div class="d-flex flex-column align-items-center">
+            <img class="svg-img" src="./assets/img/icons/icon-tarjeta.png" alt="icon-tarjeta" />
+            <p class="mt-4 text-light">Credit cards</p>
+          </div>
+          <div class="d-flex flex-column align-items-center">
+            <img class="svg-img" src="./assets/img/icons/icons8-flujo-de-fondos-64.png" alt="icon-transaction" />
+            <p class="mt-4 text-light">Transfer funds</p>
+          </div>
+          <div class="d-flex flex-column align-items-center">
+            <img class="svg-img" src="./assets/img/icons/icons8-loan-64.png" alt="icon-loan" />
+            <p class="mt-4 text-light">Loans</p>
+          </div>
         </div>
       </div>
-
-      <!-- </div> -->
+      <footer>
+        <p class="dev-footer"><span>Developer: </span>Nicolas Agnello</p>
+        <div class="icon-footer-container">
+          <a href="https://github.com/NicoAgnello">
+            <img src="./assets/img/icons/github_fill.svg" height="40" width="40" alt="mail" />
+          </a>
+          <a href="https://www.linkedin.com/in/nicolas-agnello-allasia-94339a189/">
+            <img src="./assets/img/icons/linkedin_fill.svg" height="40" width="40" alt="mail" />
+          </a>
+          <a href="mailto: nikoagnello1@gmail.com">
+            <img src="./assets/img/icons/mail_send_line.svg" height="40" width="40" alt="mail" />
+          </a>
+        </div>
+      </footer>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

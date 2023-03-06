@@ -26,8 +26,12 @@ td {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-inline: 4rem;
+  margin-top: 5rem;
+}
+
+.fondo-loans {
   margin-inline: 3rem;
-  margin-top: 6rem;
 }
 
 .body-account {
@@ -239,6 +243,9 @@ td {
   .img-compra {
     height: 40vh;
   }
+  .container-accounts {
+    margin-top: 3rem;
+  }
 }
 
 @media (max-width: 525px) {
@@ -247,6 +254,10 @@ td {
   }
   .img-compra {
     height: 30vh;
+  }
+  td {
+    font-size: 1rem;
+    padding: 0.4rem;
   }
 }
 

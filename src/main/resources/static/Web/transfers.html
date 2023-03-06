@@ -179,15 +179,16 @@
         </nav>
         <div class="main-container">
           <h2 class="text-center">Transactions</h2>
+
           <div class="row container-form-img my-2">
             <div class="col-12 col-lg-5 p-4 pe-0">
               <form @submit.prevent class="mx-auto d-flex-column justify-content-center" id="transactionform">
                 <div class="mb-3">
                   <div class="mb-3">
-                    <label class="fs-4 align-items-end" for="tipo-transferencia">Type of transaction</label>
+                    <label class="fs-5 align-items-end" for="tipo-transferencia">Type of transaction</label>
                     <select
                       v-model="typeTransaction"
-                      class="form-select fs-5"
+                      class="form-select fs-6"
                       id="tipo-transferencia"
                       name="tipo-transferencia"
                     >
@@ -201,15 +202,15 @@
 
                   <template v-if="typeTransaction == 'originAccount'">
                     <div class="mb-3">
-                      <label class="fs-4" for="originAccount">Choose a source account</label>
+                      <label class="fs-5" for="originAccount">Choose a source account</label>
                       <select
                         v-model="originAccountNumber"
-                        class="form-select fs-5"
+                        class="form-select fs-6"
                         id="originAccount"
-                        name="carlist"
+                        name="sourceAccount"
                         form="transactionform"
                       >
-                        <option disabled selected>Open this menu to select an account</option>
+                        <option disabled selected>Open this menu to select an source account</option>
                         <template v-for="account of accounts">
                           <option class="" :value="account.number">{{account.number}}</option>
                         </template>
@@ -217,15 +218,15 @@
                     </div>
 
                     <div class="mb-3">
-                      <label class="fs-4" for="targetAccountMe">Choose a target account</label>
+                      <label class="fs-5" for="targetAccountMe">Choose a target account</label>
                       <select
-                        v-model="targetAccountNumber"
-                        class="form-select fs-5"
+                        v-model="targetAccountNumber "
+                        class="form-select fs-6"
                         id="targetAccountMe"
-                        name="carlist"
+                        name="targetAccount"
                         form="transactionform"
                       >
-                        <option disabled selected>Open this menu to select an account</option>
+                        <option disabled selected>Open this menu to select an target account</option>
                         <template v-for="account of accounts">
                           <option v-show="originAccountNumber !== account.number" class="" :value="account.number">
                             {{account.number}}
@@ -237,26 +238,26 @@
 
                   <template v-if="typeTransaction == 'targetAccount'">
                     <div class="mb-3">
-                      <label class="fs-4" for="sourceAccount">Choose a source account</label>
+                      <label class="fs-5" for="sourceAccount">Choose a source account</label>
                       <select
-                        v-model="originAccountNumber "
-                        class="form-select fs-5"
+                        v-model="originAccountNumber"
+                        class="form-select fs-6"
                         id="sourceAccount"
-                        name="carlist"
+                        name="sourceAccountThird"
                         form="transactionform"
                       >
-                        <option disabled selected>Open this select menu</option>
+                        <option disabled selected>Open this menu to select an source account</option>
                         <template v-for="account of accounts">
                           <option class="" :value="account.number">{{account.number}}</option>
                         </template>
                       </select>
                     </div>
                     <div class="mb-3">
-                      <label for="targetAccount" class="form-label fs-4">Enter the account number to transfer</label>
+                      <label for="targetAccount" class="form-label fs-5">Enter the account number to transfer</label>
                       <input
                         type="text"
                         v-model="targetAccountNumber"
-                        class="form-control fs-5"
+                        class="form-control fs-6"
                         id="targetAccount"
                         name="targetAccount"
                         placeholder="Target account number"
@@ -265,13 +266,13 @@
                     </div>
                   </template>
 
-                  <label for="amount" class="fs-4">Amount ($1 minimum)</label>
+                  <label for="amount" class="fs-5">Amount ($1 minimum)</label>
                   <input
                     type="number"
                     v-model="amount"
                     min="1"
                     step="any"
-                    class="form-control fs-5"
+                    class="form-control fs-6"
                     id="amount"
                     name="amount"
                     placeholder="Enter the amount to transfer"
@@ -279,48 +280,54 @@
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="description" class="fs-4">Description</label>
+                  <label for="description" class="fs-5">Description</label>
                   <input
                     type="text"
                     v-model="description"
-                    class="form-control fs-5"
+                    class="form-control fs-6"
                     id="description"
                     name="description"
                     placeholder="Enter a description of transaction"
                     required
                   />
                 </div>
-
                 <button type="submit" @click="confirmTransaction" class="boton-send btn w-100">Enviar</button>
-              </form>
-              <template v-if="originAccountNumber.startsWith('VIN')	">
-                <div class="balance-card card text-center mt-3">
-                  <div class="balance-body card text-center">
-                    <div class="balance-title card-header fs-2">{{originAccountNumber}}</div>
-                    {{searchSourceAccount(originAccountNumber)}}
-                    <div class="card-body">
-                      <div class="d-flex flex-column align-items-center justify-content-around">
-                        <p class="balance-of card-text fs-4">Balance of account</p>
-                        <p class="balance card-text fs-3">$ {{" " +accountOrigin.balance}}</p>
+                <template v-if="originAccountNumber.startsWith('VIN')	">
+                  <div class="balance-card card text-center mt-3">
+                    <div class="balance-body card text-center">
+                      <div class="balance-title card-header fs-2">{{originAccountNumber}}</div>
+                      {{searchSourceAccount(originAccountNumber)}}
+                      <div class="card-body">
+                        <div class="d-flex flex-column align-items-center justify-content-around">
+                          <p class="balance-of card-text fs-4">Balance of account</p>
+                          <p class="balance card-text fs-3">$ {{" " +accountOrigin.balance}}</p>
+                        </div>
+                        <a :href="'./account.html?id='+accountOrigin.id" class="learn-more movements-button mt-3 w-100"
+                          >See account details</a
+                        >
                       </div>
-                      <a :href="'./account.html?id='+accountOrigin.id" class="learn-more movements-button mt-3 w-100"
-                        >See account details</a
-                      >
                     </div>
                   </div>
-                </div>
-              </template>
+                </template>
+              </form>
             </div>
             <div class="col-lg-6 align-self-center">
+              <template v-if="originAccountNumber.startsWith('VIN')	">
+                <img
+                  src="./assets/img/home/bank-smile.jpg"
+                  alt="img-form-transaction"
+                  class="img-fluid img-form-transaction mb-3"
+                />
+              </template>
               <img
-                src="./assets/img/carrousel/working.jpg"
+                src="./assets/img/home/transaction.jpg"
                 alt="img-form-transaction"
                 class="img-fluid img-form-transaction"
               />
             </div>
           </div>
         </div>
-        <div class="fondo-loans mt-4"></div>
+        <div class="fondo-loans m-4"></div>
       </main>
       <div class="floating-container">
         <div class="floating-button">+</div>

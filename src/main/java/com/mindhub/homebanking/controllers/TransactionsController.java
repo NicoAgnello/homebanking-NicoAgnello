@@ -78,6 +78,10 @@ public class TransactionsController {
                 return new ResponseEntity<>("Target account does not exist", HttpStatus.BAD_REQUEST);
             }
 
+            if(amount < 1){
+                return new ResponseEntity<>("Cannot transfer less than $1", HttpStatus.FORBIDDEN);
+            }
+
             if(originAccount.getBalance() < amount){
                 return new ResponseEntity<>("The source account does not have sufficient funds", HttpStatus.FORBIDDEN);
             }

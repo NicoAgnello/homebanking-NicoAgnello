@@ -7,10 +7,10 @@
 }
 
 body {
-  background: url("../img/sun-tornado.svg") center/cover fixed;
   font-family: var(--fuentePrincipal);
   min-height: 100vh;
   font-family: var(--fuentePrincipal);
+  background-color: hsl(0, 0%, 90%);
 }
 
 .nav-landing {
@@ -20,10 +20,18 @@ body {
 
 h1 {
   font-size: 4rem;
+  text-shadow: 3px 3px 2px #b6b5b5;
 }
 
 h2 {
   font-size: 2.5rem;
+  text-shadow: 3px 3px 2px #b6b5b5;
+}
+
+.box-services {
+  background-color: var(--colorPrimario);
+  padding-block: 2rem;
+  padding-bottom: 3rem;
 }
 
 .container-services {
@@ -34,12 +42,15 @@ h2 {
 }
 
 .img-eslogan {
-  width: 700px;
+  width: 40%;
+  height: 100%;
+  align-self: center;
   border-radius: 2rem;
   padding: 0;
 }
 
 .link-login {
+  text-shadow: 3px 3px 2px #302f2f;
   padding: 0.5rem 4rem;
   margin-block: 2rem;
   border: 2px solid var(--colorPrimario);
@@ -52,7 +63,6 @@ h2 {
 }
 
 .link-login:hover {
-  color: #223664;
   background: rgb(46, 71, 131);
   background: linear-gradient(45deg, rgba(46, 71, 131, 1) 2%, rgba(101, 119, 184, 1) 54%);
   scale: 1.15;
@@ -61,8 +71,10 @@ h2 {
 .container-eslogan-img {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   flex-wrap: wrap;
+  padding-block: 4rem;
+  min-height: 72vh;
 }
 
 .svg-img {
@@ -73,6 +85,8 @@ h2 {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  background: url("../img/sun-tornado.svg") center/cover fixed;
+  padding: 1.6rem;
 }
 
 .texto-logo {
@@ -83,6 +97,42 @@ h2 {
 
 .logo {
   height: 10vh;
+}
+
+/* Footer */
+footer {
+  background: rgb(46, 71, 131);
+  background: linear-gradient(180deg, rgba(46, 71, 131, 1) 2%, rgba(101, 119, 184, 1) 54%);
+  color: #182544;
+}
+footer span {
+  color: hsl(0, 0%, 90%);
+}
+
+.dev-footer {
+  display: block;
+  text-align: center;
+  padding-block: 1rem;
+  font-size: 1.5rem;
+  font-family: "Roboto Mono", monospace;
+  text-shadow: 2px 2px 5px #446cc2;
+}
+
+.icon-footer-container {
+  padding-block: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (max-width: 1175px) {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 1.7rem;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -104,6 +154,12 @@ h2 {
 @media (max-width: 725px) {
   .img-eslogan {
     width: 400px;
+    margin-bottom: 2rem;
+  }
+  .container-eslogan-img {
+    border: none;
+    margin: 0;
+    padding: 0;
   }
   .container-services {
     display: flex;

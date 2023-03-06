@@ -82,6 +82,7 @@ body {
 }
 
 .description-card-accounts {
+  display: block;
   text-shadow: 3px 2px 2px #1c1d63;
   font-size: 2.4rem;
   color: var(--colorTerciario);
@@ -473,6 +474,31 @@ body {
   background: var(--colorPrimario);
   cursor: pointer;
   box-shadow: 0 20px 20px -10px rgba(66, 165, 245, 0.5);
+}
+
+/* Footer */
+
+footer {
+  background-color: #6c87b9;
+}
+
+.dev-footer {
+  display: block;
+  text-align: center;
+  padding-block: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: "Roboto Mono", monospace;
+  text-shadow: 2px 2px 5px #446cc2;
+  color: #000;
+}
+
+.icon-footer-container {
+  padding-block: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 }
 
 /* Media */

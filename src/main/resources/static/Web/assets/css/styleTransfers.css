@@ -14,6 +14,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: start;
   gap: 3rem;
   margin-right: 1rem;
 }
@@ -37,22 +38,24 @@
 }
 
 form {
-  border: 3px solid var(--colorPrimario);
+  border: 2px solid var(--colorPrimario);
+  background-color: #6886bd67;
   border-radius: 2rem;
   padding: 1rem;
 }
 .boton-send {
   margin-top: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   background-color: var(--colorSecundario);
   color: whitesmoke;
   text-shadow: 3px 5px 2px #2c2c2c;
 }
+
 .boton-send:hover {
   background-color: var(--colorPrimario);
   color: whitesmoke;
   scale: 1.01;
-  transition: 1s;
+  transition: 1.5s;
 }
 
 .balance-title {
@@ -77,6 +80,9 @@ form {
   }
   .balance-card {
     margin: 0;
+  }
+  .container-form-img {
+    gap: 0;
   }
 }
 
