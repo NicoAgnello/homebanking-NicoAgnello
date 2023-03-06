@@ -6,8 +6,9 @@
   --fuentePrincipal: "Secular One", sans-serif;
 }
 
-.loan-container {
+.card-container {
   margin-top: 6rem;
+  min-height: 68vh;
 }
 
 /* Card */
@@ -278,7 +279,7 @@
 }
 
 @media (max-width: 675px) {
-  .loan-container {
+  .card-container {
     margin-top: 2rem;
   }
 }

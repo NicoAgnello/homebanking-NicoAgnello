@@ -6,6 +6,10 @@
   --fuentePrincipal: "Secular One", sans-serif;
 }
 
+.container-accounts {
+  min-height: 50vh;
+}
+
 .container-create-card {
   width: 50%;
   height: 20rem;
@@ -15,11 +19,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  margin-top: 3rem;
 }
 
 .checkbox-wrapper-13 span {
   font-size: 1.2rem;
+}
+
+.fondo-loans {
+  margin-inline: 3rem;
+  margin-bottom: 2rem;
 }
 
 /* Checkbox */
@@ -252,12 +262,10 @@
 .cards-new {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-around;
   flex-wrap: wrap;
 }
-
-
 
 @media (max-width: 1000px) {
   .container-create-card {
