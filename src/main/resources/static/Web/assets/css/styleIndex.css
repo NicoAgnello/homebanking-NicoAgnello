@@ -30,8 +30,11 @@ h2 {
 
 .box-services {
   background-color: var(--colorPrimario);
-  padding-block: 2rem;
-  padding-bottom: 3rem;
+  padding-block: 8rem;
+}
+
+.services {
+  text-shadow: 2px 2px 3px #2c2c2c;
 }
 
 .container-services {
@@ -101,8 +104,7 @@ h2 {
 
 /* Footer */
 footer {
-  background: rgb(46, 71, 131);
-  background: linear-gradient(180deg, rgba(46, 71, 131, 1) 2%, rgba(101, 119, 184, 1) 54%);
+  background: var(--colorTerciarioClaro);
   color: #182544;
 }
 footer span {

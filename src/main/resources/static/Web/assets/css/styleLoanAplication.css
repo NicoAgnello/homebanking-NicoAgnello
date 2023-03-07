@@ -1,0 +1,47 @@
+:root {
+  --colorPrimario: #2e4783;
+  --colorSecundario: #5975aa;
+  --colorTerciario: #6577b8;
+  --colorTerciarioClaro: #6c87b9;
+  --fuentePrincipal: "Secular One", sans-serif;
+}
+
+.main-container {
+  min-height: 75vh;
+}
+
+.img-form-transaction {
+  background-color: transparent;
+}
+
+.container-form-img {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#loan-form {
+  border: 1px solid black;
+  border-radius: 2rem;
+  padding: 1rem;
+  background: url("../img/sun-tornado.svg") center/cover fixed;
+}
+
+#loan-form label {
+  color: whitesmoke;
+  text-shadow: 2px 2px 3px #2c2c2c;
+}
+
+.boton-send {
+  background-color: var(--colorTerciarioClaro);
+  color: hsl(0, 0%, 90%);
+  font-size: 1.1rem;
+}
+
+.boton-send:hover {
+  background-color: hsl(0, 0%, 86%);
+  color: var(--colorPrimario);
+  font-size: 1.1rem;
+  scale: 1.02;
+  transition: 1.5s;
+}

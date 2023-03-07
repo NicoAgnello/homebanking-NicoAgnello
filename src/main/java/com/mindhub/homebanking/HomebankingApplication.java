@@ -48,9 +48,9 @@ public class HomebankingApplication {
 			Transaction transaction3 = new Transaction(LocalDateTime.now(), 1000.5, TransactionType.CREDIT, "Third transaction");
 			Transaction transaction4 = new Transaction(LocalDateTime.now(), -500, TransactionType.DEBIT, "Fourth transaction");
 
-			Loan mortgage = new Loan("Mortgage", 500000, Arrays.asList(12, 24, 36,48,60));
-			Loan personal = new Loan("Personal", 100000, Arrays.asList(6, 12, 24));
-			Loan automotive = new Loan("Automotive", 300000, Arrays.asList(6, 12, 24, 36));
+			Loan mortgage = new Loan("Mortgage", 500000, Arrays.asList((byte)12, (byte)24, (byte)36,(byte)48,(byte)60));
+			Loan personal = new Loan("Personal", 100000, Arrays.asList((byte)6, (byte)12, (byte)24));
+			Loan automotive = new Loan("Automotive", 300000, Arrays.asList((byte)6, (byte)12, (byte)24, (byte)36));
 
 			ClientLoan clientLoan1 = new ClientLoan (400000, (byte)60);
 			ClientLoan clientLoan2 = new ClientLoan(50000, (byte)12);

@@ -26,6 +26,16 @@ body {
   font-family: var(--fuentePrincipal);
 }
 
+.nav-link {
+  font-size: 1rem !important;
+}
+.breadcrumb-item {
+  font-size: 1.5rem !important;
+}
+.navbar-brand {
+  font-size: 1.1rem !important;
+}
+
 .nav-lateral {
   max-height: 60vh;
 }
@@ -44,8 +54,8 @@ body {
   border: 2px solid var(--colorPrimario);
 }
 
-.pages {
-  font-size: 2rem !important;
+.client-name {
+  text-shadow: 2px 2px 2px #2c2c2c;
 }
 
 .log-out {
@@ -247,6 +257,7 @@ body {
   color: hsl(0, 0%, 95%);
   margin-block: 2rem;
   font-size: 1.3rem;
+  text-shadow: 2px 2px 2px #686767;
 }
 
 .button-new-account svg {
@@ -585,5 +596,8 @@ footer {
   }
   .icon-info:hover {
     background-color: var(--colorTerciario);
+  }
+  .breadcrumb-item {
+    font-size: 1rem !important;
   }
 }
