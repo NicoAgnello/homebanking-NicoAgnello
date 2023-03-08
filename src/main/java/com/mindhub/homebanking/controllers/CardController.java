@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.mindhub.homebanking.utils.Utilities.randomNumberCard;
@@ -29,9 +30,36 @@ public class CardController {
 @Autowired
     private CardRepository cardRepository;
 
-@RequestMapping("/client/current/cards")
+@RequestMapping("/clients/current/cards")
 public List<CardDTO> getCurrentCards (Authentication authentication){
     return clientRepository.findByEmail(authentication.getName()).getCards().stream().map(card -> new CardDTO(card)).collect(Collectors.toList());
+}
+
+@RequestMapping(path = "/clients/current/cards/{id}", method = RequestMethod.PATCH)
+public ResponseEntity<Object> deleteCard (Authentication authentication, @PathVariable Long id) {
+
+    Client client = clientRepository.findByEmail(authentication.getName());
+    Card card = cardRepository.findById(id).orElse(null);
+
+    if (id == null) {
+        return new ResponseEntity<>("Missing id", HttpStatus.BAD_REQUEST);
+    }
+
+    if (card == null) {
+        return new ResponseEntity<>("The card does not exist", HttpStatus.BAD_REQUEST);
+    }
+
+    if (!client.getCards().contains(card)) {
+        return new ResponseEntity<>("Card not belong to you", HttpStatus.BAD_REQUEST);
+    }
+    if(!card.getActive()){
+        return new ResponseEntity<>("The card is inactive", HttpStatus.BAD_REQUEST);
+    }
+
+    card.setActive(false);
+    cardRepository.save(card);
+
+    return new ResponseEntity<>("Card deleted", HttpStatus.ACCEPTED);
 }
 
 @RequestMapping(path = "/clients/current/cards", method = RequestMethod.POST)
@@ -39,9 +67,12 @@ public ResponseEntity<Object> newCard (@RequestParam CardColor cardColor, @Reque
 
     Client client = clientRepository.findByEmail(authentication.getName());
 
-    if (client.getCards().stream().anyMatch(card -> card.getCardColor() == cardColor && card.getCardType()==cardType)){
+    Set<Card> activeCards = client.getCards().stream().filter(card -> card.getActive()).collect(Collectors.toSet());
+    Set<Card> inactiveCards = client.getCards().stream().filter(card -> !card.getActive()).collect(Collectors.toSet());
 
-        if (client.getCards().stream().filter(card -> card.getCardType() == cardType).count() >= 3){
+    if (activeCards.stream().anyMatch(card -> card.getCardColor() == cardColor && card.getCardType()==cardType)){
+
+        if (activeCards.stream().filter(card -> card.getCardType() == cardType).count() >= 3){
             return new ResponseEntity<>("You have the max of " + " " +cardType.toString().toLowerCase() + " " + "cards created", HttpStatus.CONFLICT);
         }
 

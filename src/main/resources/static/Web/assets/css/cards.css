@@ -109,6 +109,26 @@
   color: hsl(0, 0%, 90%);
 }
 
+.delete-card{
+  color: rgb(168, 48, 48);
+  background-color: hsl(0, 0%, 86%);
+  border: 2px solid red;
+  padding: .2rem 2rem;
+  border-radius: 1rem;
+  cursor: pointer; 
+  font-size: .8rem;
+}
+
+.delete-card:hover{
+  background-color: rgb(168, 48, 48);
+  color: hsl(0, 0%, 90%);
+  border: 2px solid red;
+  font-weight: bold;
+  scale: 1.1;
+  transition: 1.5s;
+}
+
+
 .strip {
   position: absolute;
   background-color: black;

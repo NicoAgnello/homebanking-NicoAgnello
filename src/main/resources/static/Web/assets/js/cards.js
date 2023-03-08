@@ -24,8 +24,8 @@ createApp({
         .then((response) => {
           this.client = response.data;
           this.clientCards = response.data.cards;
-          this.clientCardsDebit = response.data.cards.filter((card) => card.cardType == "DEBIT");
-          this.clientCardsCredit = response.data.cards.filter((card) => card.cardType == "CREDIT");
+          this.clientCardsDebit = response.data.cards.filter((card) => card.cardType == "DEBIT" && card.active == true);
+          this.clientCardsCredit = response.data.cards.filter((card) => card.cardType == "CREDIT"&& card.active == true);
         })
         .catch((err) => console.log(err));
     },
@@ -57,6 +57,31 @@ createApp({
           });
         })
         .catch((err) => console.log(err));
+    },
+    confirmDeleteCard(id){
+      console.log(id)
+      Swal.fire({
+        title: '¿Are you sure you want to delete this card?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.patch(`/api/clients/current/cards/${id}`)
+          .then(()=>{
+              Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+            this.getClient();
+          })
+          .catch(err => console.log(err))
+        }
+      })
     },
   },
 }).mount("#app");
