@@ -185,18 +185,7 @@
               class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
               id="navbar"
             >
-              <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                <div class="input-group">
-                  <span class="input-group-text text-body"
-                    ><i class="fas fa-search" aria-hidden="true"></i
-                  ></span>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Type here..."
-                  />
-                </div>
-              </div>
+              <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
               <ul class="navbar-nav justify-content-end">
                 <li class="nav-item d-flex align-items-center">
                   <a
@@ -204,7 +193,9 @@
                     class="nav-link text-white font-weight-bold px-0"
                   >
                     <i class="fa fa-user me-sm-1"></i>
-                    <span class="d-sm-inline">{{client.firstName}}</span>
+                    <span class="d-sm-inline client-name"
+                      >{{client.firstName}}</span
+                    >
                   </a>
                 </li>
                 <li
@@ -256,6 +247,9 @@
                         name="typeLoan"
                         required
                       >
+                        <option value="" disabled selected>
+                          Select a type of loan
+                        </option>
                         <template v-for="loan of loans">
                           <option :value="loan">{{loan.name}}</option>
                         </template>
@@ -272,6 +266,9 @@
                         name="paymentsLoan"
                         required
                       >
+                        <option value="" disabled selected>
+                          Select payments
+                        </option>
                         <template v-for="payments of typeLoans.payments">
                           <option :value="payments">{{payments}}</option>
                         </template>
@@ -311,6 +308,9 @@
                         name="accountLoan"
                         required
                       >
+                        <option value="" disabled selected>
+                          Select the target account
+                        </option>
                         <template v-for="account of accounts">
                           <option :value="account.number">
                             {{account.number}}

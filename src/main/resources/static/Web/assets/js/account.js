@@ -39,6 +39,11 @@ createApp({
       let newDate = date.split("-").reverse().join("/");
       return newDate;
     },
+    parseTime(fecha){
+      let date = fecha.split("T")[1].split(".")[0];
+      let newDate = date.split("-").reverse().join("/");
+      return newDate;
+    },
     singout() {
       axios
         .post("/api/logout")

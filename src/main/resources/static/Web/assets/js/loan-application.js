@@ -84,6 +84,7 @@ createApp({
               targetAccountNumber: this.accountLoan,
             })
             .then(() => Swal.fire("Loan aproved!", "", "success"))
+            .then(()=> location.href = "./accounts.html")
             .catch((err) => {
               Swal.fire({
                 icon: "error",

@@ -10,17 +10,37 @@
   min-height: 50vh;
 }
 
+.get-new-card{
+  color: var(--colorPrimario);
+  text-shadow: 1px 2px 2px #b3b1b1;
+}
+
 .container-create-card {
   width: 50%;
   height: 20rem;
-  border: 1px solid black;
-  border-radius: 1.8rem;
-  background: url("../img/sun-tornado.svg") center/cover fixed;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
-  margin-top: 3rem;
+  margin-top: 1rem;
+  gap: 2rem;
+}
+
+.container-label{
+  justify-content: space-evenly;
+}
+
+.container-form{
+  width: 100%;
+  padding: 1rem 5rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+  background: url("../img/sun-tornado.svg") center/cover fixed;
+}
+
+.container-form span{
+  color: whitesmoke;
+  text-shadow: 1px 2px 2px #585757;
 }
 
 .checkbox-wrapper-13 span {
@@ -30,6 +50,14 @@
 .fondo-loans {
   margin-inline: 3rem;
   margin-bottom: 2rem;
+}
+
+.fondo-card{
+  margin-inline: 3rem;
+  margin-bottom: 2rem;
+  background: url(../img/home/card.jpg) center/cover;
+  border-radius: 2rem;
+  padding: 10rem;
 }
 
 /* Checkbox */
@@ -282,5 +310,13 @@
 @media (max-width: 461px) {
   .checkbox-wrapper-13 span {
     font-size: 0.8rem;
+  }
+  .fondo-card{
+    margin-inline: 1rem;
+    padding: 6rem;
+  }
+  .fondo-loans{
+    margin-inline: 1rem;
+    padding: 3rem;
   }
 }

@@ -185,18 +185,7 @@
               class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
               id="navbar"
             >
-              <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                <div class="input-group">
-                  <span class="input-group-text text-body"
-                    ><i class="fas fa-search" aria-hidden="true"></i
-                  ></span>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Type here..."
-                  />
-                </div>
-              </div>
+              <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
               <ul class="navbar-nav justify-content-end">
                 <li class="nav-item d-flex align-items-center">
                   <a
@@ -204,7 +193,9 @@
                     class="nav-link text-white font-weight-bold px-0"
                   >
                     <i class="fa fa-user me-sm-1"></i>
-                    <span class="d-sm-inline">{{client.firstName}}</span>
+                    <span class="d-sm-inline client-name"
+                      >{{client.firstName}}</span
+                    >
                   </a>
                 </li>
                 <li
@@ -236,57 +227,58 @@
           </div>
         </nav>
         <div class="main-container card-container">
-          <div v-if="clientCardsDebit.length > 0">
-            <h2 class="text-center mt-5">Debit Cards</h2>
-            <div class="box-cards container pb-3">
-              <div
-                class="d-flex flex-column align-items-center gap-2"
-                v-for="card of clientCardsDebit"
-              >
-                <div class="flip-card">
-                  <div class="flip-card-inner">
-                    <div
-                      class="flip-card-front"
-                      :class="card.cardColor.toLowerCase()"
-                    >
-                      <p class="heading">MASTERCARD</p>
-                      <svg
-                        viewBox="0 0 48 48"
-                        height="36"
-                        width="36"
-                        y="0px"
-                        x="0px"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="logo"
+          <div class="box-card-or-not mt-5">
+            <div v-if="clientCardsDebit.length > 0">
+              <h2 class="text-center pt-4">Debit Cards</h2>
+              <div class="box-cards container pb-3">
+                <div
+                  class="d-flex flex-column align-items-center gap-2"
+                  v-for="card of clientCardsDebit"
+                >
+                  <div class="flip-card">
+                    <div class="flip-card-inner">
+                      <div
+                        class="flip-card-front"
+                        :class="card.cardColor.toLowerCase()"
                       >
-                        <path
-                          d="M32 10A14 14 0 1 0 32 38A14 14 0 1 0 32 10Z"
-                          fill="#ff9800"
-                        ></path>
-                        <path
-                          d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z"
-                          fill="#d50000"
-                        ></path>
-                        <path
-                          d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48 C20.376,15.05,18,19.245,18,24z"
-                          fill="#ff3d00"
-                        ></path>
-                      </svg>
-                      <svg
-                        xml:space="preserve"
-                        viewBox="0 0 50 50"
-                        height="30px"
-                        width="30px"
-                        y="0px"
-                        x="0px"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                        xmlns="http://www.w3.org/2000/svg"
-                        id="Layer_1"
-                        class="chip"
-                        version="1.1"
-                      >
-                        <image
-                          href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                        <p class="heading">MASTERCARD</p>
+                        <svg
+                          viewBox="0 0 48 48"
+                          height="36"
+                          width="36"
+                          y="0px"
+                          x="0px"
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="logo"
+                        >
+                          <path
+                            d="M32 10A14 14 0 1 0 32 38A14 14 0 1 0 32 10Z"
+                            fill="#ff9800"
+                          ></path>
+                          <path
+                            d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z"
+                            fill="#d50000"
+                          ></path>
+                          <path
+                            d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48 C20.376,15.05,18,19.245,18,24z"
+                            fill="#ff3d00"
+                          ></path>
+                        </svg>
+                        <svg
+                          xml:space="preserve"
+                          viewBox="0 0 50 50"
+                          height="30px"
+                          width="30px"
+                          y="0px"
+                          x="0px"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                          xmlns="http://www.w3.org/2000/svg"
+                          id="Layer_1"
+                          class="chip"
+                          version="1.1"
+                        >
+                          <image
+                            href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
                         AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB6VBMVEUAAACNcTiVeUKVeUOY
                         fEaafEeUeUSYfEWZfEaykleyklaXe0SWekSZZjOYfEWYe0WXfUWXe0WcgEicfkiXe0SVekSXekSW
                         ekKYe0a9nF67m12ZfUWUeEaXfESVekOdgEmVeUWWekSniU+VeUKVeUOrjFKYfEWliE6WeESZe0GS
@@ -312,28 +304,28 @@
                         cmVhdGUAMjAyMy0wMi0xM1QwODoxNToyOSswMDowMEUnN7UAAAAldEVYdGRhdGU6bW9kaWZ5ADIw
                         MjMtMDItMTNUMDg6MTU6MjkrMDA6MDA0eo8JAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDIzLTAy
                         LTEzVDA4OjE1OjI5KzAwOjAwY2+u1gAAAABJRU5ErkJggg=="
-                          y="0"
-                          x="0"
-                          height="50"
-                          width="50"
-                          id="image0"
-                        ></image>
-                      </svg>
-                      <svg
-                        xml:space="preserve"
-                        viewBox="0 0 50 50"
-                        height="20px"
-                        width="20px"
-                        y="0px"
-                        x="0px"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                        xmlns="http://www.w3.org/2000/svg"
-                        id="Layer_1"
-                        class="contactless"
-                        version="1.1"
-                      >
-                        <image
-                          href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                            y="0"
+                            x="0"
+                            height="50"
+                            width="50"
+                            id="image0"
+                          ></image>
+                        </svg>
+                        <svg
+                          xml:space="preserve"
+                          viewBox="0 0 50 50"
+                          height="20px"
+                          width="20px"
+                          y="0px"
+                          x="0px"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                          xmlns="http://www.w3.org/2000/svg"
+                          id="Layer_1"
+                          class="contactless"
+                          version="1.1"
+                        >
+                          <image
+                            href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
                         AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZ
                         cwAACxMAAAsTAQCanBgAAAAHdElNRQfnAg0IEzgIwaKTAAADDklEQVRYw+1XS0iUURQ+f5qPyjQf
                         lGRFEEFK76koKGxRbWyVVLSOgsCgwjZBJJYuKogSIoOonUK4q3U0WVBWFPZYiIE6kuArG3VGzK/F
@@ -353,124 +345,132 @@
                         MTNUMDg6MTk6NTYrMDA6MDCjlq7LAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTEzVDA4OjE5
                         OjU2KzAwOjAw0ssWdwAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMi0xM1QwODoxOTo1Nisw
                         MDowMIXeN6gAAAAASUVORK5CYII="
-                          y="0"
-                          x="0"
-                          height="50"
-                          width="50"
-                          id="image0"
-                        ></image>
-                      </svg>
-                      <p class="number">{{card.number}}</p>
-                      <p
-                        :class="card.cardColor == 'GOLD' ? 'valid_thru' : 'valid_thru_withe'"
-                      >
-                        VALID THRU
-                      </p>
-                      <p class="date">{{parseDate(card.thruDate)}}</p>
-                      <p class="name">{{card.cardHolder}}</p>
-                      <p class="card-color">{{card.cardColor}}</p>
-                    </div>
-                    <div
-                      class="flip-card-back"
-                      :class="card.cardColor.toLowerCase()"
-                    >
-                      <div class="strip"></div>
-                      <div class="mstrip"></div>
-                      <div class="sstrip">
-                        <p class="code">{{card.cvv}}</p>
+                            y="0"
+                            x="0"
+                            height="50"
+                            width="50"
+                            id="image0"
+                          ></image>
+                        </svg>
+                        <p class="number">{{card.number}}</p>
+                        <p
+                          :class="card.cardColor == 'GOLD' ? 'valid_thru' : 'valid_thru_withe'"
+                        >
+                          VALID THRU
+                        </p>
+                        <p class="date">{{parseDate(card.thruDate)}}</p>
+                        <p class="name">{{card.cardHolder}}</p>
+                        <p class="card-color">{{card.cardColor}}</p>
                       </div>
-                      <p
-                        class="terms"
-                        :class="card.cardColor == 'TITANIUM' ? 'text-light' : 'terms'"
+                      <div
+                        class="flip-card-back"
+                        :class="card.cardColor.toLowerCase()"
                       >
-                        This card is property of Mindhub Brothers. Misuse is
-                        criminal offence. If found, please return to MindHub
-                        Brothers or to the nearest bank with MasterCard logo.
-                      </p>
+                        <div class="strip"></div>
+                        <div class="mstrip"></div>
+                        <div class="sstrip">
+                          <p class="code">{{card.cvv}}</p>
+                        </div>
+                        <p
+                          class="terms"
+                          :class="card.cardColor == 'TITANIUM' ? 'text-light' : 'terms'"
+                        >
+                          This card is property of Mindhub Brothers. Misuse is
+                          criminal offence. If found, please return to MindHub
+                          Brothers or to the nearest bank with MasterCard logo.
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <button @click="confirmDeleteCard(card.id)" class="delete-card">
-                  Delete Card
-                </button>
-              </div>
-              <template v-if="clientCardsDebit.length < 3">
-                <div class="add-card d-flex justify-content-center">
-                  <a
-                    class="signo-mas d-flex flex-column text-light"
-                    href="./create-cards.html"
-                    ><img
-                      src="./assets/img/icons/more.png"
-                      alt="more"
-                    />Create</a
+                  <button
+                    @click="confirmDeleteCard(card.id)"
+                    class="delete-card"
                   >
+                    Delete Card
+                  </button>
                 </div>
-              </template>
-            </div>
-          </div>
-          <div v-else class="d-flex flex-column align-items-center gap-3">
-            <h2 class="text-center without_card">
-              Your profile has no debit cards associated with your account
-            </h2>
-            <div class="add-card d-flex justify-content-center">
-              <a
-                class="signo-mas d-flex flex-column text-light"
-                href="./create-cards.html"
-                ><img src="./assets/img/icons/more.png" alt="more" />Create</a
-              >
-            </div>
-          </div>
-          <div v-if="clientCardsCredit.length > 0">
-            <h2 class="text-center mt-5">Credit Cards</h2>
-            <div class="box-cards container pb-3">
-              <div
-                class="d-flex flex-column align-items-center gap-2"
-                v-for="card of clientCardsCredit"
-              >
-                <div class="flip-card">
-                  <div class="flip-card-inner">
-                    <div
-                      class="flip-card-front"
-                      :class="card.cardColor.toLowerCase()"
+                <template v-if="clientCardsDebit.length < 3">
+                  <div class="add-card d-flex justify-content-center">
+                    <a
+                      class="signo-mas d-flex flex-column text-light"
+                      href="./create-cards.html"
+                      ><img
+                        src="./assets/img/icons/more.png"
+                        alt="more"
+                      />Create</a
                     >
-                      <p class="heading">MASTERCARD</p>
-                      <svg
-                        viewBox="0 0 48 48"
-                        height="36"
-                        width="36"
-                        y="0px"
-                        x="0px"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="logo"
+                  </div>
+                </template>
+              </div>
+            </div>
+            <div
+              v-else
+              class="d-flex flex-column align-items-center gap-3 pb-4"
+            >
+              <h2 class="text-center without_card">
+                Your profile has no debit cards associated with your account
+              </h2>
+              <div class="add-card d-flex justify-content-center">
+                <a
+                  class="signo-mas d-flex flex-column text-light"
+                  href="./create-cards.html"
+                  ><img src="./assets/img/icons/more.png" alt="more" />Create</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="box-card-or-not my-5">
+            <div v-if="clientCardsCredit.length > 0">
+              <h2 class="text-center mt-5">Credit Cards</h2>
+              <div class="box-cards container pb-3">
+                <div
+                  class="d-flex flex-column align-items-center gap-2"
+                  v-for="card of clientCardsCredit"
+                >
+                  <div class="flip-card">
+                    <div class="flip-card-inner">
+                      <div
+                        class="flip-card-front"
+                        :class="card.cardColor.toLowerCase()"
                       >
-                        <path
-                          d="M32 10A14 14 0 1 0 32 38A14 14 0 1 0 32 10Z"
-                          fill="#ff9800"
-                        ></path>
-                        <path
-                          d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z"
-                          fill="#d50000"
-                        ></path>
-                        <path
-                          d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48 C20.376,15.05,18,19.245,18,24z"
-                          fill="#ff3d00"
-                        ></path>
-                      </svg>
-                      <svg
-                        xml:space="preserve"
-                        viewBox="0 0 50 50"
-                        height="30px"
-                        width="30px"
-                        y="0px"
-                        x="0px"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                        xmlns="http://www.w3.org/2000/svg"
-                        id="Layer_1"
-                        class="chip"
-                        version="1.1"
-                      >
-                        <image
-                          href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                        <p class="heading">MASTERCARD</p>
+                        <svg
+                          viewBox="0 0 48 48"
+                          height="36"
+                          width="36"
+                          y="0px"
+                          x="0px"
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="logo"
+                        >
+                          <path
+                            d="M32 10A14 14 0 1 0 32 38A14 14 0 1 0 32 10Z"
+                            fill="#ff9800"
+                          ></path>
+                          <path
+                            d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z"
+                            fill="#d50000"
+                          ></path>
+                          <path
+                            d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48 C20.376,15.05,18,19.245,18,24z"
+                            fill="#ff3d00"
+                          ></path>
+                        </svg>
+                        <svg
+                          xml:space="preserve"
+                          viewBox="0 0 50 50"
+                          height="30px"
+                          width="30px"
+                          y="0px"
+                          x="0px"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                          xmlns="http://www.w3.org/2000/svg"
+                          id="Layer_1"
+                          class="chip"
+                          version="1.1"
+                        >
+                          <image
+                            href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
                         AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB6VBMVEUAAACNcTiVeUKVeUOY
                         fEaafEeUeUSYfEWZfEaykleyklaXe0SWekSZZjOYfEWYe0WXfUWXe0WcgEicfkiXe0SVekSXekSW
                         ekKYe0a9nF67m12ZfUWUeEaXfESVekOdgEmVeUWWekSniU+VeUKVeUOrjFKYfEWliE6WeESZe0GS
@@ -496,28 +496,28 @@
                         cmVhdGUAMjAyMy0wMi0xM1QwODoxNToyOSswMDowMEUnN7UAAAAldEVYdGRhdGU6bW9kaWZ5ADIw
                         MjMtMDItMTNUMDg6MTU6MjkrMDA6MDA0eo8JAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDIzLTAy
                         LTEzVDA4OjE1OjI5KzAwOjAwY2+u1gAAAABJRU5ErkJggg=="
-                          y="0"
-                          x="0"
-                          height="50"
-                          width="50"
-                          id="image0"
-                        ></image>
-                      </svg>
-                      <svg
-                        xml:space="preserve"
-                        viewBox="0 0 50 50"
-                        height="20px"
-                        width="20px"
-                        y="0px"
-                        x="0px"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                        xmlns="http://www.w3.org/2000/svg"
-                        id="Layer_1"
-                        class="contactless"
-                        version="1.1"
-                      >
-                        <image
-                          href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                            y="0"
+                            x="0"
+                            height="50"
+                            width="50"
+                            id="image0"
+                          ></image>
+                        </svg>
+                        <svg
+                          xml:space="preserve"
+                          viewBox="0 0 50 50"
+                          height="20px"
+                          width="20px"
+                          y="0px"
+                          x="0px"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                          xmlns="http://www.w3.org/2000/svg"
+                          id="Layer_1"
+                          class="contactless"
+                          version="1.1"
+                        >
+                          <image
+                            href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
                         AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZ
                         cwAACxMAAAsTAQCanBgAAAAHdElNRQfnAg0IEzgIwaKTAAADDklEQVRYw+1XS0iUURQ+f5qPyjQf
                         lGRFEEFK76koKGxRbWyVVLSOgsCgwjZBJJYuKogSIoOonUK4q3U0WVBWFPZYiIE6kuArG3VGzK/F
@@ -537,72 +537,79 @@
                         MTNUMDg6MTk6NTYrMDA6MDCjlq7LAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTEzVDA4OjE5
                         OjU2KzAwOjAw0ssWdwAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMi0xM1QwODoxOTo1Nisw
                         MDowMIXeN6gAAAAASUVORK5CYII="
-                          y="0"
-                          x="0"
-                          height="50"
-                          width="50"
-                          id="image0"
-                        ></image>
-                      </svg>
-                      <p class="number">{{card.number}}</p>
-                      <p
-                        :class="card.cardColor == 'GOLD' ? 'valid_thru' : 'valid_thru_withe'"
-                      >
-                        VALID THRU
-                      </p>
-                      <p class="date">{{parseDate(card.thruDate)}}</p>
-                      <p class="name">{{card.cardHolder}}</p>
-                      <p class="card-color">{{card.cardColor}}</p>
-                      <!-- <template v-model=""></template> -->
-                    </div>
-                    <div
-                      class="flip-card-back"
-                      :class="card.cardColor.toLowerCase()"
-                    >
-                      <div class="strip"></div>
-                      <div class="mstrip"></div>
-                      <div class="sstrip">
-                        <p class="code">{{card.cvv}}</p>
+                            y="0"
+                            x="0"
+                            height="50"
+                            width="50"
+                            id="image0"
+                          ></image>
+                        </svg>
+                        <p class="number">{{card.number}}</p>
+                        <p
+                          :class="card.cardColor == 'GOLD' ? 'valid_thru' : 'valid_thru_withe'"
+                        >
+                          VALID THRU
+                        </p>
+                        <p class="date">{{parseDate(card.thruDate)}}</p>
+                        <p class="name">{{card.cardHolder}}</p>
+                        <p class="card-color">{{card.cardColor}}</p>
+                        <!-- <template v-model=""></template> -->
                       </div>
-                      <p
-                        class="terms"
-                        :class="card.cardColor == 'TITANIUM' ? 'text-light' : 'terms'"
+                      <div
+                        class="flip-card-back"
+                        :class="card.cardColor.toLowerCase()"
                       >
-                        This card is property of Mindhub Brothers. Misuse is
-                        criminal offence. If found, please return to MindHub
-                        Brothers or to the nearest bank with MasterCard logo.
-                      </p>
+                        <div class="strip"></div>
+                        <div class="mstrip"></div>
+                        <div class="sstrip">
+                          <p class="code">{{card.cvv}}</p>
+                        </div>
+                        <p
+                          class="terms"
+                          :class="card.cardColor == 'TITANIUM' ? 'text-light' : 'terms'"
+                        >
+                          This card is property of Mindhub Brothers. Misuse is
+                          criminal offence. If found, please return to MindHub
+                          Brothers or to the nearest bank with MasterCard logo.
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <button @click="confirmDeleteCard(card.id)" class="delete-card">
-                  Delete Card
-                </button>
-              </div>
-              <template v-if="clientCardsCredit.length < 3">
-                <div class="add-card d-flex justify-content-center">
-                  <a
-                    class="signo-mas d-flex flex-column text-light"
-                    href="./create-cards.html"
-                    ><img
-                      src="./assets/img/icons/more.png"
-                      alt="more"
-                    />Create</a
+                  <button
+                    @click="confirmDeleteCard(card.id)"
+                    class="delete-card"
                   >
+                    Delete Card
+                  </button>
                 </div>
-              </template>
+                <template v-if="clientCardsCredit.length < 3">
+                  <div class="add-card d-flex justify-content-center">
+                    <a
+                      class="signo-mas d-flex flex-column text-light"
+                      href="./create-cards.html"
+                      ><img
+                        src="./assets/img/icons/more.png"
+                        alt="more"
+                      />Create</a
+                    >
+                  </div>
+                </template>
+              </div>
             </div>
-          </div>
-          <div v-else class="d-flex flex-column align-items-center gap-3">
-            <h2 class="text-center without_card">
-              Your profile has no credits cards associated with your account
-            </h2>
-            <div class="add-card d-flex justify-content-center">
-              <a
-                class="signo-mas d-flex flex-column text-light"
-                href="./create-cards.html"
-                ><img src="./assets/img/icons/more.png" alt="more" />Create</a
-              >
+            <div
+              v-else
+              class="d-flex flex-column align-items-center gap-3 pb-4"
+            >
+              <h2 class="text-center without_card">
+                Your profile has no credits cards associated with your account
+              </h2>
+              <div class="add-card d-flex justify-content-center">
+                <a
+                  class="signo-mas d-flex flex-column text-light"
+                  href="./create-cards.html"
+                  ><img src="./assets/img/icons/more.png" alt="more" />Create</a
+                >
+              </div>
             </div>
           </div>
         </div>

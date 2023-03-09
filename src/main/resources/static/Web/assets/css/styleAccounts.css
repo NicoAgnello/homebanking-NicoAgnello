@@ -600,4 +600,7 @@ footer {
   .breadcrumb-item {
     font-size: 1rem !important;
   }
+  .creation-date{
+    display: none;
+  }
 }
