@@ -10,7 +10,7 @@ createApp({
       loan: "",
       typeLoans: "",
       paymentsLoan: "",
-      amountLoan: 0,
+      amountLoan: null,
       accountLoan: "",
     };
   },

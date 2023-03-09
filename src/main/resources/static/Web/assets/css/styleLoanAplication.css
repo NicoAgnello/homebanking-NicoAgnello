@@ -45,3 +45,30 @@
   scale: 1.02;
   transition: 1.5s;
 }
+
+.max-amount {
+  text-align: center;
+  color: rgb(186, 44, 44);
+  font-weight: bold;
+  text-shadow: 2px 1px 3px #afafaf;
+}
+
+.container-loan{
+  padding: 1rem;
+  border: 2px solid var(--colorPrimario);
+  border-radius: 1.5rem;
+  background-color: #5975aa75;
+  color: var(--colorPrimario);
+}
+
+.container-loan h4{
+  color: #0e2150;
+  text-shadow: 1px 2px 2px #c5c4c4;
+  font-weight: 400;
+}
+
+.max-amount-loan, .payments-loan{
+  /* color: #385893; */
+  color: hsl(0, 0%, 95%);
+  text-shadow: 1px 2px 2px #585757;
+}
