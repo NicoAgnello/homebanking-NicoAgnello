@@ -246,7 +246,7 @@
                       id="tipo-transferencia"
                       name="tipo-transferencia"
                     >
-                      <option disabled selected>
+                      <option value="" disabled selected>
                         Is the transaction to a proprietary account or a third
                         party account?
                       </option>
@@ -271,7 +271,7 @@
                         name="sourceAccount"
                         form="transactionform"
                       >
-                        <option disabled selected>
+                        <option value="" disabled selected>
                           Open this menu to select an source account
                         </option>
                         <template v-for="account of accounts">
@@ -293,7 +293,7 @@
                         name="targetAccount"
                         form="transactionform"
                       >
-                        <option disabled selected>
+                        <option value="" disabled selected>
                           Open this menu to select an target account
                         </option>
                         <template v-for="account of accounts">
@@ -321,7 +321,7 @@
                         name="sourceAccountThird"
                         form="transactionform"
                       >
-                        <option disabled selected>
+                        <option value="" disabled selected>
                           Open this menu to select an source account
                         </option>
                         <template v-for="account of accounts">
