@@ -49,9 +49,9 @@
 
 .max-amount {
   text-align: center;
-  color: rgb(186, 44, 44);
+  color: rgb(240, 240, 56);
   font-weight: bold;
-  text-shadow: 2px 1px 3px #afafaf;
+  text-shadow: 1px 1px 1px #444343;
 }
 
 .container-loan{
@@ -68,7 +68,6 @@
 }
 
 .max-amount-loan, .payments-loan{
-  /* color: #385893; */
   color: hsl(216, 66%, 30%);
   text-shadow: 1px 2px 2px #afafaf;
 }
@@ -79,5 +78,6 @@
 }
 
 .paragraph-info-loan{
-  
+  color: hsl(0, 0%, 95%);
+  text-shadow: 2px 1px 3px #555555;
 }

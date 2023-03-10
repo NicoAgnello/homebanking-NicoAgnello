@@ -296,9 +296,20 @@
             </div>
           </template>
           <div class="fondo-loans mt-4"></div>
+
           <template v-if="clientLoans.length > 0">
             <div class="container-loan">
               <h4 class="title-loan pt-4 text-center border-bottom">Loans</h4>
+              <div class="d-flex justify-content-center">
+                <a href="./loan-application.html">
+                  <button class="get-loan">
+                    <span class="circle" aria-hidden="true">
+                      <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-text">Apply Loan!</span>
+                  </button>
+                </a>
+              </div>
               <div v-for="loan of clientLoans">
                 <div
                   class="d-flex justify-content-between client-name loan-info"
