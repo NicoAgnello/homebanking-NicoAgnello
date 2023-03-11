@@ -35,7 +35,7 @@ public class TransactionsController {
 
     @Transactional
     @RequestMapping(path = "/transactions", method = RequestMethod.POST)
-    public ResponseEntity<Object> newTransaction (@RequestParam double amount,
+    public ResponseEntity<Object> newTransaction (@RequestParam (required = false) Double amount,
                                                   @RequestParam String description,
                                                   @RequestParam String originAccountNumber,
                                                   @RequestParam String targetAccountNumber,
@@ -48,9 +48,9 @@ public class TransactionsController {
 
         if (client != null) {
 
-//            if (Double.isNaN(amount)) {
-//                return new ResponseEntity<>("Missing amount", HttpStatus.BAD_REQUEST);
-//            }
+            if (amount == null) {
+                return new ResponseEntity<>("Missing amount", HttpStatus.BAD_REQUEST);
+            }
 
             if (description.isEmpty()) {
                 return new ResponseEntity<>("Missing description", HttpStatus.BAD_REQUEST);

@@ -77,14 +77,15 @@ createApp({
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .post("api/loans", {
-              id: this.typeLoans.name,
+            .post("/api/loans", {
+              id: this.typeLoans.id,
               amount: this.amountLoan,
               payments: this.paymentsLoan,
               targetAccountNumber: this.accountLoan,
             })
             .then(() => Swal.fire("Loan aproved!", "", "success"))
             .catch((err) => {
+              console.log(err);
               Swal.fire({
                 icon: "error",
                 title: "Oops...",
