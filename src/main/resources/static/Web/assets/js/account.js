@@ -23,7 +23,6 @@ createApp({
       let stringUrlWithID = location.search;
       let generateUrl = new URLSearchParams(stringUrlWithID);
       this.accountId = generateUrl.get("id");
-      console.log(this.accountId);
       axios
         .get("/api/clients/current")
         .then((response) => {
@@ -39,7 +38,7 @@ createApp({
       let newDate = date.split("-").reverse().join("/");
       return newDate;
     },
-    parseTime(fecha){
+    parseTime(fecha) {
       let date = fecha.split("T")[1].split(".")[0];
       let newDate = date.split("-").reverse().join("/");
       return newDate;

@@ -12,6 +12,32 @@ createApp({
       paymentsLoan: "",
       amountLoan: null,
       accountLoan: "",
+      loansInfo: [
+        {
+          title: "Mortgage loans",
+          description:
+            "This loan will allow you to buy a real estate property, build it from scratch or make a total renovation of your current home.",
+          imgSrc: "./assets/img/icons/icons8-hipoteca-50.png",
+          payments: [12, 24, 36, 48, 60],
+          maxAmount: 500_000,
+        },
+        {
+          title: "Personal loans",
+          description:
+            "This loan will allow you to use the funds for various purposes, such as buying a car, making home improvements, paying off debts, among others.",
+          imgSrc: "./assets/img/icons/icons8-crecimiento-personal-50.png",
+          payments: [6, 12, 24],
+          maxAmount: 100_000,
+        },
+        {
+          title: "Automotive loans",
+          description:
+            "This loan will allow you to buy a car up to 1000kg of load, they can be 0 km or up to 10 years old. Leave your car as collateral and get a discount on the interest rate.",
+          imgSrc: "./assets/img/icons/icons8-garaje-50.png",
+          payments: [6, 12, 24, 36],
+          maxAmount: 300_000,
+        },
+      ],
     };
   },
   created() {
@@ -84,7 +110,7 @@ createApp({
               targetAccountNumber: this.accountLoan,
             })
             .then(() => Swal.fire("Loan aproved!", "", "success"))
-            .then(()=> location.href = "./accounts.html")
+            .then(() => (location.href = "./accounts.html"))
             .catch((err) => {
               console.log(err);
               Swal.fire({
