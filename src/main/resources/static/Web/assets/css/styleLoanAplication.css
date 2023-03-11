@@ -1,0 +1,83 @@
+:root {
+  --colorPrimario: #2e4783;
+  --colorSecundario: #5975aa;
+  --colorTerciario: #6577b8;
+  --colorTerciarioClaro: #6c87b9;
+  --fuentePrincipal: "Secular One", sans-serif;
+}
+
+.main-container {
+  min-height: 75vh;
+}
+
+.img-form-transaction {
+  background-color: transparent;
+}
+
+.container-form-img {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+#loan-form {
+  border: 1px solid black;
+  border-radius: 2rem;
+  padding: 1rem;
+  background: url("../img/sun-tornado.svg") center/cover fixed;
+}
+
+#loan-form label {
+  color: whitesmoke;
+  text-shadow: 2px 2px 3px #2c2c2c;
+}
+
+.boton-send {
+  background-color: var(--colorTerciarioClaro);
+  color: hsl(0, 0%, 90%);
+  font-size: 1.1rem;
+}
+
+.boton-send:hover {
+  background-color: hsl(0, 0%, 86%);
+  color: var(--colorPrimario);
+  font-size: 1.1rem;
+  scale: 1.02;
+  transition: 1.5s;
+}
+
+.max-amount {
+  text-align: center;
+  color: rgb(240, 240, 56);
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #444343;
+}
+
+.container-loan{
+  padding: 1rem;
+  border: 2px solid var(--colorPrimario);
+  border-radius: 1.5rem;
+  background-color: #5975aaa7;
+  color: var(--colorPrimario);
+}
+
+.container-loan h4{
+  color: #0e2150;
+  font-weight: bold;
+}
+
+.max-amount-loan, .payments-loan{
+  color: hsl(216, 66%, 30%);
+  text-shadow: 1px 2px 2px #afafaf;
+}
+
+.badge{
+  background-color: #173172;
+  text-shadow: none;
+}
+
+.paragraph-info-loan{
+  color: hsl(0, 0%, 95%);
+  text-shadow: 2px 1px 3px #555555;
+}
