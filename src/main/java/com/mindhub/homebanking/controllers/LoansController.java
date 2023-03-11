@@ -97,8 +97,9 @@ public class LoansController {
             return new ResponseEntity<>("The target account does not belong to you", HttpStatus.BAD_REQUEST);
         }
 
-        if (client.getLoan().contains(loanRepository.findById(loanApplicationDTO.getId()).orElse(null))){
-            return new ResponseEntity<>("Can't take the same loan twice.", HttpStatus.BAD_REQUEST);
+
+        if(client.getClientLoan().contains(clientLoanRepository.findById(loanApplicationDTO.getId()).orElse(null))){
+            return new ResponseEntity<>("Can't take same loan twice", HttpStatus.BAD_REQUEST);
         }
 
         ClientLoan clientLoan = new ClientLoan(loanApplicationDTO.getAmount() * 1.2, loanApplicationDTO.getPayments());

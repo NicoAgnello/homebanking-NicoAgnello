@@ -10,7 +10,7 @@ createApp({
       loan: "",
       typeLoans: "",
       paymentsLoan: "",
-      amountLoan: 0,
+      amountLoan: null,
       accountLoan: "",
     };
   },
@@ -84,6 +84,7 @@ createApp({
               targetAccountNumber: this.accountLoan,
             })
             .then(() => Swal.fire("Loan aproved!", "", "success"))
+            .then(()=> location.href = "./accounts.html")
             .catch((err) => {
               console.log(err);
               Swal.fire({

@@ -5,10 +5,10 @@ createApp({
     return {
       client: {},
       accounts: [],
-      typeTransaction: "Is the transaction to a proprietary account or a third party account?",
+      typeTransaction: "",
       originAccountNumber: "",
       targetAccountNumber: "",
-      amount: 0,
+      amount: "",
       description: "",
       accountOrigin: "",
     };

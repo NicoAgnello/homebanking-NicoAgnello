@@ -109,6 +109,26 @@
   color: hsl(0, 0%, 90%);
 }
 
+.delete-card{
+  color: rgb(168, 48, 48);
+  background-color: hsl(0, 0%, 86%);
+  border: 2px solid red;
+  padding: .2rem 2rem;
+  border-radius: 1rem;
+  cursor: pointer; 
+  font-size: .8rem;
+}
+
+.delete-card:hover{
+  background-color: rgb(168, 48, 48);
+  color: hsl(0, 0%, 90%);
+  border: 2px solid red;
+  font-weight: bold;
+  scale: 1.1;
+  transition: 1.5s;
+}
+
+
 .strip {
   position: absolute;
   background-color: black;
@@ -234,13 +254,14 @@
 
 .without_card {
   color: whitesmoke;
-  margin-top: 4rem;
+  margin-top: 1rem;
   padding: 2rem 4rem;
   font-size: 2rem;
-  border: 3px solid var(--colorPrimario);
   text-shadow: 5px 5px #3c546b;
   border-radius: 1.5rem;
   background: url("../img/sun-tornado.svg") center/cover fixed;
+  border: 2px solid var(--colorPrimario);
+  border-radius: 1rem;
 }
 
 .add-card {
@@ -249,19 +270,19 @@
   border-radius: 1rem;
   background: radial-gradient(
       ellipse farthest-corner at right bottom,
-      #feda3783 0%,
-      #fdb9319c 8%,
-      #9f79289c 30%,
-      #8a6f2f91 40%,
+      #feda37c2 0%,
+      #fdb931ae 8%,
+      #9f7928bd 30%,
+      #8a6f2fb4 40%,
       transparent 80%
     ),
     radial-gradient(
       ellipse farthest-corner at left top,
-      #ffffff8c 0%,
-      #ffffaca4 8%,
-      #d1b46491 25%,
-      #5d4a1f62 62.5%,
-      #5d4a1fd8 100%
+      #ffffffb2 0%,
+      #ffffacb8 8%,
+      #d1b464ab 25%,
+      #5d4a1faf 62.5%,
+      #5d4a1fdb 100%
     );
 }
 .signo-mas {
@@ -271,6 +292,11 @@
   justify-content: center;
   align-items: center;
 }
+
+/* .box-card-or-not{
+  border: 2px solid black;
+  background: var(--colorTerciario);
+} */
 
 @media (max-width: 991px) {
   .add-card {
