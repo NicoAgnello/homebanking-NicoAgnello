@@ -20,8 +20,8 @@ createApp({
         .get("/api/clients/current")
         .then((response) => {
           this.client = response.data;
-          this.accounts = this.client.accounts;
-          this.client.accounts.sort((a, b) => b.id - a.id);
+          this.accounts = this.client.accounts.filter((account) => account.active == true);
+          this.accounts.sort((a, b) => b.id - a.id);
           this.clientLoans = response.data.loans;
         })
         .catch((err) => console.log(err));
@@ -64,6 +64,28 @@ createApp({
         .catch((err) => {
           console.log(err);
         });
+    },
+    confirmDeleteAccount(id) {
+      console.log(id);
+      Swal.fire({
+        title: "¿Are you sure you want to delete this account?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .patch(`/api/clients/current/accounts/${id}`)
+            .then(() => {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              this.getClient();
+            })
+            .catch((err) => console.log(err));
+        }
+      });
     },
   },
 }).mount("#app");

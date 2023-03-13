@@ -25,12 +25,23 @@ public class Account {
     @JoinColumn(name = "client_id")
     private Client client;
 
+    private Boolean active;
+
     public Account (){}
 
     public Account ( String number, LocalDateTime creationDate, double balance){
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
+        this.active = true;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public Set<Transaction> getTransactions() {

@@ -18,12 +18,19 @@ public class AccountDTO {
 
     private Set<TransactionDTO> transactions = new HashSet<>();
 
+    private Boolean active;
+
     public AccountDTO (Account account){
     this.id = account.getId();
     this.number = account.getNumber();
     this.creationDate = account.getCreationDate();
     this.balance = account.getBalance();
     this.transactions = account.getTransactions().stream().map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toSet());
+    this.active = account.getActive();
+    }
+
+    public Boolean getActive() {
+        return active;
     }
 
     public Set<TransactionDTO> getTransactions() {

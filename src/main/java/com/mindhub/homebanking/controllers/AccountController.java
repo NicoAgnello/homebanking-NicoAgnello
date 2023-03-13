@@ -3,6 +3,7 @@ package com.mindhub.homebanking.controllers;
 import com.mindhub.homebanking.dtos.AccountDTO;
 import com.mindhub.homebanking.dtos.ClientDTO;
 import com.mindhub.homebanking.models.Account;
+import com.mindhub.homebanking.models.Card;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
@@ -48,7 +49,7 @@ public class AccountController {
     ){
         Client client = clientRepository.findByEmail(authentication.getName());
 
-        if(client.getAccounts().size() < 3) {
+        if(client.getAccounts().stream().filter(account -> account.getActive()).count() < 3) {
             Account account = new Account(randomNumberAccount(accountRepository), LocalDateTime.now(), 0);
             client.addAccount(account);
             accountRepository.save(account);
@@ -58,6 +59,33 @@ public class AccountController {
         else {
             return new ResponseEntity<>("Client has the maximum number of accounts(3)",HttpStatus.FORBIDDEN);
         }
+    }
+
+    @RequestMapping(path = "/clients/current/accounts/{id}", method = RequestMethod.PATCH)
+    public ResponseEntity<Object> deleteCard (Authentication authentication, @PathVariable Long id) {
+
+        Client client = clientRepository.findByEmail(authentication.getName());
+        Account account = accountRepository.findById(id).orElse(null);
+
+        if (id == null) {
+            return new ResponseEntity<>("Missing id", HttpStatus.BAD_REQUEST);
+        }
+
+        if (account == null) {
+            return new ResponseEntity<>("The account does not exist", HttpStatus.BAD_REQUEST);
+        }
+
+        if (!client.getAccounts().contains(account)) {
+            return new ResponseEntity<>("Account not belong to you", HttpStatus.BAD_REQUEST);
+        }
+        if(!account.getActive()){
+            return new ResponseEntity<>("The account is inactive", HttpStatus.BAD_REQUEST);
+        }
+
+        account.setActive(false);
+        accountRepository.save(account);
+
+        return new ResponseEntity<>("Account deleted", HttpStatus.ACCEPTED);
     }
 
 

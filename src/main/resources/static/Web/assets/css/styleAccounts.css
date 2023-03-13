@@ -27,7 +27,7 @@ body {
 }
 
 .nav-link {
-  font-size: .9rem !important;
+  font-size: 0.9rem !important;
 }
 .breadcrumb-item {
   font-size: 1.5rem !important;
@@ -165,6 +165,12 @@ body {
   border-radius: 2rem;
   margin-block: 2rem;
   background: url(../img/home/fondo-bank.jpg) center/cover;
+}
+
+.button-delete-account {
+  cursor: pointer;
+  color: var(--colorRojo);
+  filter: drop-shadow(2px 2px 2px var(--colorSecundario));
 }
 
 /* See movements */
@@ -600,7 +606,7 @@ footer {
   .breadcrumb-item {
     font-size: 1rem !important;
   }
-  .creation-date{
+  .creation-date {
     display: none;
   }
 }
