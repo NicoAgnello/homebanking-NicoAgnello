@@ -73,6 +73,21 @@
   left: 12.6em;
 }
 
+.type-card-title {
+  display: inline-block;
+  padding: 0.5rem 3rem;
+  margin-bottom: 2rem;
+  border: 2px solid var(--colorSecundario);
+  border-radius: 1rem;
+  color: var(--colorPrimario);
+  /* background-color: var(--colorTerciarioClaro); */
+  text-shadow: 1px 1px 2px #676666;
+}
+.border-cards {
+  border: 5px solid rgba(128, 128, 128, 0.257);
+  border-radius: 2rem;
+}
+
 .valid_thru {
   position: absolute;
   font-weight: bold;
@@ -109,17 +124,17 @@
   color: hsl(0, 0%, 90%);
 }
 
-.delete-card{
+.delete-card {
   color: rgb(168, 48, 48);
   background-color: hsl(0, 0%, 86%);
   border: 2px solid red;
-  padding: .2rem 2rem;
+  padding: 0.2rem 2rem;
   border-radius: 1rem;
-  cursor: pointer; 
-  font-size: .8rem;
+  cursor: pointer;
+  font-size: 0.8rem;
 }
 
-.delete-card:hover{
+.delete-card:hover {
   background-color: rgb(168, 48, 48);
   color: hsl(0, 0%, 90%);
   border: 2px solid red;
@@ -127,7 +142,6 @@
   scale: 1.1;
   transition: 1.5s;
 }
-
 
 .strip {
   position: absolute;

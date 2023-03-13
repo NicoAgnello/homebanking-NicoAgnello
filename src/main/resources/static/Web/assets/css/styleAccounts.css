@@ -27,17 +27,20 @@ body {
 }
 
 .nav-link {
-  font-size: .9rem !important;
+  font-size: 0.9rem !important;
 }
 .breadcrumb-item {
-  font-size: 1.5rem !important;
+  font-size: 1.3rem !important;
 }
 .navbar-brand {
-  font-size: 1.1rem !important;
+  font-size: 1rem !important;
 }
 
 .nav-lateral {
-  max-height: 80vh;
+  max-height: 60vh;
+}
+aside {
+  box-shadow: 0 0 0 1px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.4) !important;
 }
 
 .nav-lateral::-webkit-scrollbar {
@@ -600,7 +603,7 @@ footer {
   .breadcrumb-item {
     font-size: 1rem !important;
   }
-  .creation-date{
+  .creation-date {
     display: none;
   }
 }
