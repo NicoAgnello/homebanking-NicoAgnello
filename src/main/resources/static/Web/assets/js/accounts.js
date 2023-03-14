@@ -95,7 +95,7 @@ createApp({
           axios
             .patch(`/api/clients/current/accounts/${id}`)
             .then(() => {
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              Swal.fire("Deleted!", "Your account has been deleted.", "success");
               this.getClient();
             })
             .catch((err) => console.log(err));
