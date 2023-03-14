@@ -179,7 +179,7 @@
               <div class="pt-3" v-for="accounts of client.accounts">
                 <a v-if="accounts.number != account.number" :href="'./account.html?id='+accounts.id">
                   <button class="button-account mb-2">
-                    <span class="fs-4">Movements of account {{accounts.number}}</span>
+                    <span class="movements-of">Movements of account {{accounts.number}}</span>
                   </button>
                 </a>
               </div>
@@ -193,9 +193,10 @@
                   <tr>
                     <th scope="col">Type</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Time</th>
+                    <th scope="col" class="time-transaction">Time</th>
                     <th scope="col">Description</th>
                     <th scope="col">Amount</th>
+                    <th scope="col">Balance</th>
                   </tr>
                 </thead>
                 <tbody class="body-account border border-secondary" v-for="transaction of transactions">
@@ -207,13 +208,18 @@
                       {{transaction.type}}
                     </td>
                     <td class="bg-light text-dark border border-secondary">{{parseDate(transaction.date)}}</td>
-                    <td class="bg-light text-dark border border-secondary">{{parseTime(transaction.date)}}</td>
+                    <td class="bg-light text-dark border border-secondary time-transaction">
+                      {{parseTime(transaction.date)}}
+                    </td>
                     <td class="text-light border border-secondary">{{transaction.description}}</td>
                     <td
                       class="bg-light border border-secondary"
                       :class="transaction.type == 'DEBIT' ? 'text-danger-emphasis' : 'text-success-emphasis'"
                     >
                       {{transaction.amount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })}}
+                    </td>
+                    <td class="text-light border border-secondary">
+                      {{transaction.accountAmount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })}}
                     </td>
                   </tr>
                 </tbody>

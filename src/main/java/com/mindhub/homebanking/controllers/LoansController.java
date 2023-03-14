@@ -107,7 +107,7 @@ public class LoansController {
         loan.addClientLoan(clientLoan);
         clientLoanRepository.save(clientLoan);
 
-        Transaction transaction = new Transaction(LocalDateTime.now(), loanApplicationDTO.getAmount(), TransactionType.CREDIT, loan.getName() + " " + "loan approved");
+        Transaction transaction = new Transaction(LocalDateTime.now(), loanApplicationDTO.getAmount(), TransactionType.CREDIT, loan.getName() + " " + "loan approved", targetAccount.getBalance()+loanApplicationDTO.getAmount());
         targetAccount.addTransaction(transaction);
         transactionRepository.save(transaction);
 

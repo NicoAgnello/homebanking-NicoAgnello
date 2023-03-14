@@ -12,12 +12,15 @@ public class TransactionDTO {
     private TransactionType type;
     private  String description;
 
+    private double accountAmount;
+
     public TransactionDTO (Transaction transaction){
         this.id = transaction.getId();
         this.amount = transaction.getAmount();
         this.date = transaction.getDate();
         this.type = transaction.getType();
         this.description = transaction.getDescription();
+        this.accountAmount = transaction.getAccountAmount();
     }
 
     public long getId() {
@@ -34,6 +37,10 @@ public class TransactionDTO {
 
     public TransactionType getType() {
         return type;
+    }
+
+    public double getAccountAmount() {
+        return accountAmount;
     }
 
     public String getDescription() {

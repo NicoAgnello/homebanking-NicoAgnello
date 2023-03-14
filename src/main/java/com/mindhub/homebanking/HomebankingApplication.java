@@ -43,10 +43,10 @@ public class HomebankingApplication {
 			Account account2 = new Account("VIN002", LocalDateTime.now().plusDays(1), 7500 );
 			Account account3 = new Account("VIN003", LocalDateTime.now().plusMonths(1), 10000);
 
-			Transaction transaction1 = new Transaction(LocalDateTime.now(), -2000.12, TransactionType.DEBIT, "First transaction");
-			Transaction transaction2 = new Transaction(LocalDateTime.now(), 3000, TransactionType.CREDIT, "Second transaction");
-			Transaction transaction3 = new Transaction(LocalDateTime.now(), 1000.5, TransactionType.CREDIT, "Third transaction");
-			Transaction transaction4 = new Transaction(LocalDateTime.now(), -500, TransactionType.DEBIT, "Fourth transaction");
+//			Transaction transaction1 = new Transaction(LocalDateTime.now(), -2000.12, TransactionType.DEBIT, "First transaction", account1.getBalance() - 2000.12);
+//			Transaction transaction2 = new Transaction(LocalDateTime.now(), 3000, TransactionType.CREDIT, "Second transaction",2999.88 + 3000);
+//			Transaction transaction3 = new Transaction(LocalDateTime.now(), 1000.5, TransactionType.CREDIT, "Third transaction", account2.getBalance() + 1000.5);
+//			Transaction transaction4 = new Transaction(LocalDateTime.now(), -500, TransactionType.DEBIT, "Fourth transaction", account3.getBalance() - 500);
 
 			Loan mortgage = new Loan("Mortgage", 500000, Arrays.asList((byte)12, (byte)24, (byte)36,(byte)48,(byte)60));
 			Loan personal = new Loan("Personal", 100000, Arrays.asList((byte)6, (byte)12, (byte)24));
@@ -60,6 +60,7 @@ public class HomebankingApplication {
 			Card card1 = new Card(returnCvvNumber(),randomNumberCard(cardRepository), CardType.DEBIT, CardColor.GOLD, LocalDate.now(), LocalDate.now().plusYears(5), client1);
 			Card card2 = new Card(returnCvvNumber(),randomNumberCard(cardRepository), CardType.CREDIT, CardColor.TITANIUM,LocalDate.now(), LocalDate.now().plusYears(5).plusMonths(2), client1);
 			Card card3 = new Card(returnCvvNumber(),randomNumberCard(cardRepository), CardType.CREDIT, CardColor.SILVER,LocalDate.now(), LocalDate.now().plusYears(5), client2);
+			Card card4 = new Card(returnCvvNumber(),randomNumberCard(cardRepository), CardType.DEBIT, CardColor.TITANIUM,LocalDate.now(), LocalDate.now(), client1);
 
 			client1.addAccount(account1);
 			client1.addAccount(account2);
@@ -68,11 +69,12 @@ public class HomebankingApplication {
 			client1.addCard(card1);
 			client1.addCard(card2);
 			client2.addCard(card3);
+			client1.addCard(card4);
 
-			account1.addTransaction(transaction1);
-			account1.addTransaction(transaction2);
-			account2.addTransaction(transaction3);
-			account3.addTransaction(transaction4);
+//			account1.addTransaction(transaction1);
+//			account1.addTransaction(transaction2);
+//			account2.addTransaction(transaction3);
+//			account3.addTransaction(transaction4);
 
 			client1.addClientLoan(clientLoan1);
 			client1.addClientLoan(clientLoan2);
@@ -88,13 +90,13 @@ public class HomebankingApplication {
 
 			accountRepository.saveAll(List.of(account1,account2,account3));
 
-			transactionRepository.saveAll(List.of(transaction1,transaction2,transaction3,transaction4));
+//			transactionRepository.saveAll(List.of(transaction1,transaction2,transaction3,transaction4));
 
 			loanRepository.saveAll(List.of(mortgage,personal,automotive));
 
 			clientLoanRepository.saveAll(List.of(clientLoan1,clientLoan2,clientLoan3,clientLoan4));
 
-			cardRepository.saveAll(List.of(card1,card2,card3));
+			cardRepository.saveAll(List.of(card1,card2,card3,card4));
 		};
 	}
 

@@ -9,6 +9,10 @@
   min-height: 105vh;
 }
 
+.movements-of {
+  font-size: 1.3rem;
+}
+
 .table-movements {
   background-color: var(--colorPrimario);
   color: white;
@@ -246,6 +250,9 @@ td {
   .container-accounts {
     margin-top: 3rem;
   }
+  .time-transaction {
+    display: none;
+  }
 }
 
 @media (max-width: 525px) {
@@ -255,9 +262,16 @@ td {
   .img-compra {
     height: 30vh;
   }
+  th {
+    padding: 0.3rem;
+    font-size: 0.9rem;
+  }
   td {
-    font-size: 1rem;
-    padding: 0.4rem;
+    font-size: 0.9rem;
+    padding: 0.3rem;
+  }
+  .movements-of {
+    font-size: 0.9rem;
   }
 }
 

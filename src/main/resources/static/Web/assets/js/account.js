@@ -29,7 +29,7 @@ createApp({
           this.client = response.data;
           this.clientLoans = response.data.loans;
           this.account = this.client.accounts.find((account) => account.id == this.accountId);
-          this.transactions = this.account.transactions;
+          this.transactions = this.account.transactions.sort((a, b) => b.date - a.date);
         })
         .catch((err) => console.log(err));
     },
