@@ -12,6 +12,20 @@
   min-height: 68vh;
 }
 
+.type-card-title {
+  display: inline-block;
+  padding: 0.5rem 3rem;
+  margin-bottom: 2rem;
+  border: 2px solid var(--colorSecundario);
+  border-radius: 1rem;
+  color: var(--colorPrimario);
+  text-shadow: 1px 1px 2px #676666;
+}
+.border-cards {
+  border: 3px solid rgba(128, 128, 128, 0.257);
+  border-radius: 2rem;
+}
+
 /* Card */
 .flip-card {
   background-color: transparent;

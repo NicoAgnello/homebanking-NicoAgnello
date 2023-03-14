@@ -37,7 +37,7 @@ body {
 }
 
 .nav-lateral {
-  max-height: 80vh;
+  max-height: 60vh;
 }
 
 .nav-lateral::-webkit-scrollbar {
@@ -52,6 +52,10 @@ body {
   background-color: var(--colorSecundario);
   border-radius: 20px;
   border: 2px solid var(--colorPrimario);
+}
+
+aside {
+  box-shadow: 0 0 0 1px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.4) !important;
 }
 
 .client-name {
