@@ -3,6 +3,7 @@ package com.mindhub.homebanking.controllers;
 import com.mindhub.homebanking.dtos.AccountDTO;
 import com.mindhub.homebanking.dtos.ClientDTO;
 import com.mindhub.homebanking.models.Account;
+import com.mindhub.homebanking.models.AccountType;
 import com.mindhub.homebanking.models.Card;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.AccountRepository;
@@ -45,12 +46,12 @@ public class AccountController {
 
     @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)
     public ResponseEntity <Object> newAccount (
-            Authentication authentication
+            Authentication authentication, @RequestParam AccountType accountType
     ){
         Client client = clientRepository.findByEmail(authentication.getName());
 
         if(client.getAccounts().stream().filter(account -> account.getActive()).count() < 3) {
-            Account account = new Account(randomNumberAccount(accountRepository), LocalDateTime.now(), 0);
+            Account account = new Account(randomNumberAccount(accountRepository), LocalDateTime.now(), 0, accountType);
             client.addAccount(account);
             accountRepository.save(account);
             return new ResponseEntity<>("Account successfully created",HttpStatus.CREATED);

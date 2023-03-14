@@ -124,5 +124,13 @@ createApp({
         }
       });
     },
+    parseInterest(float) {
+      let number = float.toString().split(".")[1];
+      if (number.length < 2) {
+        return number * 10 + "%";
+      } else {
+        return number + "%";
+      }
+    },
   },
 }).mount("#app");

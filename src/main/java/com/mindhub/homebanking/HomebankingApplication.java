@@ -39,18 +39,18 @@ public class HomebankingApplication {
 			Client client2 = new Client("Nicolas", "Agnello", "nicoagnello@mindhub.com",  passwordEncoder.encode("nico123"));
 			Client client3 = new Client("admin", "admin", "admin@mindhub.com",  passwordEncoder.encode("admin"));
 
-			Account account1 = new Account("VIN001", LocalDateTime.now(), 5000);
-			Account account2 = new Account("VIN002", LocalDateTime.now().plusDays(1), 7500 );
-			Account account3 = new Account("VIN003", LocalDateTime.now().plusMonths(1), 10000);
+			Account account1 = new Account("VIN001", LocalDateTime.now(), 5000, AccountType.CHECKING);
+			Account account2 = new Account("VIN002", LocalDateTime.now().plusDays(1), 7500, AccountType.SAVING );
+			Account account3 = new Account("VIN003", LocalDateTime.now().plusMonths(1), 10000, AccountType.CHECKING);
 
 //			Transaction transaction1 = new Transaction(LocalDateTime.now(), -2000.12, TransactionType.DEBIT, "First transaction", account1.getBalance() - 2000.12);
 //			Transaction transaction2 = new Transaction(LocalDateTime.now(), 3000, TransactionType.CREDIT, "Second transaction",2999.88 + 3000);
 //			Transaction transaction3 = new Transaction(LocalDateTime.now(), 1000.5, TransactionType.CREDIT, "Third transaction", account2.getBalance() + 1000.5);
 //			Transaction transaction4 = new Transaction(LocalDateTime.now(), -500, TransactionType.DEBIT, "Fourth transaction", account3.getBalance() - 500);
 
-			Loan mortgage = new Loan("Mortgage", 500000, Arrays.asList((byte)12, (byte)24, (byte)36,(byte)48,(byte)60));
-			Loan personal = new Loan("Personal", 100000, Arrays.asList((byte)6, (byte)12, (byte)24));
-			Loan automotive = new Loan("Automotive", 300000, Arrays.asList((byte)6, (byte)12, (byte)24, (byte)36));
+			Loan mortgage = new Loan("Mortgage", 500000, Arrays.asList((byte)12, (byte)24, (byte)36,(byte)48,(byte)60), 1.1f);
+			Loan personal = new Loan("Personal", 100000, Arrays.asList((byte)6, (byte)12, (byte)24), 1.2f);
+			Loan automotive = new Loan("Automotive", 300000, Arrays.asList((byte)6, (byte)12, (byte)24, (byte)36), 1.15f);
 
 			ClientLoan clientLoan1 = new ClientLoan (400000, (byte)60);
 			ClientLoan clientLoan2 = new ClientLoan(50000, (byte)12);

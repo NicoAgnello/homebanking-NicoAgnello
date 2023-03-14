@@ -46,7 +46,7 @@ public class LoansController {
 
     @Transactional
     @PostMapping("/loans")
-    public ResponseEntity<Object> postLoan (Authentication authentication,
+    public ResponseEntity<Object> newClientLoan (Authentication authentication,
                                            @RequestBody LoanApplicationDTO loanApplicationDTO){
 
         Client client = clientRepository.findByEmail(authentication.getName());
@@ -102,7 +102,7 @@ public class LoansController {
             return new ResponseEntity<>("Can't take same loan twice", HttpStatus.BAD_REQUEST);
         }
 
-        ClientLoan clientLoan = new ClientLoan(loanApplicationDTO.getAmount() * 1.2, loanApplicationDTO.getPayments());
+        ClientLoan clientLoan = new ClientLoan(loanApplicationDTO.getAmount() * loan.getInterestRate(), loanApplicationDTO.getPayments());
         client.addClientLoan(clientLoan);
         loan.addClientLoan(clientLoan);
         clientLoanRepository.save(clientLoan);

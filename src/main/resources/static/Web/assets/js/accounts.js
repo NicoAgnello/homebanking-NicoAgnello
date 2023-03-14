@@ -6,6 +6,7 @@ createApp({
       client: {},
       clientLoans: [],
       accounts: [],
+      accountType: "",
     };
   },
   created() {
@@ -56,17 +57,31 @@ createApp({
         .catch((err) => console.log(err));
     },
     newAccount() {
-      axios
-        .post("/api/clients/current/accounts")
-        .then(() => {
-          this.getClient();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      Swal.fire({
+        title: "Type of account",
+        input: "select",
+        inputOptions: {
+          SAVING: "Savings Account",
+          CHECKING: "Checking Account",
+        },
+        inputPlaceholder: "Select a type of account",
+        showCancelButton: true,
+        confirmButtonText: "Create",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.accountType = result.value;
+          axios
+            .post("/api/clients/current/accounts", `accountType=${this.accountType}`)
+            .then(() => {
+              this.getClient();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      });
     },
     confirmDeleteAccount(id) {
-      console.log(id);
       Swal.fire({
         title: "¿Are you sure you want to delete this account?",
         text: "You won't be able to revert this!",

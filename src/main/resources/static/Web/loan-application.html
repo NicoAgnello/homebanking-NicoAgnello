@@ -181,6 +181,11 @@
                   <div class="mb-3">
                     <div class="mb-3">
                       <label class="fs-5 align-items-end" for="typeLoan">Type of loan</label>
+                      <template v-if="typeLoans">
+                        <div class="iterest-rate mb-1 text-end">
+                          Iterest Rate: {{parseInterest(typeLoans.interestRate)}}
+                        </div>
+                      </template>
                       <select v-model="typeLoans" class="form-select fs-6" id="typeLoan" name="typeLoan" required>
                         <option value="" disabled selected>Select a type of loan</option>
                         <template v-for="loan of loans">
@@ -206,7 +211,7 @@
                     <div class="mb-3">
                       <label class="fs-5 align-items-end" for="amountLoan">Amount to be requested</label>
                       <template v-if="typeLoans">
-                        <div class="max-amount mb-1 text-center">
+                        <div class="max-amount mb-1 text-end">
                           Max amount: {{typeLoans.maxAmount.toLocaleString('de-DE', { style: 'currency', currency: 'USD'
                           })}}
                         </div>
@@ -250,10 +255,9 @@
           <div>
             <div class="mb-4 container-loan" v-for="loan of loansInfo">
               <h4 class="text-center fs-3">{{loan.title}}<img :src="loan.imgSrc" alt="hipoteca" class="ms-3" /></h4>
-
               <p class="text-center fs-4 paragraph-info-loan">{{loan.description}}</p>
               <div class="d-flex justify-content-around align-items-center flex-wrap gap-3">
-                <div class="d-flex justify-content-center gap-3 align-items-center">
+                <div class="d-flex justify-content-center gap-3 align-items-center flex-wrap">
                   <span class="fs-4 payments-loan">Payments:</span>
                   <ul class="list-group list-group-horizontal">
                     <li class="list-group-item" v-for="payment of loan.payments">{{payment}}</li>

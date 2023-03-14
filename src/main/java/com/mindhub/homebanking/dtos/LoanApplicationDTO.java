@@ -16,7 +16,7 @@ public class LoanApplicationDTO {
 
     private String targetAccountNumber;
 
-    public LoanApplicationDTO (Long id, double amount, Byte payments, String targetAccountNumber){
+    public LoanApplicationDTO (Long id, Double amount, Byte payments, String targetAccountNumber){
         this.id = id;
         this.amount = amount;
         this.payments = payments;
