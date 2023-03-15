@@ -184,6 +184,7 @@
               <thead>
                 <tr class="text-center">
                   <th class="object-fit-contain">Account Number</th>
+                  <th>Type</th>
                   <th class="creation-date">Creation Date</th>
                   <th>Balance</th>
                   <th>Details</th>
@@ -193,6 +194,7 @@
               <tbody>
                 <tr class="text-center content-accounts" v-for="account of accounts">
                   <td>{{account.number}}</td>
+                  <td><span class="account-type">{{account.accountType}}</span></td>
                   <td class="creation-date">{{parseDate(account.creationDate)}}</td>
                   <td>{{account.balance.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })}}</td>
                   <td>

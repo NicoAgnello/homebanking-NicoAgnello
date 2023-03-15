@@ -172,6 +172,12 @@ aside {
   background: url(../img/home/fondo-bank.jpg) center/cover;
 }
 
+.account-type {
+  color: var(--colorPrimario);
+  text-shadow: 1px 1px 1px #bbbbbb;
+  font-weight: bold;
+}
+
 .button-delete-account {
   cursor: pointer;
   border-radius: 1rem;
@@ -545,6 +551,9 @@ footer {
   .movements-button {
     font-size: 9px;
   }
+  td {
+    font-size: 0.8rem !important;
+  }
 }
 
 @media (min-width: 650px) {
@@ -641,5 +650,23 @@ footer {
     padding: 0.5rem;
     cursor: pointer;
     filter: drop-shadow(2px 2px 2px var(--colorSecundario));
+  }
+}
+
+@media (max-width: 653px) {
+  .movements-button.learn-more {
+    padding: 1em 1em;
+  }
+  .button-delete-account {
+    font-size: 0.6rem;
+  }
+  .button-delete-account i {
+    display: none;
+  }
+  th {
+    font-size: 1rem !important;
+  }
+  td {
+    font-size: 0.9rem !important;
   }
 }
