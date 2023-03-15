@@ -41,7 +41,8 @@ public class AccountController {
 
     @RequestMapping("/clients/current/accounts")
     public List <AccountDTO> getCurrentAccounts( Authentication authentication){
-        return clientRepository.findByEmail(authentication.getName()).getAccounts().stream().map(account -> new AccountDTO(account)).collect(toList());
+        Client client = clientRepository.findByEmail(authentication.getName());
+        return client.getAccounts().stream().filter(account -> account.getActive()==true).map(account -> new AccountDTO(account)).collect(toList());
     }
 
     @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)

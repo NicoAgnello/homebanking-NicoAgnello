@@ -30,9 +30,16 @@ public class CardController {
 @Autowired
     private CardRepository cardRepository;
 
+@GetMapping("/cards")
+public List<CardDTO> getCards (Authentication authentication){
+    Client client = clientRepository.findByEmail(authentication.getName());
+    return client.getCards().stream().map(card -> new CardDTO(card)).collect(Collectors.toList());
+}
+
 @RequestMapping("/clients/current/cards")
 public List<CardDTO> getCurrentCards (Authentication authentication){
-    return clientRepository.findByEmail(authentication.getName()).getCards().stream().map(card -> new CardDTO(card)).collect(Collectors.toList());
+    Client client = clientRepository.findByEmail(authentication.getName());
+    return client.getCards().stream().filter(card -> card.getActive()==true).map(card -> new CardDTO(card)).collect(Collectors.toList());
 }
 
 @RequestMapping(path = "/clients/current/cards/{id}", method = RequestMethod.PATCH)

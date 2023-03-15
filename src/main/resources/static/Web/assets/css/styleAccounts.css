@@ -173,7 +173,7 @@ aside {
 }
 
 .account-type {
-  color: var(--colorPrimario);
+  color: var(--colorSecundario);
   text-shadow: 1px 1px 1px #bbbbbb;
   font-weight: bold;
 }

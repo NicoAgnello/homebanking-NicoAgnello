@@ -3,6 +3,7 @@ package com.mindhub.homebanking.controllers;
 import com.mindhub.homebanking.dtos.ClientLoanDTO;
 import com.mindhub.homebanking.dtos.LoanApplicationDTO;
 import com.mindhub.homebanking.dtos.LoanDTO;
+import com.mindhub.homebanking.dtos.newLoanDTO;
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,45 @@ public class LoansController {
         public List<LoanDTO> getLoans(){
             return loanRepository.findAll().stream().map(loan -> new LoanDTO(loan)).collect(Collectors.toList());
         }
+
+    @PostMapping ("/loans/add")
+    public ResponseEntity<Object> newLoan (Authentication authentication, @RequestBody newLoanDTO newLoanDTO){
+
+        Client client = clientRepository.findByEmail(authentication.getName());
+
+        if(newLoanDTO.getLoanName().isEmpty()){
+            return new ResponseEntity<>("Missing name of loan", HttpStatus.BAD_REQUEST);
+        }
+
+        if(newLoanDTO.getMaxAmount().isNaN()){
+            return new ResponseEntity<>(" Missing or wrong max amount", HttpStatus.BAD_REQUEST);
+        }
+
+        if(newLoanDTO.getPayments().isEmpty() ){
+            return new ResponseEntity<>("Missing payments ", HttpStatus.BAD_REQUEST);
+        }
+
+        if (newLoanDTO.getInterestRate().isNaN()){
+            return new ResponseEntity<>("Missing or wrong interest rate", HttpStatus.BAD_REQUEST);
+        }
+
+        if (newLoanDTO.getMaxAmount() < 5000){
+            return new ResponseEntity<>("Loans for less than $5000 cannot be generated", HttpStatus.UNAUTHORIZED);
+        }
+
+        if (loanRepository.existsLoanByName(newLoanDTO.getLoanName())){
+            return new ResponseEntity<>("Loan alredy exists", HttpStatus.BAD_REQUEST);
+        }
+
+        if (newLoanDTO.getInterestRate() > 3){
+            return new ResponseEntity<>("The interest rate cannot exceed 300%", HttpStatus.BAD_REQUEST);
+        }
+
+        Loan newLoan = new Loan(newLoanDTO.getLoanName(), newLoanDTO.getMaxAmount(), newLoanDTO.getPayments(), newLoanDTO.getInterestRate());
+        loanRepository.save(newLoan);
+        return new ResponseEntity<>("New type of loan created", HttpStatus.CREATED);
+    }
+
 
     @Transactional
     @PostMapping("/loans")

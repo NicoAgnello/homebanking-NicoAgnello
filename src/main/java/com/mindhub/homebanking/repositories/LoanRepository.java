@@ -8,4 +8,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface LoanRepository extends JpaRepository<Loan, Long> {
     Boolean existsLoanById (long id);
 
+    Boolean existsLoanByName(String name);
 }
