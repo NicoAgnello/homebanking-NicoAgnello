@@ -58,7 +58,7 @@ public class LoansController {
             return new ResponseEntity<>(" Missing or wrong max amount", HttpStatus.BAD_REQUEST);
         }
 
-        if(newLoanDTO.getPayments().isEmpty() ){
+        if(newLoanDTO.getPayments().isEmpty()){
             return new ResponseEntity<>("Missing payments ", HttpStatus.BAD_REQUEST);
         }
 
@@ -80,6 +80,7 @@ public class LoansController {
 
         Loan newLoan = new Loan(newLoanDTO.getLoanName(), newLoanDTO.getMaxAmount(), newLoanDTO.getPayments(), newLoanDTO.getInterestRate());
         loanRepository.save(newLoan);
+
         return new ResponseEntity<>("New type of loan created", HttpStatus.CREATED);
     }
 

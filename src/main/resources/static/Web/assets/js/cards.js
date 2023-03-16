@@ -7,10 +7,13 @@ createApp({
       clientCardsDebit: [],
       clientCardsCredit: [],
       clientCards: [],
+      actualDate: "",
     };
   },
   created() {
     this.getClient();
+    this.getCards();
+    this.createActualDate();
   },
   mounted() {
     let script = document.createElement("script");
@@ -23,11 +26,16 @@ createApp({
         .get("/api/clients/current")
         .then((response) => {
           this.client = response.data;
-          this.clientCards = response.data.cards;
-          this.clientCardsDebit = response.data.cards.filter((card) => card.cardType == "DEBIT" && card.active == true);
-          this.clientCardsCredit = response.data.cards.filter(
-            (card) => card.cardType == "CREDIT" && card.active == true
-          );
+        })
+        .catch((err) => console.log(err));
+    },
+    getCards() {
+      axios
+        .get("/api/clients/current/cards")
+        .then((response) => {
+          this.clientCards = response.data;
+          this.clientCardsDebit = this.clientCards.filter((card) => card.cardType == "DEBIT");
+          this.clientCardsCredit = this.clientCards.filter((card) => card.cardType == "CREDIT");
         })
         .catch((err) => console.log(err));
     },
@@ -81,6 +89,10 @@ createApp({
             .catch((err) => console.log(err));
         }
       });
+    },
+    createActualDate() {
+      let fecha = new Date().toLocaleString().split(",")[0].split("/").reverse().join("-");
+      this.actualDate = fecha;
     },
   },
 }).mount("#app");

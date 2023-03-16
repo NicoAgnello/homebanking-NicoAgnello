@@ -86,6 +86,14 @@ public class TransactionsController {
                 return new ResponseEntity<>("The source account does not have sufficient funds", HttpStatus.FORBIDDEN);
             }
 
+            if(!originAccount.getActive()){
+                return new ResponseEntity<>("Card inactive", HttpStatus.BAD_REQUEST);
+            }
+
+            if(!targetAccount.getActive()){
+                return new ResponseEntity<>("Card inactive", HttpStatus.BAD_REQUEST);
+            }
+
             Transaction transactionDebit = new Transaction(LocalDateTime.now(),-amount, TransactionType.DEBIT, targetAccountNumber + ": " + description, originAccount.getBalance()-amount);
             Transaction transactionCredit = new Transaction(LocalDateTime.now(), amount, TransactionType.CREDIT, originAccountNumber+ ": " + description, targetAccount.getBalance()+amount);
 

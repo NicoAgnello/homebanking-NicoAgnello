@@ -28,11 +28,12 @@ public class WebAuthorization{
                 .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
                 .antMatchers("/web/index.html", "/web/assets/**","/web/login-register.html" ).permitAll()
                 .antMatchers("/api/clients/current").hasAuthority("CLIENT")
-                .antMatchers("/api/clients/current/accounts", "/api/loans").hasAuthority("CLIENT")
+                .antMatchers("/api/clients/current/accounts","/api/clients/current/cards", "/api/loans").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.PATCH, "/api/clients/current/cards/**").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.PATCH, "/api/clients/current/accounts/**").hasAuthority("CLIENT")
-                .antMatchers(HttpMethod.POST, "/clients/current/accounts", "/api/clients/current/cards", "/api/transactions", "/api/loans").hasAuthority("CLIENT")
-                .antMatchers("/manager.html", "/api/clients/**", "/h2-console","/h2-console/**","/rest/**", "/api/accounts/**", "/api/cards", "/api/accounts","/api/loans").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/clients/current/accounts", "/api/clients/current/cards", "/api/transactions").hasAuthority("CLIENT")
+                .antMatchers("/manager.html", "/api/clients/**", "/h2-console","/h2-console/**","/rest/**", "/api/accounts/**", "/api/cards", "/api/accounts").hasAuthority("ADMIN")
+                .antMatchers("/api/loans").hasAnyAuthority("CLIENT", "ADMIN")
                 .antMatchers(HttpMethod.POST,"/api/loans/add").hasAuthority("ADMIN")
                 .antMatchers( "/web/accounts.html", "/web/account.html", "/web/cards.html","/web/create-cards.html", "/web/transactions.html", "/web/loan-application.html").hasAuthority("CLIENT");
 
