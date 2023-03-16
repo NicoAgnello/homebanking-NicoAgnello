@@ -57,7 +57,7 @@ public class HomebankingApplication {
 			ClientLoan clientLoan3 = new ClientLoan(100000, (byte)24);
 			ClientLoan clientLoan4 = new ClientLoan(200000, (byte)36);
 
-			Card card1 = new Card(returnCvvNumber(),randomNumberCard(cardRepository), CardType.DEBIT, CardColor.GOLD, LocalDate.now(), LocalDate.now().plusYears(5), client1);
+			Card card1 = new Card(134,"4984-6761-5828-2467", CardType.DEBIT, CardColor.GOLD, LocalDate.now(), LocalDate.now().plusYears(5), client1);
 			Card card2 = new Card(returnCvvNumber(),randomNumberCard(cardRepository), CardType.CREDIT, CardColor.TITANIUM,LocalDate.now(), LocalDate.now().plusYears(5).plusMonths(2), client1);
 			Card card3 = new Card(returnCvvNumber(),randomNumberCard(cardRepository), CardType.CREDIT, CardColor.SILVER,LocalDate.now(), LocalDate.now().plusYears(5), client2);
 			Card card4 = new Card(returnCvvNumber(),randomNumberCard(cardRepository), CardType.DEBIT, CardColor.TITANIUM,LocalDate.now(), LocalDate.now(), client1);
