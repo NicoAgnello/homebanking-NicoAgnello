@@ -74,8 +74,8 @@ public class LoansController {
             return new ResponseEntity<>("Loan alredy exists", HttpStatus.BAD_REQUEST);
         }
 
-        if (newLoanDTO.getInterestRate() > 3){
-            return new ResponseEntity<>("The interest rate cannot exceed 300%", HttpStatus.BAD_REQUEST);
+        if (newLoanDTO.getInterestRate() > 2){
+            return new ResponseEntity<>("The interest rate cannot exceed 200%", HttpStatus.BAD_REQUEST);
         }
 
         Loan newLoan = new Loan(newLoanDTO.getLoanName(), newLoanDTO.getMaxAmount(), newLoanDTO.getPayments(), newLoanDTO.getInterestRate());
