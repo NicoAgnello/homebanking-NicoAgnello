@@ -7,6 +7,10 @@ import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.CardRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.services.ServicesImplementation.AccountServiceImpl;
+import com.mindhub.homebanking.services.ServicesImplementation.CardServiceImpl;
+import com.mindhub.homebanking.services.ServicesImplementation.ClientServiceImpl;
+import com.mindhub.homebanking.services.ServicesImplementation.TransactionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,34 +31,34 @@ import static com.mindhub.homebanking.utils.Utilities.returnCvvNumber;
 @RequestMapping("/api")
 public class CardController {
     @Autowired
-        private ClientRepository clientRepository;
+        private ClientServiceImpl clientService;
 
     @Autowired
-        private CardRepository cardRepository;
+        private CardServiceImpl cardService;
 
     @Autowired
-        private AccountRepository accountRepository;
+        private AccountServiceImpl accountService;
 
     @Autowired
-        private TransactionRepository transactionRepository;
+        private TransactionServiceImpl transactionService;
 
     @GetMapping("/cards")
     public List<CardDTO> getCards (Authentication authentication){
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientService.findByEmail(authentication.getName());
         return client.getCards().stream().map(card -> new CardDTO(card)).collect(Collectors.toList());
     }
 
     @RequestMapping("/clients/current/cards")
     public List<CardDTO> getCurrentCards (Authentication authentication){
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientService.findByEmail(authentication.getName());
         return client.getCards().stream().filter(card -> card.getActive()==true).map(card -> new CardDTO(card)).collect(Collectors.toList());
     }
 
     @RequestMapping(path = "/clients/current/cards/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<Object> deleteCard (Authentication authentication, @PathVariable Long id) {
 
-        Client client = clientRepository.findByEmail(authentication.getName());
-        Card card = cardRepository.findById(id).orElse(null);
+        Client client = clientService.findByEmail(authentication.getName());
+        Card card = cardService.findById(id).orElse(null);
 
         if (id == null) {
             return new ResponseEntity<>("Missing id", HttpStatus.BAD_REQUEST);
@@ -72,7 +76,7 @@ public class CardController {
         }
 
         card.setActive(false);
-        cardRepository.save(card);
+        cardService.save(card);
 
         return new ResponseEntity<>("Card deleted", HttpStatus.ACCEPTED);
     }
@@ -80,7 +84,7 @@ public class CardController {
     @RequestMapping(path = "/clients/current/cards", method = RequestMethod.POST)
     public ResponseEntity<Object> newCard (@RequestParam CardColor cardColor, @RequestParam CardType cardType, Authentication authentication){
 
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientService.findByEmail(authentication.getName());
 
         Set<Card> activeCards = client.getCards().stream().filter(card -> card.getActive()).collect(Collectors.toSet());
         Set<Card> inactiveCards = client.getCards().stream().filter(card -> !card.getActive()).collect(Collectors.toSet());
@@ -97,9 +101,9 @@ public class CardController {
 
         }
 
-        Card card = new Card(returnCvvNumber(),randomNumberCard(cardRepository),cardType,cardColor, LocalDate.now(), LocalDate.now().plusYears(5), client);
+        Card card = new Card(returnCvvNumber(),randomNumberCard(cardService),cardType,cardColor, LocalDate.now(), LocalDate.now().plusYears(5), client);
         client.addCard(card);
-        cardRepository.save(card);
+        cardService.save(card);
 
         return new ResponseEntity<>("Card successfully created",HttpStatus.CREATED);
     }
@@ -114,11 +118,11 @@ public class CardController {
         Double amount = payPostnetDTO.getAmount();
         String description = payPostnetDTO.getDescription();
 
-        Card card = cardRepository.findByNumber(cardNumber);
+        Card card = cardService.findByNumber(cardNumber);
         Client client = card.getClient();
         Account account = client.getAccounts().stream().filter(account1 -> account1.getBalance() >= amount).findFirst().orElse(null);
 
-        if (!cardRepository.existsCardByNumber(cardNumber)){
+        if (!cardService.existsCardByNumber(cardNumber)){
             return  new ResponseEntity<>("The card does not exist", HttpStatus.BAD_REQUEST);
         }
 
@@ -168,12 +172,12 @@ public class CardController {
 
         Transaction transactionPostnet = new Transaction(LocalDateTime.now(), -amount, TransactionType.DEBIT, "Pay with postnet: "+ description , account.getBalance()-amount);
 
-        transactionRepository.save(transactionPostnet);
+        transactionService.save(transactionPostnet);
 
         account.addTransaction(transactionPostnet);
         account.setBalance(account.getBalance()-amount);
 
-        accountRepository.save(account);
+        accountService.save(account);
 
         return new ResponseEntity<>("Pay with postnet successfully completed", HttpStatus.CREATED);
     }

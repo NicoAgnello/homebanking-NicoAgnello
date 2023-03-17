@@ -8,6 +8,8 @@ import com.mindhub.homebanking.models.Card;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
+import com.mindhub.homebanking.services.ServicesImplementation.AccountServiceImpl;
+import com.mindhub.homebanking.services.ServicesImplementation.ClientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,24 +26,24 @@ import static java.util.stream.Collectors.toList;
 @RequestMapping("/api")
 public class AccountController {
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientServiceImpl clientService;
 
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountServiceImpl accountService;
 
     @RequestMapping("/accounts")
     public List<AccountDTO> getAccounts (){
-        return accountRepository.findAll().stream().map(AccountDTO::new).collect(toList());
+        return accountService.findAll().stream().map(AccountDTO::new).collect(toList());
     }
 
     @RequestMapping("/accounts/{id}")
     public AccountDTO getAccount (@PathVariable Long id){
-        return accountRepository.findById(id).map(account -> new AccountDTO(account)).orElse(null);
+        return accountService.findById(id).map(account -> new AccountDTO(account)).orElse(null);
     }
 
     @RequestMapping("/clients/current/accounts")
     public List <AccountDTO> getCurrentAccounts( Authentication authentication){
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientService.findByEmail(authentication.getName());
         return client.getAccounts().stream().filter(account -> account.getActive()==true).map(account -> new AccountDTO(account)).collect(toList());
     }
 
@@ -49,12 +51,12 @@ public class AccountController {
     public ResponseEntity <Object> newAccount (
             Authentication authentication, @RequestParam AccountType accountType
     ){
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientService.findByEmail(authentication.getName());
 
         if(client.getAccounts().stream().filter(account -> account.getActive()).count() < 3) {
-            Account account = new Account(randomNumberAccount(accountRepository), LocalDateTime.now(), 0, accountType);
+            Account account = new Account(randomNumberAccount(accountService), LocalDateTime.now(), 0, accountType);
             client.addAccount(account);
-            accountRepository.save(account);
+            accountService.save(account);
             return new ResponseEntity<>("Account successfully created",HttpStatus.CREATED);
         }
 
@@ -66,8 +68,8 @@ public class AccountController {
     @RequestMapping(path = "/clients/current/accounts/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<Object> deleteCard (Authentication authentication, @PathVariable Long id) {
 
-        Client client = clientRepository.findByEmail(authentication.getName());
-        Account account = accountRepository.findById(id).orElse(null);
+        Client client = clientService.findByEmail(authentication.getName());
+        Account account = accountService.findById(id).orElse(null);
 
         if (id == null) {
             return new ResponseEntity<>("Missing id", HttpStatus.BAD_REQUEST);
@@ -94,7 +96,7 @@ public class AccountController {
         }
 
         account.setActive(false);
-        accountRepository.save(account);
+        accountService.save(account);
 
         return new ResponseEntity<>("Account deleted", HttpStatus.ACCEPTED);
     }
