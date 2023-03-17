@@ -80,8 +80,17 @@ public class AccountController {
         if (!client.getAccounts().contains(account)) {
             return new ResponseEntity<>("Account not belong to you", HttpStatus.BAD_REQUEST);
         }
+
+        if (account.getBalance() > 0 ){
+            return new ResponseEntity<>("An account cannot be deleted if it contains money", HttpStatus.BAD_REQUEST);
+        }
+
         if(!account.getActive()){
             return new ResponseEntity<>("The account is inactive", HttpStatus.BAD_REQUEST);
+        }
+
+        if (!client.getClientLoan().isEmpty() && client.getAccounts().size()==1){
+            return new ResponseEntity<>("Cannot delete an account if you have a loan and only one account", HttpStatus.BAD_REQUEST);
         }
 
         account.setActive(false);

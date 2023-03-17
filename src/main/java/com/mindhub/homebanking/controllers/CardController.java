@@ -104,6 +104,7 @@ public class CardController {
         return new ResponseEntity<>("Card successfully created",HttpStatus.CREATED);
     }
 
+    @CrossOrigin("*")
     @PostMapping(path = "/cards/postnet")
     @Transactional
     public ResponseEntity<Object> payWithPostnet (@RequestBody PayPostnetDTO payPostnetDTO){
@@ -115,7 +116,7 @@ public class CardController {
 
         Card card = cardRepository.findByNumber(cardNumber);
         Client client = card.getClient();
-        Account account = client.getAccounts().stream().findFirst().orElse(null);
+        Account account = client.getAccounts().stream().filter(account1 -> account1.getBalance() >= amount).findFirst().orElse(null);
 
         if (!cardRepository.existsCardByNumber(cardNumber)){
             return  new ResponseEntity<>("The card does not exist", HttpStatus.BAD_REQUEST);
@@ -141,8 +142,16 @@ public class CardController {
             return new ResponseEntity<>("The security code is incorrect", HttpStatus.BAD_REQUEST);
         }
 
+        if (card.getCardType() == CardType.CREDIT){
+            return new ResponseEntity<>("Only debit cards accepted", HttpStatus.BAD_REQUEST);
+        }
+
         if (!card.getActive()){
             return  new ResponseEntity<>("The card is out of service", HttpStatus.BAD_REQUEST);
+        }
+
+        if (!card.getThruDate().isAfter(LocalDate.now()) ){
+            return new ResponseEntity<>("The card is expired", HttpStatus.BAD_REQUEST);
         }
 
         if (account==null){

@@ -85,6 +85,7 @@ createApp({
             .then(() => {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
               this.getClient();
+              this.getCards();
             })
             .catch((err) => console.log(err));
         }
