@@ -27,6 +27,7 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
+
     <!-- CSS Files -->
     <link rel="stylesheet" href="./assets/css/argon-dashboard.css" />
     <link rel="stylesheet" href="./assets/css/styleAccounts.css" />
@@ -96,7 +97,7 @@
             <li class="nav-item mt-3">
               <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="../pages/profile.html">
                 <div
                   class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
@@ -105,7 +106,7 @@
                 </div>
                 <span class="nav-link-text ms-1">Profile</span>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="./index.html">
                 <div
@@ -188,6 +189,19 @@
               <h4 class="description-card-accounts text-center py-3">
                 Here are the movements of account {{account.number}}
               </h4>
+              <div class="d-flex justify-content-evenly align-items-center w-100">
+                <div class="my-4">
+                  <label for="startDate">Start Date</label>
+                  <input id="startDate" v-model="startDate" class="form-control" type="date" />
+                </div>
+                <button @click="filterTransactions" class="button-account mb-4 w-15" type="button">
+                  <span class="p-1">Filter</span>
+                </button>
+                <div class="my-4">
+                  <label for="endDate">End Date</label>
+                  <input id="endDate" v-model="endDate" class="form-control" type="date" />
+                </div>
+              </div>
               <table class="table-responsive w-100 table-movements text-center">
                 <thead>
                   <tr>

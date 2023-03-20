@@ -17,4 +17,6 @@ public interface AccountService {
 
     Account findByNumber (String number);
 
+    void saveAll(List<Account> accounts);
+
 }

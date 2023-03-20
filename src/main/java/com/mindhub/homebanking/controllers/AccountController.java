@@ -66,7 +66,7 @@ public class AccountController {
     }
 
     @RequestMapping(path = "/clients/current/accounts/{id}", method = RequestMethod.PATCH)
-    public ResponseEntity<Object> deleteCard (Authentication authentication, @PathVariable Long id) {
+    public ResponseEntity<Object> deleteAcount (Authentication authentication, @PathVariable Long id) {
 
         Client client = clientService.findByEmail(authentication.getName());
         Account account = accountService.findById(id).orElse(null);

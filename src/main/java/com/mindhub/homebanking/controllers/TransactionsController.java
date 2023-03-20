@@ -1,5 +1,6 @@
 package com.mindhub.homebanking.controllers;
 
+import com.mindhub.homebanking.dtos.TransactionDTO;
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.models.Transaction;
@@ -7,31 +8,36 @@ import com.mindhub.homebanking.models.TransactionType;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.services.ServicesImplementation.AccountServiceImpl;
+import com.mindhub.homebanking.services.ServicesImplementation.ClientServiceImpl;
+import com.mindhub.homebanking.services.ServicesImplementation.TransactionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.lang.reflect.UndeclaredThrowableException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
 public class TransactionsController {
 
     @Autowired
-    private TransactionRepository transactionRepository;
+    private TransactionServiceImpl transactionService;
 
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountServiceImpl accountService;
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientServiceImpl clientService;
 
     @Transactional
     @RequestMapping(path = "/transactions", method = RequestMethod.POST)
@@ -41,10 +47,10 @@ public class TransactionsController {
                                                   @RequestParam String targetAccountNumber,
                                                   Authentication authentication){
 
-        Account originAccount = accountRepository.findByNumber(originAccountNumber);
-        Account targetAccount = accountRepository.findByNumber(targetAccountNumber);
+        Account originAccount = accountService.findByNumber(originAccountNumber);
+        Account targetAccount = accountService.findByNumber(targetAccountNumber);
 
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientService.findByEmail(authentication.getName());
 
         if (client != null) {
 
@@ -68,13 +74,13 @@ public class TransactionsController {
                 return new ResponseEntity<>("Cannot make a transaction to the same account", HttpStatus.FORBIDDEN);
             }
 
-            if (!accountRepository.existsAccountByNumber(originAccountNumber)){
+            if (!accountService.existsAccountByNumber(originAccountNumber)){
                 return new ResponseEntity<>("The source account does not exist", HttpStatus.BAD_REQUEST);
             }
-            if (!client.getAccounts().contains(accountRepository.findByNumber(originAccountNumber))){
+            if (!client.getAccounts().contains(accountService.findByNumber(originAccountNumber))){
                 return new ResponseEntity<>("The account of origin does not belong to you", HttpStatus.BAD_REQUEST);
             }
-            if (!accountRepository.existsAccountByNumber(targetAccountNumber)){
+            if (!accountService.existsAccountByNumber(targetAccountNumber)){
                 return new ResponseEntity<>("Target account does not exist", HttpStatus.BAD_REQUEST);
             }
 
@@ -100,12 +106,12 @@ public class TransactionsController {
             originAccount.addTransaction(transactionDebit);
             targetAccount.addTransaction(transactionCredit);
 
-            transactionRepository.saveAll(List.of(transactionDebit,transactionCredit));
+            transactionService.saveAll(List.of(transactionDebit,transactionCredit));
 
             originAccount.setBalance(originAccount.getBalance() - amount);
             targetAccount.setBalance(targetAccount.getBalance() + amount);
 
-            accountRepository.saveAll(List.of(originAccount,targetAccount));
+            accountService.saveAll(List.of(originAccount,targetAccount));
 
             return new ResponseEntity<>("Transaction successfully completed", HttpStatus.CREATED);
             }
@@ -115,4 +121,29 @@ public class TransactionsController {
             return new ResponseEntity<>("Not an authorized client",HttpStatus.UNAUTHORIZED);
         }
     }
+
+    @GetMapping(path = "/transactions/filter")
+    public Set<TransactionDTO>  filterTransactions (@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+                                                   @RequestParam (required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
+                                                   @RequestParam Long accountId){
+
+//        Client client = clientService.findByEmail(authentication.getName());
+        Account account = accountService.findById(accountId).orElse(null);
+        assert account != null;
+        Set<Transaction> filteredTransactions= account.getTransactions();
+
+        if (startDate == null && endDate!=null){
+            filteredTransactions = filteredTransactions.stream().filter(transaction -> transaction.getDate().isBefore(endDate)).collect(Collectors.toSet());
+        }
+        if (startDate != null && endDate==null){
+            filteredTransactions = filteredTransactions.stream().filter(transaction -> transaction.getDate().isAfter(startDate)).collect(Collectors.toSet());
+        }
+        if(startDate != null && endDate!= null){
+            filteredTransactions = filteredTransactions.stream().filter(transaction -> transaction.getDate().isBefore(endDate) && transaction.getDate().isAfter(startDate)).collect(Collectors.toSet());
+        }
+
+        return  filteredTransactions.stream().map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toSet());
+
+    }
+
 }

@@ -39,4 +39,9 @@ public class AccountServiceImpl implements AccountService {
     public Account findByNumber(String number) {
         return accountRepository.findByNumber(number);
     }
+
+    @Override
+    public void saveAll(List<Account> accounts) {
+        accountRepository.saveAll(accounts);
+    }
 }

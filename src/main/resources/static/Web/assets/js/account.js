@@ -8,10 +8,13 @@ createApp({
       account: {},
       clientLoans: [],
       transactions: [],
+      startDate: null,
+      endDate: null,
     };
   },
   created() {
     this.getClient();
+    this.getAccounts();
   },
   mounted() {
     let script = document.createElement("script");
@@ -20,15 +23,22 @@ createApp({
   },
   methods: {
     getClient() {
-      let stringUrlWithID = location.search;
-      let generateUrl = new URLSearchParams(stringUrlWithID);
-      this.accountId = generateUrl.get("id");
       axios
         .get("/api/clients/current")
         .then((response) => {
           this.client = response.data;
           this.clientLoans = response.data.loans;
-          this.account = this.client.accounts.find((account) => account.id == this.accountId);
+        })
+        .catch((err) => console.log(err));
+    },
+    getAccounts() {
+      let stringUrlWithID = location.search;
+      let generateUrl = new URLSearchParams(stringUrlWithID);
+      this.accountId = generateUrl.get("id");
+      axios
+        .get("/api/clients/current/accounts")
+        .then((response) => {
+          this.account = response.data.find((account) => account.id == this.accountId);
           this.transactions = this.account.transactions.sort((a, b) => b.date - a.date);
         })
         .catch((err) => console.log(err));
@@ -65,6 +75,18 @@ createApp({
             location.href = "./index.html";
           });
         })
+        .catch((err) => console.log(err));
+    },
+    filterTransactions() {
+      console.log(this.startDate);
+      console.log(this.endDate);
+      console.log(this.accountId);
+      axios
+        .get(
+          `/api/transactions/filter`,
+          `startDate=${this.startDate}&endDate=${this.endDate}$accountId=${this.accountId}`
+        )
+        .then((res) => console.log(res))
         .catch((err) => console.log(err));
     },
   },
