@@ -193,16 +193,16 @@
               </h4>
 
               <div class="container-filter w-100">
-                <div class="my-4 d-flex flex-column align-items-center">
-                  <label for="startDate" class="fs-5">Start Date</label>
-                  <input id="startDate" v-model="startDate" class="form-control fs-5" type="date" />
+                <div class=" container-inputs">
+                  <label for="startDate" class="label-start-date">Start Date</label>
+                  <input id="startDate" v-model="startDate" class="form-control input-date" type="date" />
                 </div>
                 <button @click="filterTransactions" class="button-account mb-4" type="button">
                   <span class="p-1">Filter</span>
                 </button>
-                <div class="my-4 d-flex flex-column align-items-center">
-                  <label for="endDate" class="fs-5">End Date</label>
-                  <input id="endDate" v-model="endDate" class="form-control fs-5" type="date" />
+                <div class=" container-inputs">
+                  <label for="endDate" class="label-end-date">End Date</label>
+                  <input id="endDate" v-model="endDate" class="form-control input-date" type="date" />
                 </div>
               </div>
 
@@ -212,7 +212,7 @@
                     <th scope="col">Type</th>
                     <th scope="col">Date</th>
                     <th scope="col">Time</th>
-                    <th scope="col">Description</th>
+                    <th scope="col" class="description">Description</th>
                     <th scope="col">Amount</th>
                   </tr>
                 </thead>
@@ -226,7 +226,7 @@
                     </td>
                     <td class="bg-light text-dark border border-secondary">{{parseDate(transaction.date)}}</td>
                     <td class="bg-light text-dark border border-secondary">{{parseTime(transaction.date)}}</td>
-                    <td class="text-light border border-secondary">{{transaction.description}}</td>
+                    <td class="text-light border border-secondary description">{{transaction.description}}</td>
                     <td
                       class="bg-light border border-secondary"
                       :class="transaction.type == 'DEBIT' ? 'text-danger-emphasis' : 'text-success-emphasis'"
