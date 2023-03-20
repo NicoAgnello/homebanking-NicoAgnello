@@ -5,6 +5,8 @@ import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
@@ -18,12 +20,12 @@ import static org.springframework.http.ContentDisposition.empty;
 
 // PARA H2
 
-@SpringBootTest
+//@SpringBootTest
 
 //PARA POSTGRES
 
-//@DataJpaTest
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 
 
 public class RepositoriesTest {

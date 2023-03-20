@@ -39,7 +39,7 @@ createApp({
         .get("/api/clients/current/accounts")
         .then((response) => {
           this.account = response.data.find((account) => account.id == this.accountId);
-          this.transactions = this.account.transactions.sort((a, b) => b.date - a.date);
+          this.transactions = this.account.transactions.sort((a, b) => b.id - a.id);
         })
         .catch((err) => console.log(err));
     },
@@ -82,7 +82,7 @@ createApp({
       this.endDate = this.endDate ? new Date(this.endDate).toISOString() : "";
       axios
         .get(`/api/transactions/filter?accountId=${this.accountId}&startDate=${this.startDate}&endDate=${this.endDate}`)
-        .then((res) => (this.transactions = res.data.sort((a, b) => b.date - a.date)))
+        .then((res) => (this.transactions = res.data.sort((a, b) => b.id - a.id)))
         .then(() => {
           this.startDate = "";
           this.endDate = "";
@@ -96,7 +96,7 @@ createApp({
         filename: "transactions-MB.pdf",
         image: { type: "jpeg", quality: 1 },
         html2canvas: { scale: 2 },
-        jsPDF: { unit: "in", format: "a3", orientation: "portrait" },
+        jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
       };
       html2pdf()
         .set(opt)
