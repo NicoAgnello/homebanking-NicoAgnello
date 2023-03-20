@@ -37,7 +37,7 @@ body {
 }
 
 .nav-lateral {
-  max-height: 60vh;
+  max-height: 50vh;
 }
 
 .nav-lateral::-webkit-scrollbar {

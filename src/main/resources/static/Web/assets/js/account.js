@@ -82,11 +82,26 @@ createApp({
       this.endDate = this.endDate ? new Date(this.endDate).toISOString() : "";
       axios
         .get(`/api/transactions/filter?accountId=${this.accountId}&startDate=${this.startDate}&endDate=${this.endDate}`)
-        .then((res) => (this.transactions = res.data))
+        .then((res) => (this.transactions = res.data.sort((a, b) => b.date - a.date)))
         .then(() => {
           this.startDate = "";
           this.endDate = "";
         })
+        .catch((err) => console.log(err));
+    },
+    generatePDF() {
+      const elementToConvert = document.getElementById("table-transactions");
+      let opt = {
+        margin: 1,
+        filename: "transactions-MB.pdf",
+        image: { type: "jpeg", quality: 1 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "in", format: "a3", orientation: "portrait" },
+      };
+      html2pdf()
+        .set(opt)
+        .from(elementToConvert)
+        .save()
         .catch((err) => console.log(err));
     },
   },
