@@ -36,17 +36,17 @@ public class ClientController {
     @Autowired
     private ClientServiceImpl clientService;
 
-    @RequestMapping("/clients")
+    @GetMapping("/clients")
     public List<ClientDTO> getClients (){
        return clientService.findAll().stream().map(ClientDTO::new).collect(toList());
     }
 
-    @RequestMapping("clients/{id}")
+    @GetMapping("clients/{id}")
     public ClientDTO getClient (@PathVariable Long id){
         return clientService.findById(id).map(client -> new ClientDTO(client)).orElse(null);
     }
 
-    @RequestMapping(path = "/clients", method = RequestMethod.POST)
+    @PostMapping(path = "/clients")
     public ResponseEntity<Object> register (
             @RequestParam String firstName, @RequestParam String lastName,
             @RequestParam String email, @RequestParam String password){
@@ -80,7 +80,7 @@ public class ClientController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @RequestMapping(path = "/clients/current", method = RequestMethod.GET)
+    @GetMapping(path = "/clients/current")
         public ClientDTO getCurrent(Authentication authentication) {
             return new ClientDTO( clientService.findByEmail( authentication.getName()));
         }

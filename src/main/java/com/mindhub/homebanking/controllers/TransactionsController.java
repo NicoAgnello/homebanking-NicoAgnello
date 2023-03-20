@@ -40,7 +40,7 @@ public class TransactionsController {
     private ClientServiceImpl clientService;
 
     @Transactional
-    @RequestMapping(path = "/transactions", method = RequestMethod.POST)
+    @PostMapping(path = "/transactions")
     public ResponseEntity<Object> newTransaction (@RequestParam (required = false) Double amount,
                                                   @RequestParam String description,
                                                   @RequestParam String originAccountNumber,

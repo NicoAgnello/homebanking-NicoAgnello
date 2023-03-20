@@ -1,13 +1,9 @@
 package com.mindhub.homebanking.controllers;
 
 import com.mindhub.homebanking.dtos.AccountDTO;
-import com.mindhub.homebanking.dtos.ClientDTO;
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.AccountType;
-import com.mindhub.homebanking.models.Card;
 import com.mindhub.homebanking.models.Client;
-import com.mindhub.homebanking.repositories.AccountRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.services.ServicesImplementation.AccountServiceImpl;
 import com.mindhub.homebanking.services.ServicesImplementation.ClientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,23 +27,23 @@ public class AccountController {
     @Autowired
     private AccountServiceImpl accountService;
 
-    @RequestMapping("/accounts")
+    @GetMapping("/accounts")
     public List<AccountDTO> getAccounts (){
         return accountService.findAll().stream().map(AccountDTO::new).collect(toList());
     }
 
-    @RequestMapping("/accounts/{id}")
+    @GetMapping("/accounts/{id}")
     public AccountDTO getAccount (@PathVariable Long id){
         return accountService.findById(id).map(account -> new AccountDTO(account)).orElse(null);
     }
 
-    @RequestMapping("/clients/current/accounts")
+    @GetMapping("/clients/current/accounts")
     public List <AccountDTO> getCurrentAccounts( Authentication authentication){
         Client client = clientService.findByEmail(authentication.getName());
         return client.getAccounts().stream().filter(account -> account.getActive()==true).map(account -> new AccountDTO(account)).collect(toList());
     }
 
-    @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)
+    @PostMapping(path = "/clients/current/accounts")
     public ResponseEntity <Object> newAccount (
             Authentication authentication, @RequestParam AccountType accountType
     ){
@@ -65,7 +61,7 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(path = "/clients/current/accounts/{id}", method = RequestMethod.PATCH)
+    @PatchMapping(path = "/clients/current/accounts/{id}")
     public ResponseEntity<Object> deleteAcount (Authentication authentication, @PathVariable Long id) {
 
         Client client = clientService.findByEmail(authentication.getName());

@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
@@ -41,7 +38,7 @@ public class LoansController {
     @Autowired
     private ClientLoanServiceImpl clientLoanService;
 
-    @RequestMapping("/loans")
+    @GetMapping("/loans")
         public List<LoanDTO> getLoans(){
             return loanService.findAll().stream().map(loan -> new LoanDTO(loan)).collect(Collectors.toList());
         }

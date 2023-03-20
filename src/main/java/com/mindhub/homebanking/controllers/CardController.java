@@ -48,13 +48,13 @@ public class CardController {
         return client.getCards().stream().map(card -> new CardDTO(card)).collect(Collectors.toList());
     }
 
-    @RequestMapping("/clients/current/cards")
+    @GetMapping("/clients/current/cards")
     public List<CardDTO> getCurrentCards (Authentication authentication){
         Client client = clientService.findByEmail(authentication.getName());
         return client.getCards().stream().filter(card -> card.getActive()==true).map(card -> new CardDTO(card)).collect(Collectors.toList());
     }
 
-    @RequestMapping(path = "/clients/current/cards/{id}", method = RequestMethod.PATCH)
+    @PatchMapping(path = "/clients/current/cards/{id}")
     public ResponseEntity<Object> deleteCard (Authentication authentication, @PathVariable Long id) {
 
         Client client = clientService.findByEmail(authentication.getName());
@@ -81,7 +81,7 @@ public class CardController {
         return new ResponseEntity<>("Card deleted", HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(path = "/clients/current/cards", method = RequestMethod.POST)
+    @PostMapping(path = "/clients/current/cards")
     public ResponseEntity<Object> newCard (@RequestParam CardColor cardColor, @RequestParam CardType cardType, Authentication authentication){
 
         Client client = clientService.findByEmail(authentication.getName());
