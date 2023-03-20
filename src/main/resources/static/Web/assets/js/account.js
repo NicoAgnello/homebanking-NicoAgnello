@@ -8,8 +8,8 @@ createApp({
       account: {},
       clientLoans: [],
       transactions: [],
-      startDate: null,
-      endDate: null,
+      startDate: "",
+      endDate: "",
     };
   },
   created() {
@@ -78,15 +78,15 @@ createApp({
         .catch((err) => console.log(err));
     },
     filterTransactions() {
-      console.log(this.startDate);
-      console.log(this.endDate);
-      console.log(this.accountId);
+      this.startDate = this.startDate ? new Date(this.startDate).toISOString() : "";
+      this.endDate = this.endDate ? new Date(this.endDate).toISOString() : "";
       axios
-        .get(
-          `/api/transactions/filter`,
-          `startDate=${this.startDate}&endDate=${this.endDate}$accountId=${this.accountId}`
-        )
-        .then((res) => console.log(res))
+        .get(`/api/transactions/filter?accountId=${this.accountId}&startDate=${this.startDate}&endDate=${this.endDate}`)
+        .then((res) => (this.transactions = res.data))
+        .then(() => {
+          this.startDate = "";
+          this.endDate = "";
+        })
         .catch((err) => console.log(err));
     },
   },

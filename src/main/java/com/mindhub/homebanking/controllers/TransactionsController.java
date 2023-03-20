@@ -123,12 +123,13 @@ public class TransactionsController {
     }
 
     @GetMapping(path = "/transactions/filter")
-    public Set<TransactionDTO>  filterTransactions (@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+    public Set<TransactionDTO>  filterTransactions (@RequestParam Long accountId,
+                                                    @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
                                                    @RequestParam (required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
-                                                   @RequestParam Long accountId){
+                                                    Authentication authentication){
 
-//        Client client = clientService.findByEmail(authentication.getName());
-        Account account = accountService.findById(accountId).orElse(null);
+        Client client = clientService.findByEmail(authentication.getName());
+        Account account = client.getAccounts().stream().filter(account1 -> account1.getId() == accountId).findFirst().orElse(null);
         assert account != null;
         Set<Transaction> filteredTransactions= account.getTransactions();
 
@@ -138,7 +139,7 @@ public class TransactionsController {
         if (startDate != null && endDate==null){
             filteredTransactions = filteredTransactions.stream().filter(transaction -> transaction.getDate().isAfter(startDate)).collect(Collectors.toSet());
         }
-        if(startDate != null && endDate!= null){
+        if(startDate != null && endDate != null){
             filteredTransactions = filteredTransactions.stream().filter(transaction -> transaction.getDate().isBefore(endDate) && transaction.getDate().isAfter(startDate)).collect(Collectors.toSet());
         }
 
