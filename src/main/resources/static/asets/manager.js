@@ -31,7 +31,7 @@ createApp({
     validateEmail(email) {
       return /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)$/.test(email);
     },
-    
+
     addClient() {
       if (this.validateEmail(this.email)) {
         this.postClient();
@@ -85,6 +85,30 @@ createApp({
           .then(() => this.loadData())
           .catch((err) => console.log(err));
       }
+    },
+    singout() {
+      axios
+        .post("/api/logout")
+        .then(() => {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
+          Toast.fire({
+            icon: "error",
+            title: "Closing session",
+          }).then((response) => {
+            location.href = "./web/index.html";
+          });
+        })
+        .catch((err) => console.log(err));
     },
   },
   computed: {},

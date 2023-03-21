@@ -21,7 +21,7 @@ createApp({
           headers: { "content-type": "application/x-www-form-urlencoded" },
         })
         .then(() => {
-          if ((this.email = "admin@midnhub.com")) {
+          if (this.email == "admin@midnhub.com") {
             location.href = "./accounts.html";
           } else {
             location.href = "../manager.html";
