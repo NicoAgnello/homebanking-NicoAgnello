@@ -140,7 +140,7 @@
               <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
               <ul class="navbar-nav justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                  <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+                  <a v-cloak href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                     <i class="fa fa-user me-sm-1"></i>
                     <span class="d-sm-inline client-name">{{client.firstName}}</span>
                   </a>
@@ -185,7 +185,7 @@
                     </select>
                   </div>
 
-                  <template v-if="typeTransaction == 'originAccount'">
+                  <template v-cloak v-if="typeTransaction == 'originAccount'">
                     <div class="mb-3">
                       <label class="fs-5" for="originAccount">Choose a source account</label>
                       <select
@@ -221,7 +221,7 @@
                     </div>
                   </template>
 
-                  <template v-if="typeTransaction == 'targetAccount'">
+                  <template v-cloak v-if="typeTransaction == 'targetAccount'">
                     <div class="mb-3">
                       <label class="fs-5" for="sourceAccount">Choose a source account</label>
                       <select
@@ -277,7 +277,7 @@
                   />
                 </div>
                 <button type="submit" @click="confirmTransaction" class="boton-send btn w-100">Enviar</button>
-                <template v-if="originAccountNumber.startsWith('VIN')	">
+                <template v-cloak v-if="originAccountNumber.startsWith('VIN')	">
                   <div class="balance-card card text-center mt-3">
                     <div class="balance-body card text-center">
                       <div class="balance-title card-header fs-2">{{originAccountNumber}}</div>

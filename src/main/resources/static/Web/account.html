@@ -153,7 +153,7 @@
               <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
               <ul class="navbar-nav justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                  <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+                  <a v-cloak href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                     <i class="fa fa-user me-sm-1"></i>
                     <span class="d-sm-inline client-name">{{client.firstName}}</span>
                   </a>
@@ -176,7 +176,7 @@
             </div>
           </div>
         </nav>
-        <div class="main-container">
+        <div v-cloak class="main-container">
           <div class="container-accounts">
             <div class="d-flex gap-2">
               <div class="pt-3" v-for="accounts of client.accounts">

@@ -6,6 +6,10 @@
   --fuentePrincipal: "Secular One", sans-serif;
 }
 
+[v-cloak] {
+  display: none;
+}
+
 /* Scroll Bar */
 
 body::-webkit-scrollbar {

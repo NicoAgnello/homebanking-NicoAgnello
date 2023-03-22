@@ -140,7 +140,7 @@
               <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
               <ul class="navbar-nav justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                  <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+                  <a v-cloak href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                     <i class="fa fa-user me-sm-1"></i>
                     <span class="d-sm-inline client-name">{{client.firstName}}</span>
                   </a>
@@ -167,7 +167,7 @@
           <div>
             <div class="row container-form-img my-2">
               <div class="col-12 col-lg-6 p-4 px-0">
-                <form @submit.prevent class="mx-auto d-flex-column justify-content-center" id="loan-form">
+                <form v-cloak @submit.prevent class="mx-auto d-flex-column justify-content-center" id="loan-form">
                   <div class="mb-3">
                     <div class="mb-3">
                       <label class="fs-5 align-items-end" for="typeLoan">Type of loan</label>
@@ -237,12 +237,12 @@
                   </div>
                 </form>
               </div>
-              <div class="col-lg-6 align-self-center">
+              <div v-cloak class="col-lg-6 align-self-center">
                 <img src="./assets/img/home/g8.svg" alt="img-form-transaction" class="img-fluid" />
               </div>
             </div>
           </div>
-          <div>
+          <div v-cloak>
             <div class="mb-4 container-loan" v-for="loan of loansInfo">
               <h4 class="text-center fs-3">{{loan.title}}<img :src="loan.imgSrc" alt="hipoteca" class="ms-3" /></h4>
               <p class="text-center fs-4 paragraph-info-loan">{{loan.description}}</p>
