@@ -3,10 +3,6 @@ package com.mindhub.homebanking.controllers;
 import com.mindhub.homebanking.dtos.CardDTO;
 import com.mindhub.homebanking.dtos.PayPostnetDTO;
 import com.mindhub.homebanking.models.*;
-import com.mindhub.homebanking.repositories.AccountRepository;
-import com.mindhub.homebanking.repositories.CardRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
-import com.mindhub.homebanking.repositories.TransactionRepository;
 import com.mindhub.homebanking.services.ServicesImplementation.AccountServiceImpl;
 import com.mindhub.homebanking.services.ServicesImplementation.CardServiceImpl;
 import com.mindhub.homebanking.services.ServicesImplementation.ClientServiceImpl;
@@ -108,9 +104,9 @@ public class CardController {
         return new ResponseEntity<>("Card successfully created",HttpStatus.CREATED);
     }
 
-    @CrossOrigin("*")
-    @PostMapping(path = "/cards/postnet")
+    @CrossOrigin
     @Transactional
+    @PostMapping(path = "/cards/postnet")
     public ResponseEntity<Object> payWithPostnet (@RequestBody PayPostnetDTO payPostnetDTO){
 
         String cardNumber = payPostnetDTO.getCardNumber();

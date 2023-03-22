@@ -4,6 +4,8 @@ import com.mindhub.homebanking.dtos.AccountDTO;
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.AccountType;
 import com.mindhub.homebanking.models.Client;
+import com.mindhub.homebanking.services.AccountService;
+import com.mindhub.homebanking.services.ClientService;
 import com.mindhub.homebanking.services.ServicesImplementation.AccountServiceImpl;
 import com.mindhub.homebanking.services.ServicesImplementation.ClientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,10 @@ import static java.util.stream.Collectors.toList;
 @RequestMapping("/api")
 public class AccountController {
     @Autowired
-    private ClientServiceImpl clientService;
+    private ClientService clientService;
 
     @Autowired
-    private AccountServiceImpl accountService;
+    private AccountService accountService;
 
     @GetMapping("/accounts")
     public List<AccountDTO> getAccounts (){

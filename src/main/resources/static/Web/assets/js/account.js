@@ -78,14 +78,12 @@ createApp({
         .catch((err) => console.log(err));
     },
     filterTransactions() {
-      this.startDate = this.startDate ? new Date(this.startDate).toISOString() : "";
-      this.endDate = this.endDate ? new Date(this.endDate).toISOString() : "";
+      let startDate = this.startDate ? new Date(this.startDate).toJSON() : "";
+      let endDate = this.endDate ? new Date(this.endDate).toJSON() : "";
       axios
-        .get(`/api/transactions/filter?accountId=${this.accountId}&startDate=${this.startDate}&endDate=${this.endDate}`)
-        .then((res) => (this.transactions = res.data.sort((a, b) => b.id - a.id)))
-        .then(() => {
-          this.startDate = "";
-          this.endDate = "";
+        .get(`/api/transactions/filter?accountId=${this.accountId}&startDate=${startDate}&endDate=${endDate}`)
+        .then((res) => {
+          this.transactions = res.data.sort((a, b) => b.id - a.id);
         })
         .catch((err) => console.log(err));
     },

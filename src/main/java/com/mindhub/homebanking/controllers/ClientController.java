@@ -7,6 +7,8 @@ import com.mindhub.homebanking.models.AccountType;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
+import com.mindhub.homebanking.services.AccountService;
+import com.mindhub.homebanking.services.ClientService;
 import com.mindhub.homebanking.services.ServicesImplementation.AccountServiceImpl;
 import com.mindhub.homebanking.services.ServicesImplementation.ClientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.mindhub.homebanking.utils.Utilities.randomNumberAccount;
 import static java.util.stream.Collectors.toList;
@@ -28,13 +31,13 @@ import static java.util.stream.Collectors.toList;
 public class ClientController {
 
     @Autowired
-    private AccountServiceImpl accountService;
+    private AccountService accountService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private ClientServiceImpl clientService;
+    private ClientService clientService;
 
     @GetMapping("/clients")
     public List<ClientDTO> getClients (){
@@ -82,7 +85,10 @@ public class ClientController {
 
     @GetMapping(path = "/clients/current")
         public ClientDTO getCurrent(Authentication authentication) {
-            return new ClientDTO( clientService.findByEmail( authentication.getName()));
+            Client client = clientService.findByEmail(authentication.getName());
+            client.setAccounts(client.getAccounts().stream().filter(account -> account.getActive()).collect(Collectors.toSet()));
+            client.setCards(client.getCards().stream().filter(card -> card.getActive()).collect(Collectors.toSet()));
+            return new ClientDTO(client);
         }
     }
 

@@ -8,9 +8,12 @@ import com.mindhub.homebanking.models.TransactionType;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.services.AccountService;
+import com.mindhub.homebanking.services.ClientService;
 import com.mindhub.homebanking.services.ServicesImplementation.AccountServiceImpl;
 import com.mindhub.homebanking.services.ServicesImplementation.ClientServiceImpl;
 import com.mindhub.homebanking.services.ServicesImplementation.TransactionServiceImpl;
+import com.mindhub.homebanking.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -31,13 +34,13 @@ import java.util.stream.Collectors;
 public class TransactionsController {
 
     @Autowired
-    private TransactionServiceImpl transactionService;
+    private TransactionService transactionService;
 
     @Autowired
-    private AccountServiceImpl accountService;
+    private AccountService accountService;
 
     @Autowired
-    private ClientServiceImpl clientService;
+    private ClientService clientService;
 
     @Transactional
     @PostMapping(path = "/transactions")

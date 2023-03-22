@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 
 
 @EnableWebSecurity
-
 @Configuration
 public class WebAuthorization{
 
@@ -25,8 +24,8 @@ public class WebAuthorization{
 
         http.authorizeRequests()
 
-                .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
-                .antMatchers("/web/index.html", "/web/assets/**","/web/login-register.html" ).permitAll()
+                .antMatchers(HttpMethod.POST, "/api/clients", "/api/cards/postnet").permitAll()
+                .antMatchers("/web/index.html", "/web/assets/**","/web/login-register.html").permitAll()
                 .antMatchers("/api/clients/current").hasAuthority("CLIENT")
                 .antMatchers("/api/clients/current/accounts","/api/clients/current/cards", "/api/loans", "/api/transactions/filter").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.PATCH, "/api/clients/current/cards/**").hasAuthority("CLIENT")
@@ -35,7 +34,8 @@ public class WebAuthorization{
                 .antMatchers("/manager.html", "/create.html", "/api/clients/**", "/h2-console","/h2-console/**","/rest/**", "/api/accounts/**", "/api/cards", "/api/accounts").hasAuthority("ADMIN")
                 .antMatchers("/api/loans").hasAnyAuthority("CLIENT", "ADMIN")
                 .antMatchers(HttpMethod.POST,"/api/loans/add").hasAuthority("ADMIN")
-                .antMatchers( "/web/accounts.html", "/web/account.html", "/web/cards.html","/web/create-cards.html", "/web/transactions.html", "/web/loan-application.html").hasAuthority("CLIENT");
+                .antMatchers( "/web/accounts.html", "/web/account.html", "/web/cards.html","/web/create-cards.html", "/web/transfers.html", "/web/loan-application.html").hasAuthority("CLIENT");
+//                .anyRequest().denyAll();
 
         http.formLogin()
 

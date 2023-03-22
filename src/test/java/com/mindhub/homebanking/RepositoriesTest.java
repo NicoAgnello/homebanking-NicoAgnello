@@ -78,7 +78,7 @@ public class RepositoriesTest {
     public void existTypeAccount(){
         List<Account> accounts = accountRepository.findAll();
 
-        assertThat(accounts, hasItem(hasProperty("accountType", isA(Enum.class))));
+        assertThat(accounts, hasItem(hasProperty("accountType", is(AccountType.SAVING))));
     }
 
     @Test

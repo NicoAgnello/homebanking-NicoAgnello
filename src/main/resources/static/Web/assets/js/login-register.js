@@ -21,10 +21,10 @@ createApp({
           headers: { "content-type": "application/x-www-form-urlencoded" },
         })
         .then(() => {
-          if (this.email == "admin@midnhub.com") {
-            location.href = "./accounts.html";
-          } else {
+          if (this.email == "admin@mindhub.com") {
             location.href = "../manager.html";
+          } else {
+            location.href = "./accounts.html";
           }
         })
         .catch(() => {

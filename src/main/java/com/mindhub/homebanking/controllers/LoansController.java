@@ -6,6 +6,7 @@ import com.mindhub.homebanking.dtos.LoanDTO;
 import com.mindhub.homebanking.dtos.newLoanDTO;
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.*;
+import com.mindhub.homebanking.services.*;
 import com.mindhub.homebanking.services.ServicesImplementation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,19 +25,19 @@ import java.util.stream.Collectors;
 public class LoansController {
 
     @Autowired
-    private ClientServiceImpl clientService;
+    private ClientService clientService;
 
     @Autowired
-    private LoanServiceImpl loanService;
+    private LoanService loanService;
 
     @Autowired
-    private AccountServiceImpl accountService;
+    private AccountService accountService;
 
     @Autowired
-    private TransactionServiceImpl transactionService;
+    private TransactionService transactionService;
 
     @Autowired
-    private ClientLoanServiceImpl clientLoanService;
+    private ClientLoanService clientLoanService;
 
     @GetMapping("/loans")
         public List<LoanDTO> getLoans(){
@@ -136,8 +137,7 @@ public class LoansController {
             return new ResponseEntity<>("The target account does not belong to you", HttpStatus.BAD_REQUEST);
         }
 
-
-        if(client.getClientLoan().contains(clientLoanService.findById(loanApplicationDTO.getId()).orElse(null))){
+        if(!client.getClientLoan().stream().filter(clientLoan -> clientLoan.getLoan().getId() == loanApplicationDTO.getId()).collect(Collectors.toSet()).isEmpty()){
             return new ResponseEntity<>("Can't take same loan twice", HttpStatus.BAD_REQUEST);
         }
 
@@ -145,6 +145,8 @@ public class LoansController {
         client.addClientLoan(clientLoan);
         loan.addClientLoan(clientLoan);
         clientLoanService.save(clientLoan);
+        clientService.save(client);
+        loanService.save(loan);
 
         Transaction transaction = new Transaction(LocalDateTime.now(), loanApplicationDTO.getAmount(), TransactionType.CREDIT, loan.getName() + " " + "loan approved", targetAccount.getBalance()+loanApplicationDTO.getAmount());
         targetAccount.addTransaction(transaction);

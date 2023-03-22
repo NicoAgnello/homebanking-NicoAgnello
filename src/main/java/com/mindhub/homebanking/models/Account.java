@@ -91,6 +91,7 @@ public class Account {
     public long getId() {
         return id;
     }
+
     public Client getClient() {
         return client;
     }

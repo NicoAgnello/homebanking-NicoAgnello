@@ -3,11 +3,13 @@ package com.mindhub.homebanking.utils;
 //import com.mindhub.homebanking.repositories.AccountRepository;
 //import com.mindhub.homebanking.repositories.CardRepository;
 
+import com.mindhub.homebanking.services.AccountService;
+import com.mindhub.homebanking.services.CardService;
 import com.mindhub.homebanking.services.ServicesImplementation.AccountServiceImpl;
 import com.mindhub.homebanking.services.ServicesImplementation.CardServiceImpl;
 
 public class Utilities {
-    public static String randomNumberAccount(AccountServiceImpl accountService){
+    public static String randomNumberAccount(AccountService accountService){
         String newNumber;
         Boolean numberBol;
         do {
@@ -26,7 +28,7 @@ public class Utilities {
         number= (int) (Math.floor(Math.random() * (999-100)) + 100);
         return number;
     }
-    public static String randomNumberCard(CardServiceImpl cardService){
+    public static String randomNumberCard(CardService cardService){
         String newNumber;
         Boolean cardOptional;
         do {

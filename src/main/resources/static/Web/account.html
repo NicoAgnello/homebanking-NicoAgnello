@@ -193,14 +193,14 @@
               </h4>
 
               <div class="container-filter w-100">
-                <div class=" container-inputs">
+                <div class="container-inputs">
                   <label for="startDate" class="label-start-date">Start Date</label>
                   <input id="startDate" v-model="startDate" class="form-control input-date" type="date" />
                 </div>
                 <button @click="filterTransactions" class="button-account mb-4" type="button">
                   <span class="p-1">Filter</span>
                 </button>
-                <div class=" container-inputs">
+                <div class="container-inputs">
                   <label for="endDate" class="label-end-date">End Date</label>
                   <input id="endDate" v-model="endDate" class="form-control input-date" type="date" />
                 </div>
@@ -214,6 +214,7 @@
                     <th scope="col">Time</th>
                     <th scope="col" class="description">Description</th>
                     <th scope="col">Amount</th>
+                    <th scope="col">Amount Account</th>
                   </tr>
                 </thead>
                 <tbody class="body-account border border-secondary" v-for="transaction of transactions">
@@ -232,6 +233,9 @@
                       :class="transaction.type == 'DEBIT' ? 'text-danger-emphasis' : 'text-success-emphasis'"
                     >
                       {{transaction.amount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })}}
+                    </td>
+                    <td class="text-light border border-secondary">
+                      {{transaction.accountAmount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })}}
                     </td>
                   </tr>
                 </tbody>
