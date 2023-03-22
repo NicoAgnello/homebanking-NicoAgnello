@@ -87,6 +87,11 @@ createApp({
         })
         .catch((err) => console.log(err));
     },
+    getLink() {
+      let startDate = this.startDate ? new Date(this.startDate).toJSON() : "";
+      let endDate = this.endDate ? new Date(this.endDate).toJSON() : "";
+      return `/api/transactions/export/pdf?accountId=${this.accountId}&startDate=${startDate}&endDate=${endDate}`;
+    },
     generatePDF() {
       const elementToConvert = document.getElementById("table-transactions");
       let opt = {

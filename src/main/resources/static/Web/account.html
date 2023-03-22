@@ -200,6 +200,7 @@
                 <button @click="filterTransactions" class="button-account mb-4" type="button">
                   <span class="p-1">Filter</span>
                 </button>
+
                 <div class="container-inputs">
                   <label for="endDate" class="label-end-date">End Date</label>
                   <input id="endDate" v-model="endDate" class="form-control input-date" type="date" />
@@ -240,10 +241,12 @@
                   </tr>
                 </tbody>
               </table>
-              <div @click="generatePDF" class="download-pdf d-flex justify-content-between align-items-center gap-2">
-                <span>Download</span>
+              <!-- <div @click="generatePDF" class="download-pdf d-flex justify-content-between align-items-center gap-2"> -->
+              <a :href="getLink()">
+                <span>Export to PDF</span>
                 <img class="icon-pdf" src="./assets/img/icons/pdf-icon.png" alt="pdf" />
-              </div>
+              </a>
+              <!-- </div> -->
             </template>
             <template v-else>
               <h3 class="dont-made-trans">
