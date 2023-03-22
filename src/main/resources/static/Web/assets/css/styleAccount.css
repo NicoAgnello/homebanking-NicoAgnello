@@ -74,11 +74,7 @@ td {
 
 .download-pdf:hover {
   background-color: var(--colorSecundario);
-}
-
-.download-pdf span:hover {
   color: whitesmoke;
-  font-weight: bold;
 }
 
 .label-start-date,
