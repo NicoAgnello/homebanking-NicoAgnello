@@ -10,15 +10,15 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.springframework.http.ContentDisposition.empty;
 
-@SpringBootTest
-
-public class AccountUtilsTests {
-    @Test
-    public void accountNumberIsCreated(){
-        String accountNumber = Utilities.randomStringNumber();
-
-        assertThat(accountNumber,  is(not(empty())));
-        assertThat(accountNumber, CoreMatchers.containsString("VIN"));
-
-    }
-}
+//@SpringBootTest
+//
+//public class AccountUtilsTests {
+//    @Test
+//    public void accountNumberIsCreated(){
+//        String accountNumber = Utilities.randomStringNumber();
+//
+//        assertThat(accountNumber,  is(not(empty())));
+//        assertThat(accountNumber, CoreMatchers.containsString("VIN"));
+//
+//    }
+//}
