@@ -109,8 +109,9 @@ createApp({
               payments: this.paymentsLoan,
               targetAccountNumber: this.accountLoan,
             })
+            .then((res) => console.log(res))
             .then(() => Swal.fire("Loan aproved!", "", "success"))
-            .then(() => (location.href = "./accounts.html"))
+            // .then(() => (location.href = "./accounts.html"))
             .catch((err) => {
               console.log(err);
               Swal.fire({
@@ -123,6 +124,14 @@ createApp({
           Swal.fire("Loan cancelled", "", "warning");
         }
       });
+    },
+    parseInterest(float) {
+      let number = float.toString().split(".")[1];
+      if (number.length < 2) {
+        return number * 10 + "%";
+      } else {
+        return number + "%";
+      }
     },
   },
 }).mount("#app");

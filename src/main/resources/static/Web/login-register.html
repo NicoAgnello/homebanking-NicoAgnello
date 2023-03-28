@@ -53,7 +53,7 @@
                   <label>Mail or Username</label>
                 </div>
                 <div class="passwd">
-                  <input type="password" name="" v-model="password" />
+                  <input type="password" name="" v-model="password" @keyup.enter="logIn(email, password)" />
                   <label>Password</label>
                 </div>
                 <div class="submit">
@@ -75,7 +75,7 @@
                   <label>Mail</label>
                 </div>
                 <div class="passwd">
-                  <input type="password" name="" v-model="userPassword" required />
+                  <input type="password" name="" v-model="userPassword" required   @keyup.enter="register" />
                   <label>Password</label>
                 </div>
                 <div class="submit">

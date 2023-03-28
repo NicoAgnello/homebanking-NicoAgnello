@@ -20,6 +20,8 @@ public class Loan {
     private String name;
     private double maxAmount;
 
+    private float interestRate;
+
     @ElementCollection
     @Column(name="payments")
     private List<Byte> payments = new ArrayList<>();
@@ -29,10 +31,19 @@ public class Loan {
 
     public Loan (){}
 
-    public Loan (String name, double maxAmount, List<Byte> payments){
+    public Loan (String name, double maxAmount, List<Byte> payments, float interestRate){
         this.name = name;
         this.maxAmount = maxAmount;
         this.payments = payments;
+        this.interestRate = interestRate;
+    }
+
+    public float getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(float interestRate) {
+        this.interestRate = interestRate;
     }
 
     public Set<ClientLoan> getClientLoan() {

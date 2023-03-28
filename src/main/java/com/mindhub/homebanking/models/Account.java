@@ -18,6 +18,8 @@ public class Account {
     private LocalDateTime creationDate;
     private double balance;
 
+    private AccountType accountType;
+
     @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
     Set<Transaction> transactions = new HashSet<>();
 
@@ -25,12 +27,32 @@ public class Account {
     @JoinColumn(name = "client_id")
     private Client client;
 
+    private Boolean active;
+
     public Account (){}
 
-    public Account ( String number, LocalDateTime creationDate, double balance){
+    public Account ( String number, LocalDateTime creationDate, double balance, AccountType accountType){
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
+        this.active = true;
+        this.accountType = accountType;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public Set<Transaction> getTransactions() {
@@ -69,6 +91,7 @@ public class Account {
     public long getId() {
         return id;
     }
+
     public Client getClient() {
         return client;
     }

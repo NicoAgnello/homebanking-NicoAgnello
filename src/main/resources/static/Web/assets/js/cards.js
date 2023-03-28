@@ -7,10 +7,13 @@ createApp({
       clientCardsDebit: [],
       clientCardsCredit: [],
       clientCards: [],
+      actualDate: "",
     };
   },
   created() {
     this.getClient();
+    this.getCards();
+    this.createActualDate();
   },
   mounted() {
     let script = document.createElement("script");
@@ -23,14 +26,21 @@ createApp({
         .get("/api/clients/current")
         .then((response) => {
           this.client = response.data;
-          this.clientCards = response.data.cards;
-          this.clientCardsDebit = response.data.cards.filter((card) => card.cardType == "DEBIT" && card.active == true);
-          this.clientCardsCredit = response.data.cards.filter((card) => card.cardType == "CREDIT"&& card.active == true);
+        })
+        .catch((err) => console.log(err));
+    },
+    getCards() {
+      axios
+        .get("/api/clients/current/cards")
+        .then((response) => {
+          this.clientCards = response.data;
+          this.clientCardsDebit = this.clientCards.filter((card) => card.cardType == "DEBIT");
+          this.clientCardsCredit = this.clientCards.filter((card) => card.cardType == "CREDIT");
         })
         .catch((err) => console.log(err));
     },
     parseDate(date) {
-      let fecha = date.split("-").slice(0, 2).reverse().join("-");
+      let fecha = date.split("-").reverse().join("-");
       return fecha;
     },
 
@@ -58,30 +68,32 @@ createApp({
         })
         .catch((err) => console.log(err));
     },
-    confirmDeleteCard(id){
-      console.log(id)
+    confirmDeleteCard(id) {
+      console.log(id);
       Swal.fire({
-        title: '¿Are you sure you want to delete this card?',
+        title: "¿Are you sure you want to delete this card?",
         text: "You won't be able to revert this!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.patch(`/api/clients/current/cards/${id}`)
-          .then(()=>{
-              Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            )
-            this.getClient();
-          })
-          .catch(err => console.log(err))
+          axios
+            .patch(`/api/clients/current/cards/${id}`)
+            .then(() => {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              this.getClient();
+              this.getCards();
+            })
+            .catch((err) => console.log(err));
         }
-      })
+      });
+    },
+    createActualDate() {
+      let fecha = new Date().toLocaleString().split(",")[0].split("/").reverse().join("-");
+      this.actualDate = fecha;
     },
   },
 }).mount("#app");

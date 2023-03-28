@@ -12,6 +12,8 @@
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- PDF
+    <script src="html2pdf.bundle.min.js"></script> -->
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,6 +29,7 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
+
     <!-- CSS Files -->
     <link rel="stylesheet" href="./assets/css/argon-dashboard.css" />
     <link rel="stylesheet" href="./assets/css/styleAccounts.css" />
@@ -96,7 +99,7 @@
             <li class="nav-item mt-3">
               <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="../pages/profile.html">
                 <div
                   class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
@@ -105,7 +108,7 @@
                 </div>
                 <span class="nav-link-text ms-1">Profile</span>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="./index.html">
                 <div
@@ -116,7 +119,7 @@
                 <span class="nav-link-text ms-1">Sign In</span>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="../pages/sign-up.html">
                 <div
                   class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
@@ -125,7 +128,7 @@
                 </div>
                 <span class="nav-link-text ms-1">Sign Up</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </aside>
@@ -150,7 +153,7 @@
               <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
               <ul class="navbar-nav justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                  <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+                  <a v-cloak href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                     <i class="fa fa-user me-sm-1"></i>
                     <span class="d-sm-inline client-name">{{client.firstName}}</span>
                   </a>
@@ -173,7 +176,7 @@
             </div>
           </div>
         </nav>
-        <div class="main-container">
+        <div v-cloak class="main-container">
           <div class="container-accounts">
             <div class="d-flex gap-2">
               <div class="pt-3" v-for="accounts of client.accounts">
@@ -188,14 +191,31 @@
               <h4 class="description-card-accounts text-center py-3">
                 Here are the movements of account {{account.number}}
               </h4>
-              <table class="table-responsive w-100 table-movements text-center">
+
+              <div class="container-filter w-100">
+                <div class="container-inputs">
+                  <label for="startDate" class="label-start-date">Start Date</label>
+                  <input id="startDate" v-model="startDate" class="form-control input-date" type="date" />
+                </div>
+                <button @click="filterTransactions" class="button-account mb-4" type="button">
+                  <span class="p-1">Filter</span>
+                </button>
+
+                <div class="container-inputs">
+                  <label for="endDate" class="label-end-date">End Date</label>
+                  <input id="endDate" v-model="endDate" class="form-control input-date" type="date" />
+                </div>
+              </div>
+
+              <table id="table-transactions" class="table-responsive w-100 table-movements text-center">
                 <thead>
                   <tr>
                     <th scope="col">Type</th>
                     <th scope="col">Date</th>
                     <th scope="col">Time</th>
-                    <th scope="col">Description</th>
+                    <th scope="col" class="description">Description</th>
                     <th scope="col">Amount</th>
+                    <th scope="col">Amount Account</th>
                   </tr>
                 </thead>
                 <tbody class="body-account border border-secondary" v-for="transaction of transactions">
@@ -208,16 +228,25 @@
                     </td>
                     <td class="bg-light text-dark border border-secondary">{{parseDate(transaction.date)}}</td>
                     <td class="bg-light text-dark border border-secondary">{{parseTime(transaction.date)}}</td>
-                    <td class="text-light border border-secondary">{{transaction.description}}</td>
+                    <td class="text-light border border-secondary description">{{transaction.description}}</td>
                     <td
                       class="bg-light border border-secondary"
                       :class="transaction.type == 'DEBIT' ? 'text-danger-emphasis' : 'text-success-emphasis'"
                     >
                       {{transaction.amount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })}}
                     </td>
+                    <td class="text-light border border-secondary">
+                      {{transaction.accountAmount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })}}
+                    </td>
                   </tr>
                 </tbody>
               </table>
+              <!-- <div @click="generatePDF" class="download-pdf d-flex justify-content-between align-items-center gap-2"> -->
+              <a :href="getLink()" class="download-pdf d-flex justify-content-between align-items-center gap-2">
+                Export to PDF
+                <img class="icon-pdf" src="./assets/img/icons/pdf-icon.png" alt="pdf" />
+              </a>
+              <!-- </div> -->
             </template>
             <template v-else>
               <h3 class="dont-made-trans">
@@ -283,6 +312,12 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+      integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="./assets/js/account.js"></script>
   </body>
 </html>

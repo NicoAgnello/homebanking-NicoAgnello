@@ -1,15 +1,20 @@
 package com.mindhub.homebanking.utils;
 
-import com.mindhub.homebanking.repositories.AccountRepository;
-import com.mindhub.homebanking.repositories.CardRepository;
+//import com.mindhub.homebanking.repositories.AccountRepository;
+//import com.mindhub.homebanking.repositories.CardRepository;
+
+import com.mindhub.homebanking.services.AccountService;
+import com.mindhub.homebanking.services.CardService;
+import com.mindhub.homebanking.services.ServicesImplementation.AccountServiceImpl;
+import com.mindhub.homebanking.services.ServicesImplementation.CardServiceImpl;
 
 public class Utilities {
-    public static String randomNumberAccount(AccountRepository accountRepository){
+    public static String randomNumberAccount(AccountService accountService){
         String newNumber;
         Boolean numberBol;
         do {
             newNumber = randomStringNumber();
-            numberBol = accountRepository.existsAccountByNumber(newNumber);
+            numberBol = accountService.existsAccountByNumber(newNumber);
         }while (numberBol);
         return newNumber;
     }
@@ -23,12 +28,12 @@ public class Utilities {
         number= (int) (Math.floor(Math.random() * (999-100)) + 100);
         return number;
     }
-    public static String randomNumberCard(CardRepository cardRepository){
+    public static String randomNumberCard(CardService cardService){
         String newNumber;
         Boolean cardOptional;
         do {
             newNumber= randomString();
-            cardOptional= cardRepository.existsCardByNumber(newNumber);
+            cardOptional= cardService.existsCardByNumber(newNumber);
         }while(cardOptional);
         return newNumber;
     }

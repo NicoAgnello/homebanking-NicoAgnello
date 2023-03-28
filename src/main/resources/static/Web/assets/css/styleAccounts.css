@@ -6,6 +6,10 @@
   --fuentePrincipal: "Secular One", sans-serif;
 }
 
+[v-cloak] {
+  display: none;
+}
+
 /* Scroll Bar */
 
 body::-webkit-scrollbar {
@@ -27,7 +31,7 @@ body {
 }
 
 .nav-link {
-  font-size: .9rem !important;
+  font-size: 0.9rem !important;
 }
 .breadcrumb-item {
   font-size: 1.5rem !important;
@@ -37,7 +41,7 @@ body {
 }
 
 .nav-lateral {
-  max-height: 80vh;
+  max-height: 51vh;
 }
 
 .nav-lateral::-webkit-scrollbar {
@@ -52,6 +56,10 @@ body {
   background-color: var(--colorSecundario);
   border-radius: 20px;
   border: 2px solid var(--colorPrimario);
+}
+
+aside {
+  box-shadow: 0 0 0 1px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.4) !important;
 }
 
 .client-name {
@@ -85,6 +93,7 @@ body {
   -moz-border-radius: 20px;
   padding: 4px;
   color: var(--colorPrimario);
+  line-height: normal;
 }
 
 .card-accounts {
@@ -147,7 +156,7 @@ body {
   width: 100%;
 }
 .loan-payments {
-  color: var(--colorPrimario);
+  color: var(--colorTerciario);
   -webkit-text-stroke: 0.1px black;
 }
 
@@ -165,6 +174,32 @@ body {
   border-radius: 2rem;
   margin-block: 2rem;
   background: url(../img/home/fondo-bank.jpg) center/cover;
+}
+
+.account-type {
+  color: var(--colorSecundario);
+  text-shadow: 1px 1px 1px #bbbbbb;
+  font-weight: bold;
+}
+
+.button-delete-account {
+  cursor: pointer;
+  border-radius: 1rem;
+  border: 1px solid var(--colorRojo);
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  color: var(--colorRojo);
+  filter: drop-shadow(2px 2px 2px var(--colorSecundario));
+}
+
+.button-delete-account:hover {
+  background-color: var(--colorRojo);
+  color: whitesmoke;
+  border: whitesmoke;
+}
+
+.button-delete-account-media {
+  display: none;
 }
 
 /* See movements */
@@ -520,6 +555,9 @@ footer {
   .movements-button {
     font-size: 9px;
   }
+  td {
+    font-size: 0.8rem !important;
+  }
 }
 
 @media (min-width: 650px) {
@@ -552,6 +590,9 @@ footer {
   }
   .container-accounts {
     margin-inline: 1rem;
+  }
+  .button-delete-account {
+    padding: 0.4rem 0.5rem;
   }
 }
 
@@ -600,7 +641,36 @@ footer {
   .breadcrumb-item {
     font-size: 1rem !important;
   }
-  .creation-date{
+  .creation-date {
     display: none;
+  }
+
+  .button-delete-account {
+    display: none;
+  }
+  .button-delete-account-media {
+    display: block;
+    color: var(--colorRojo);
+    padding: 0.5rem;
+    cursor: pointer;
+    filter: drop-shadow(2px 2px 2px var(--colorSecundario));
+  }
+}
+
+@media (max-width: 653px) {
+  .movements-button.learn-more {
+    padding: 1em 1em;
+  }
+  .button-delete-account {
+    font-size: 0.6rem;
+  }
+  .button-delete-account i {
+    display: none;
+  }
+  th {
+    font-size: 1rem !important;
+  }
+  td {
+    font-size: 0.9rem !important;
   }
 }

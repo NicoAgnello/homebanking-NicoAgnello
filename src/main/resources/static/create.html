@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script src="https://kit.fontawesome.com/2cd05a3c76.js" crossorigin="anonymous"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./asets/style.css" />
+    <title>Loan manager</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary rounded mt-3">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">ADMIN</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="./manager.html">Manager Clients</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Create Loan</a>
+                </li>
+                <li class="nav-item">
+                  <button @click="singout" class="nav-link btn btn-warning" href="#">Log-Out</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="row">
+          <div class="col-12 col-md-6 d-flex flex-column gap-5">
+            <h1 class="text-center pt-4">Loan manager</h1>
+            <form @submit.prevent>
+              <div class="mb-3">
+                <label for="exampleInputName" class="form-label">Name of loan:</label>
+                <input type="text" class="form-control" id="exampleInputName" v-model="loanName" />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputAmount" class="form-label">Max Amount:</label>
+                <input type="number" class="form-control" id="exampleInputAmount" v-model="maxAmountLoan" />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPayments" class="form-label">Payments:</label>
+                <input type="text" class="form-control" id="exampleInputPayments" v-model="paymentsLoan" />
+                <div id="paymentsHelp" class="form-text text-center">Insert payments separated by a comma.</div>
+              </div>
+              <div class="mb-3">
+                <label for="examplePayments" class="form-label">Inerest Rate: </label>
+                <input type="text" class="form-control" id="examplePayments" v-model="interestRateLoan" />
+                <div id="interestHelp" class="form-text text-center">
+                  Example : <span class="fw-bold">1.1</span> = 10% .
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success" @click="newLoan">Add new loan</button>
+            </form>
+          </div>
+          <div class="col-md-6 col-12">
+            <h3 class="text-center pt-5">Loan response</h3>
+            <pre>{{jsonLoans}}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./asets/create.js"></script>
+  </body>
+</html>
